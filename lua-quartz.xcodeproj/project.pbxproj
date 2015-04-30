@@ -37,6 +37,7 @@
 		38E3DBA41AF114BF00F84CBB /* LLQuartzTypes.c in Sources */ = {isa = PBXBuildFile; fileRef = 38E3DB881AF114BF00F84CBB /* LLQuartzTypes.c */; };
 		38E3DBA51AF114BF00F84CBB /* LLStyledString.c in Sources */ = {isa = PBXBuildFile; fileRef = 38E3DB8A1AF114BF00F84CBB /* LLStyledString.c */; };
 		38E3DBA61AF114BF00F84CBB /* LLTransformation.c in Sources */ = {isa = PBXBuildFile; fileRef = 38E3DB8C1AF114BF00F84CBB /* LLTransformation.c */; };
+		38E3DBAC1AF1990F00F84CBB /* DrawingView.m in Sources */ = {isa = PBXBuildFile; fileRef = 38E3DBAB1AF1990F00F84CBB /* DrawingView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -110,6 +111,8 @@
 		38E3DB8B1AF114BF00F84CBB /* LLStyledString.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LLStyledString.h; sourceTree = "<group>"; };
 		38E3DB8C1AF114BF00F84CBB /* LLTransformation.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = LLTransformation.c; sourceTree = "<group>"; };
 		38E3DB8D1AF114BF00F84CBB /* LLTransformation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LLTransformation.h; sourceTree = "<group>"; };
+		38E3DBAA1AF1990F00F84CBB /* DrawingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DrawingView.h; sourceTree = "<group>"; };
+		38E3DBAB1AF1990F00F84CBB /* DrawingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DrawingView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -155,6 +158,8 @@
 			children = (
 				38E3DB381AF1142100F84CBB /* AppDelegate.h */,
 				38E3DB391AF1142100F84CBB /* AppDelegate.m */,
+				38E3DBAA1AF1990F00F84CBB /* DrawingView.h */,
+				38E3DBAB1AF1990F00F84CBB /* DrawingView.m */,
 				38E3DB3D1AF1142100F84CBB /* Images.xcassets */,
 				38E3DB3F1AF1142100F84CBB /* MainMenu.xib */,
 				38E3DB361AF1142100F84CBB /* Supporting Files */,
@@ -378,6 +383,7 @@
 				38E3DB9A1AF114BF00F84CBB /* LLBase.c in Sources */,
 				38E3DBA61AF114BF00F84CBB /* LLTransformation.c in Sources */,
 				38E3DB9B1AF114BF00F84CBB /* LLCanvas.c in Sources */,
+				38E3DBAC1AF1990F00F84CBB /* DrawingView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
