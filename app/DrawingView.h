@@ -8,4 +8,6 @@
 
 @interface DrawingView : NSView
 
+- (void)setDrawingScriptString:(NSString *)drawingScriptString;
+
 @end

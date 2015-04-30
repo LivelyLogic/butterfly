@@ -52,16 +52,22 @@
     lua_close(L);
 }
 
+- (void)setDrawingScriptString:(NSString *)drawingScriptString
+{
+    // Load a Lua drawing function and save it in the `draw` global.
+    luaL_dostring(L, [drawingScriptString UTF8String]);
+    lua_setglobal(L, "draw");
+    [self setNeedsDisplay:YES];
+}
+
 - (void)drawRect:(NSRect)dirtyRect
 {
-    // Load a Lua drawing function and leave it on the stack. We'll call it later.
-    luaL_dostring(L,
-    "return function(canvas)"
-    "    local purple = Color.rgba(0.5, 0, 1.0, 0.5)"
-    "    local oval = Path.oval(canvas:metrics():rect())"
-    "    canvas:setPaint(purple):fill(oval)"
-    "end"
-    );
+    // Push the drawing function onto the stack.
+    lua_getglobal(L, "draw");
+    if (lua_isnil(L, -1)) {
+        lua_pop(L, 1);
+        return;
+    }
     
     // Get the Quartz graphics context for the canvas to use.
     CGContextRef context = [[NSGraphicsContext currentContext] graphicsPort];
