@@ -54,9 +54,8 @@
 
 - (void)setDrawingScriptString:(NSString *)drawingScriptString
 {
-    // Load a Lua drawing function and save it in the `draw` global.
+    // Load a Lua script defining a global `draw` function.
     luaL_dostring(L, [drawingScriptString UTF8String]);
-    lua_setglobal(L, "draw");
     [self setNeedsDisplay:YES];
 }
 
