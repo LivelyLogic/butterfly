@@ -9,22 +9,41 @@
 #import "DrawingView.h"
 
 @interface AppDelegate ()
+@property (assign) IBOutlet NSTextView * scriptTextView;
 @property (assign) IBOutlet DrawingView * drawingView;
+@end
+
+@interface AppDelegate (NSTextViewDelegate) <NSTextViewDelegate>
 @end
 
 @implementation AppDelegate
 
 - (void)awakeFromNib
 {
-    NSString * drawingScriptString =
-    @"return function(canvas)"
-    @"    local purple = Color.rgba(0.5, 0, 1.0, 0.5)"
-    @"    local oval = Path.oval(canvas:metrics():rect())"
-    @"    canvas:setPaint(purple):fill(oval)"
-    @"end";
-    [self.drawingView setDrawingScriptString:drawingScriptString];
+    self.scriptTextView.delegate = self;
+    self.scriptTextView.string =
+    @"return function(canvas)\n"
+    @"    local purple = Color.rgba(0.5, 0, 1.0, 0.5)\n"
+    @"    local oval = Path.oval(canvas:metrics():rect())\n"
+    @"    canvas:setPaint(purple):fill(oval)\n"
+    @"end\n";
+    [self updateDrawingView];
     
     [super awakeFromNib];
+}
+
+- (void)updateDrawingView
+{
+    [self.drawingView setDrawingScriptString:self.scriptTextView.string];
+}
+
+@end
+
+@implementation AppDelegate (NSTextViewDelegate)
+
+- (void)textDidChange:(NSNotification *)notification
+{
+    [self updateDrawingView];
 }
 
 @end
