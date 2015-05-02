@@ -17,6 +17,10 @@
 
 #import "LLCanvas.h"
 
+@interface DrawingView ()
+@property (assign) BOOL scriptIsValid;
+@end
+
 @implementation DrawingView
 {
     lua_State * L;
@@ -54,17 +58,25 @@
 
 - (void)setDrawingScriptString:(NSString *)drawingScriptString
 {
-    // Load a Lua script defining a global `draw` function.
-    if (luaL_dostring(L, [drawingScriptString UTF8String])) {
-        NSLog(@"Syntax error: %s", lua_tostring(L, -1));
+    // Load a Lua script defining a global `draw` function. (We could just call
+    // `luaL_dostring` here, but the blank name will make parsing error messages easier.)
+    const char * cstring = [drawingScriptString UTF8String];
+    if (luaL_loadbuffer(L, cstring, strlen(cstring), "") || lua_pcall(L, 0, LUA_MULTRET, 0)) {
+        self.scriptIsValid = NO;
+        [self handleError:[NSString stringWithUTF8String:lua_tostring(L, -1)]];
         lua_pop(L, 1);
     } else {
-        [self setNeedsDisplay:YES];
+        self.scriptIsValid = YES;
     }
+    [self setNeedsDisplay:YES];
 }
 
 - (void)drawRect:(NSRect)dirtyRect
 {
+    if (!self.scriptIsValid) {
+        return;
+    }
+    
     // Push the drawing function onto the stack.
     lua_getglobal(L, "draw");
     if (lua_isnil(L, -1)) {
@@ -101,8 +113,34 @@
     
     // Call the drawing function. One argument (`canvas`), zero return values.
     if (lua_pcall(L, 1, 0, 0)) {
-        NSLog(@"Runtime error: %s", lua_tostring(L, -1));
+        [self handleError:[NSString stringWithUTF8String:lua_tostring(L, -1)]];
         lua_pop(L, 1);
+    } else {
+        [self didDraw];
+    }
+}
+
+- (void)didDraw
+{
+    [self.delegate drawingViewDidDraw:self];
+}
+
+- (void)handleError:(NSString *)errorString
+{
+    // Parse the line number and error message from the error string.
+    NSRegularExpression * regexp = [NSRegularExpression regularExpressionWithPattern:@"^[^:]+:(\\d+): (.+)$" options:0 error:NULL];
+    NSArray * matches = [regexp matchesInString:errorString options:0 range:NSMakeRange(0, errorString.length)];
+    if (matches.count > 0) {
+        NSTextCheckingResult * result = matches[0];
+        NSInteger lineNumber = [[errorString substringWithRange:[result rangeAtIndex:1]] integerValue];
+        NSString * errorMessage = [errorString substringWithRange:[result rangeAtIndex:2]];
+        [self.delegate drawingView:self
+                 didEncounterError:errorMessage
+                            onLine:lineNumber];
+    } else {
+        [self.delegate drawingView:self
+                 didEncounterError:errorString
+                            onLine:NSNotFound];
     }
 }
 
