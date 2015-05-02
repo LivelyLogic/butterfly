@@ -21,6 +21,10 @@
 - (void)awakeFromNib
 {
     self.scriptTextView.delegate = self;
+    self.scriptTextView.automaticDashSubstitutionEnabled = NO;
+    self.scriptTextView.automaticQuoteSubstitutionEnabled = NO;
+    self.scriptTextView.automaticSpellingCorrectionEnabled = NO;
+    self.scriptTextView.automaticTextReplacementEnabled = NO;
     self.scriptTextView.string =
     @"draw = function(canvas)\n"
     @"    local purple = Color.rgba(0.5, 0, 1.0, 0.5)\n"
