@@ -55,8 +55,12 @@
 - (void)setDrawingScriptString:(NSString *)drawingScriptString
 {
     // Load a Lua script defining a global `draw` function.
-    luaL_dostring(L, [drawingScriptString UTF8String]);
-    [self setNeedsDisplay:YES];
+    if (luaL_dostring(L, [drawingScriptString UTF8String])) {
+        NSLog(@"Syntax error: %s", lua_tostring(L, -1));
+        lua_pop(L, 1);
+    } else {
+        [self setNeedsDisplay:YES];
+    }
 }
 
 - (void)drawRect:(NSRect)dirtyRect
@@ -96,7 +100,10 @@
     LLRelease(canvas);
     
     // Call the drawing function. One argument (`canvas`), zero return values.
-    lua_call(L, 1, 0);
+    if (lua_pcall(L, 1, 0, 0)) {
+        NSLog(@"Runtime error: %s", lua_tostring(L, -1));
+        lua_pop(L, 1);
+    }
 }
 
 @end
