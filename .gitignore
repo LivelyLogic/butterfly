@@ -4,3 +4,4 @@ xcuserdata
 
 *.o
 libbutterfly.a
+lua2png
