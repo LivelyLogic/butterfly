@@ -1,5 +1,8 @@
 CC = clang
 CFLAGS = -Wall
+INSTALL = install -p -m 0644
+
+INSTALL_LIB = /usr/local/lib
 
 QUARTZ_SOURCES = quartz/*.c
 QUARTZ_HEADERS = quartz/*.h
@@ -25,3 +28,6 @@ all: $(LIB)
 
 clean:
 	rm -f $(QUARTZ_OBJECTS) $(LUA_OBJECTS) $(LIB)
+
+install: $(LIB)
+	$(INSTALL) $(LIB) $(INSTALL_LIB)
