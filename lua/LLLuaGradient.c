@@ -44,7 +44,7 @@ int initLuaGradientLibrary(lua_State * L) {
 
 // Local functions
 
-static int processArray(lua_State * L, LLColorPaintRef ** retColorPaints, CGFloat ** retLocations) {
+static int processArray(lua_State * L, LLColorPaintRef ** retColorPaints, double ** retLocations) {
     double location;
     double locationMin = 0;
     double locationMax = 1;
@@ -66,10 +66,10 @@ static int processArray(lua_State * L, LLColorPaintRef ** retColorPaints, CGFloa
         lua_pop(L, 1);
     }
     
-    CGFloat * locations = NULL;
+    double * locations = NULL;
     LLColorPaintRef * colorPaints = NULL;
     if (count > 0) {
-        locations = malloc(count * sizeof(CGFloat));
+        locations = malloc(count * sizeof(double));
         colorPaints = malloc(count * sizeof(LLColorPaintRef));
         if (locations && colorPaints) {
             LLPaintRef * colorUserdata;
@@ -80,7 +80,7 @@ static int processArray(lua_State * L, LLColorPaintRef ** retColorPaints, CGFloa
                     location = lua_tonumber(L, -2);
                     // TODO: make sure this doesn't say "bad arg #-2 to function"...
                     colorUserdata = luaL_checkudata(L, -1, LLColorPaintClassName);
-                    locations[index] = (CGFloat)((location - locationMin) / (locationMax - locationMin));
+                    locations[index] = ((location - locationMin) / (locationMax - locationMin));
                     colorPaints[index] = (LLColorPaintRef)(*colorUserdata);
                     index++;
                 }
@@ -106,7 +106,7 @@ static int linear(lua_State * L) {
     double y2 = lua_tonumber(L, 5);
     LLGradientPaintRef gradientPaint = LLGradientPaintCreate();
     LLColorPaintRef * colorPaints;
-    CGFloat * locations;
+    double * locations;
     int count;
     
     count = processArray(L, &colorPaints, &locations);
@@ -134,7 +134,7 @@ static int radial(lua_State * L) {
     double r2 = lua_tonumber(L, 7);
     LLGradientPaintRef gradientPaint = LLGradientPaintCreate();
     LLColorPaintRef * colorPaints;
-    CGFloat * locations;
+    double * locations;
     int count;
     
     count = processArray(L, &colorPaints, &locations);

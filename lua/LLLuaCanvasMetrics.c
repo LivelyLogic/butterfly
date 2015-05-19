@@ -51,7 +51,7 @@ static int rect(lua_State * L) {
 static int backingScale(lua_State * L) {
     LL_LUA_DEBUG_STACK_BEGIN(L);
     LLCanvasMetricsRef canvasMetrics = *(LLCanvasMetricsRef *)luaL_checkudata(L, 1, LLCanvasMetricsClassName);
-    CGFloat backingScale;
+    double backingScale;
 
     backingScale = LLCanvasMetricsGetBackingScale(canvasMetrics);
 
@@ -63,7 +63,7 @@ static int backingScale(lua_State * L) {
 static int pointScale(lua_State * L) {
     LL_LUA_DEBUG_STACK_BEGIN(L);
     LLCanvasMetricsRef canvasMetrics = *(LLCanvasMetricsRef *)luaL_checkudata(L, 1, LLCanvasMetricsClassName);
-    CGFloat pointScale;
+    double pointScale;
 
     pointScale = LLCanvasMetricsGetPointScale(canvasMetrics);
 

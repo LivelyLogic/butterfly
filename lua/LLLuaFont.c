@@ -64,7 +64,7 @@ static int get(lua_State * L) {
     double size = lua_tonumber(L, 2);
     LLFontRef font;
     
-    font = LLFontCreate(name, (CGFloat)size);
+    font = LLFontCreate(name, size);
     pushNewUserdata(L, font, LLFontClassName);
     LLRelease(font);
     
@@ -77,7 +77,7 @@ static int getSystem(lua_State * L) {
     double size = lua_tonumber(L, 1);
     LLFontRef font;
     
-    font = LLFontCreateSystem((CGFloat)size);
+    font = LLFontCreateSystem(size);
     pushNewUserdata(L, font, LLFontClassName);
     LLRelease(font);
     
@@ -90,7 +90,7 @@ static int getBoldSystem(lua_State * L) {
     double size = lua_tonumber(L, 1);
     LLFontRef font;
     
-    font = LLFontCreateBoldSystem((CGFloat)size);
+    font = LLFontCreateBoldSystem(size);
     pushNewUserdata(L, font, LLFontClassName);
     LLRelease(font);
     
@@ -133,7 +133,7 @@ static int getAscent(lua_State * L) {
     
     luaL_argcheck(L, font, 1, "Font expected");
     
-    CGFloat ascent = LLFontGetAscent(font);
+    double ascent = LLFontGetAscent(font);
     lua_pushnumber(L, ascent);
     
     LL_LUA_DEBUG_STACK_ENDR(L, 1);
@@ -146,7 +146,7 @@ static int getDescent(lua_State * L) {
     
     luaL_argcheck(L, font, 1, "Font expected");
     
-    CGFloat descent = LLFontGetDescent(font);
+    double descent = LLFontGetDescent(font);
     lua_pushnumber(L, descent);
     
     LL_LUA_DEBUG_STACK_ENDR(L, 1);
@@ -159,9 +159,9 @@ static int getHeight(lua_State * L) {
     
     luaL_argcheck(L, font, 1, "Font expected");
     
-    CGFloat ascent = LLFontGetAscent(font);
-    CGFloat descent = LLFontGetDescent(font);
-    CGFloat height = ascent + descent;
+    double ascent = LLFontGetAscent(font);
+    double descent = LLFontGetDescent(font);
+    double height = ascent + descent;
     lua_pushnumber(L, height);
     
     LL_LUA_DEBUG_STACK_ENDR(L, 1);
@@ -174,7 +174,7 @@ static int getLeading(lua_State * L) {
     
     luaL_argcheck(L, font, 1, "Font expected");
     
-    CGFloat leading = LLFontGetLeading(font);
+    double leading = LLFontGetLeading(font);
     lua_pushnumber(L, leading);
     
     LL_LUA_DEBUG_STACK_ENDR(L, 1);

@@ -37,15 +37,15 @@ static void LLTransformationDealloc(LLTransformationRef transformation) {
     LLDealloc(transformation);
 }
 
-void LLTransformationRotate(LLTransformationRef transformation, CGFloat angle) {
+void LLTransformationRotate(LLTransformationRef transformation, double angle) {
     transformation->affine = CGAffineTransformRotate(transformation->affine, angle);
 }
 
-void LLTransformationTranslate(LLTransformationRef transformation, CGFloat dx, CGFloat dy) {
+void LLTransformationTranslate(LLTransformationRef transformation, double dx, double dy) {
     transformation->affine = CGAffineTransformTranslate(transformation->affine, dx, dy);
 }
 
-void LLTransformationScale(LLTransformationRef transformation, CGFloat ratio) {
+void LLTransformationScale(LLTransformationRef transformation, double ratio) {
     transformation->affine = CGAffineTransformScale(transformation->affine, ratio, ratio);
 }
 

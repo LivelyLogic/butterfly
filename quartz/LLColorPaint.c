@@ -44,7 +44,7 @@ static void LLColorPaintDealloc(LLColorPaintRef colorPaint) {
     LLPaintDealloc(colorPaint);
 }
 
-void LLColorPaintSetRGBA(LLColorPaintRef colorPaint, CGFloat r, CGFloat g, CGFloat b, CGFloat a) {
+void LLColorPaintSetRGBA(LLColorPaintRef colorPaint, double r, double g, double b, double a) {
     const CGFloat components[] = {r, g, b, a};
     CGColorSpaceRef srgbColorSpace = CGColorSpaceCreateWithName(kCGColorSpaceSRGB);
     CGColorRelease(colorPaint->color);
@@ -52,7 +52,7 @@ void LLColorPaintSetRGBA(LLColorPaintRef colorPaint, CGFloat r, CGFloat g, CGFlo
     CGColorSpaceRelease(srgbColorSpace);
 }
 
-void LLColorPaintGetRGBA(LLColorPaintRef colorPaint, CGFloat * r, CGFloat * g, CGFloat * b, CGFloat * a) {
+void LLColorPaintGetRGBA(LLColorPaintRef colorPaint, double * r, double * g, double * b, double * a) {
     const CGFloat * components = CGColorGetComponents(colorPaint->color);
     if (CGColorGetNumberOfComponents(colorPaint->color) == 4) {
         *r = *(components++);

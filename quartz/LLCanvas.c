@@ -150,7 +150,7 @@ LLFontRef LLCanvasGetFont(LLCanvasRef canvas) {
     return canvas->state.font;
 }
 
-void LLCanvasSetThickness(LLCanvasRef canvas, CGFloat thickness) {
+void LLCanvasSetThickness(LLCanvasRef canvas, double thickness) {
     CGContextSetLineWidth(canvas->context, thickness);
 }
 

@@ -18,8 +18,8 @@ typedef struct LLStyledString * LLStyledStringRef;
 LLStyledStringRef LLStyledStringCreate(const char * string, LLFontRef font, int superscriptIndex);
 LLStyledStringRef LLStyledStringCreateUsingAttributedString(CFAttributedStringRef attributedString);
 LLStyledStringRef LLStyledStringCreateJoining(LLStyledStringRef styledString1, LLStyledStringRef styledString2);
-LLStyledStringRef LLStyledStringCreateTruncating(LLStyledStringRef styledString, CGFloat width);
-CFIndex LLStyledStringCreateBreaking(LLStyledStringRef styledString, CFIndex startPosition, CGFloat width, CFIndex lineCount, LLStyledStringRef resultStyledStrings[]);
+LLStyledStringRef LLStyledStringCreateTruncating(LLStyledStringRef styledString, double width);
+CFIndex LLStyledStringCreateBreaking(LLStyledStringRef styledString, CFIndex startPosition, double width, CFIndex lineCount, LLStyledStringRef resultStyledStrings[]);
 
 CFIndex LLStyledStringGetLength(LLStyledStringRef styledString);
 

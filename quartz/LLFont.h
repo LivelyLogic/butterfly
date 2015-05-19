@@ -13,15 +13,15 @@
 
 typedef struct LLFont * LLFontRef;
 
-LLFontRef LLFontCreate(const char * name, CGFloat size);
-LLFontRef LLFontCreateSystem(CGFloat size);
-LLFontRef LLFontCreateBoldSystem(CGFloat size);
+LLFontRef LLFontCreate(const char * name, double size);
+LLFontRef LLFontCreateSystem(double size);
+LLFontRef LLFontCreateBoldSystem(double size);
 
 char * LLFontCopyName(LLFontRef font);
-CGFloat LLFontGetSize(LLFontRef font);
-CGFloat LLFontGetAscent(LLFontRef font);
-CGFloat LLFontGetDescent(LLFontRef font);
-CGFloat LLFontGetLeading(LLFontRef font);
+double LLFontGetSize(LLFontRef font);
+double LLFontGetAscent(LLFontRef font);
+double LLFontGetDescent(LLFontRef font);
+double LLFontGetLeading(LLFontRef font);
 
 CTFontRef LLFontGetCTFont(LLFontRef font);
 

@@ -9,11 +9,11 @@
 struct LLCanvasMetrics {
     struct LLBase __base;
     CGRect boundsRect;
-    CGFloat backingScale;
-    CGFloat pointScale;
+    double backingScale;
+    double pointScale;
 };
 
-static void LLCanvasMetricsInit(LLCanvasMetricsRef canvasMetrics, CGRect boundsRect, CGFloat backingScale, CGFloat pointScale);
+static void LLCanvasMetricsInit(LLCanvasMetricsRef canvasMetrics, CGRect boundsRect, double backingScale, double pointScale);
 static void LLCanvasMetricsDealloc(LLCanvasMetricsRef canvasMetrics);
 
 static const LLBaseFunctions baseFunctions = {
@@ -21,7 +21,7 @@ static const LLBaseFunctions baseFunctions = {
     .dealloc = (LLBaseDeallocFunction)&LLCanvasMetricsDealloc,
 };
 
-LLCanvasMetricsRef LLCanvasMetricsCreate(CGRect boundsRect, CGFloat backingScale, CGFloat pointScale) {
+LLCanvasMetricsRef LLCanvasMetricsCreate(CGRect boundsRect, double backingScale, double pointScale) {
     LLCanvasMetricsRef canvasMetrics = LLAlloc(sizeof(struct LLCanvasMetrics), &baseFunctions);
     if (canvasMetrics) {
         LLCanvasMetricsInit(canvasMetrics, boundsRect, backingScale, pointScale);
@@ -29,7 +29,7 @@ LLCanvasMetricsRef LLCanvasMetricsCreate(CGRect boundsRect, CGFloat backingScale
     return LLRetain(canvasMetrics);
 }
 
-static void LLCanvasMetricsInit(LLCanvasMetricsRef canvasMetrics, CGRect boundsRect, CGFloat backingScale, CGFloat pointScale) {
+static void LLCanvasMetricsInit(LLCanvasMetricsRef canvasMetrics, CGRect boundsRect, double backingScale, double pointScale) {
     canvasMetrics->boundsRect = boundsRect;
     canvasMetrics->backingScale = backingScale;
     canvasMetrics->pointScale = pointScale;
@@ -45,10 +45,10 @@ CGRect LLCanvasMetricsGetBoundsRect(LLCanvasMetricsRef canvasMetrics) {
     return canvasMetrics->boundsRect;
 }
 
-CGFloat LLCanvasMetricsGetBackingScale(LLCanvasMetricsRef canvasMetrics) {
+double LLCanvasMetricsGetBackingScale(LLCanvasMetricsRef canvasMetrics) {
     return canvasMetrics->backingScale;
 }
 
-CGFloat LLCanvasMetricsGetPointScale(LLCanvasMetricsRef canvasMetrics) {
+double LLCanvasMetricsGetPointScale(LLCanvasMetricsRef canvasMetrics) {
     return canvasMetrics->pointScale;
 }

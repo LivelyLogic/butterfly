@@ -15,8 +15,8 @@ typedef struct LLColorPaint * LLColorPaintRef;
 
 LLColorPaintRef LLColorPaintCreate(void);
 
-void LLColorPaintSetRGBA(LLColorPaintRef colorPaint, CGFloat r, CGFloat g, CGFloat b, CGFloat a);
-void LLColorPaintGetRGBA(LLColorPaintRef colorPaint, CGFloat * r, CGFloat * g, CGFloat * b, CGFloat * a);
+void LLColorPaintSetRGBA(LLColorPaintRef colorPaint, double r, double g, double b, double a);
+void LLColorPaintGetRGBA(LLColorPaintRef colorPaint, double * r, double * g, double * b, double * a);
 void LLColorPaintSetInContext(LLColorPaintRef colorPaint, CGContextRef context);
 void LLColorPaintFillRectInContext(LLColorPaintRef colorPaint, CGContextRef context, CGRect rect);
 

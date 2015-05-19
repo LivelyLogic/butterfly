@@ -15,9 +15,9 @@ typedef struct LLTransformation * LLTransformationRef;
 
 LLTransformationRef LLTransformationCreate(void);
 
-void LLTransformationRotate(LLTransformationRef transformation, CGFloat angle);
-void LLTransformationTranslate(LLTransformationRef transformation, CGFloat dx, CGFloat dy);
-void LLTransformationScale(LLTransformationRef transformation, CGFloat ratio);
+void LLTransformationRotate(LLTransformationRef transformation, double angle);
+void LLTransformationTranslate(LLTransformationRef transformation, double dx, double dy);
+void LLTransformationScale(LLTransformationRef transformation, double ratio);
 void LLTransformationInvert(LLTransformationRef transformation);
 void LLTransformationConcat(LLTransformationRef transformation1, LLTransformationRef transformation2);
 

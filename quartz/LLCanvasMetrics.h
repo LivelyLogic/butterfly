@@ -13,10 +13,10 @@
 
 typedef struct LLCanvasMetrics * LLCanvasMetricsRef;
 
-LLCanvasMetricsRef LLCanvasMetricsCreate(CGRect boundsRect, CGFloat backingScale, CGFloat pointScale);
+LLCanvasMetricsRef LLCanvasMetricsCreate(CGRect boundsRect, double backingScale, double pointScale);
 
 CGRect LLCanvasMetricsGetBoundsRect(LLCanvasMetricsRef canvasMetrics);
-CGFloat LLCanvasMetricsGetBackingScale(LLCanvasMetricsRef canvasMetrics);
-CGFloat LLCanvasMetricsGetPointScale(LLCanvasMetricsRef canvasMetrics);
+double LLCanvasMetricsGetBackingScale(LLCanvasMetricsRef canvasMetrics);
+double LLCanvasMetricsGetPointScale(LLCanvasMetricsRef canvasMetrics);
 
 #endif /* __LL_CANVAS_METRICS_H__ */

@@ -267,7 +267,7 @@ static int setThickness(lua_State * L) {
 
     if (lua_isnumber(L, 2)) {
         double thickness = luaL_checknumber(L, 2);
-        LLCanvasSetThickness(canvas, (CGFloat)thickness);
+        LLCanvasSetThickness(canvas, thickness);
     }
 
     LL_LUA_DEBUG_STACK_END(L);

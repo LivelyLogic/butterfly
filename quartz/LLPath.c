@@ -52,11 +52,11 @@ void LLPathAddCurveToPoint(LLPathRef path, CGPoint aPoint, CGPoint controlPoint1
     CGPathAddCurveToPoint(path->pathRef, NULL, controlPoint1.x, controlPoint1.y, controlPoint2.x, controlPoint2.y, aPoint.x, aPoint.y);
 }
 
-void LLPathAddArc(LLPathRef path, CGPoint centerPoint, CGFloat arcAngle) {
+void LLPathAddArc(LLPathRef path, CGPoint centerPoint, double arcAngle) {
     CGPoint currentPoint = CGPathGetCurrentPoint(path->pathRef);
-    CGFloat radius = hypot(currentPoint.y - centerPoint.y, currentPoint.x - centerPoint.x);
-    CGFloat startAngle = atan2(currentPoint.y - centerPoint.y, currentPoint.x - centerPoint.x);
-    CGFloat endAngle = startAngle + arcAngle;
+    double radius = hypot(currentPoint.y - centerPoint.y, currentPoint.x - centerPoint.x);
+    double startAngle = atan2(currentPoint.y - centerPoint.y, currentPoint.x - centerPoint.x);
+    double endAngle = startAngle + arcAngle;
     bool clockwise = (arcAngle < 0);
     CGPathAddArc(path->pathRef, NULL, centerPoint.x, centerPoint.y, radius, startAngle, endAngle, clockwise);
 }
@@ -69,7 +69,7 @@ void LLPathAddRect(LLPathRef path, CGRect aRect) {
     CGPathAddRect(path->pathRef, NULL, aRect);
 }
 
-void LLPathAddRoundedRect(LLPathRef path, CGRect aRect, CGFloat radius) {
+void LLPathAddRoundedRect(LLPathRef path, CGRect aRect, double radius) {
     CGPathMoveToPoint(path->pathRef, NULL, aRect.origin.x, aRect.origin.y + radius);
     CGPathAddArc(path->pathRef, NULL, aRect.origin.x + radius, aRect.origin.y + aRect.size.height - radius, radius, M_PI, M_PI_2, 1);
     CGPathAddArc(path->pathRef, NULL, aRect.origin.x + aRect.size.width - radius, aRect.origin.y + aRect.size.height - radius, radius, M_PI_2, 0, 1);

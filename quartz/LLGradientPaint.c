@@ -18,7 +18,7 @@ struct LLGradientPaint {
     CGGradientRef gradient;
     LLGradientPaintType type;
     CGPoint locationPoints[2];
-    CGFloat locationFloats[2];
+    double locationFloats[2];
 };
 
 static void LLGradientPaintInit(LLGradientPaintRef gradientPaint);
@@ -51,7 +51,7 @@ static void LLGradientPaintDealloc(LLGradientPaintRef gradientPaint) {
     LLPaintDealloc(gradientPaint);
 }
 
-void LLGradientPaintSetColors(LLGradientPaintRef gradientPaint, int count, const LLColorPaintRef * colorPaints, const CGFloat * locations) {
+void LLGradientPaintSetColors(LLGradientPaintRef gradientPaint, int count, const LLColorPaintRef * colorPaints, const double * locations) {
     CGColorRef objects[count];
     int index;
     for (index = 0; index < count; index++) {
@@ -70,7 +70,7 @@ void LLGradientPaintSetLinearLocation(LLGradientPaintRef gradientPaint, CGPoint 
     gradientPaint->locationPoints[1] = endPoint;
 }
 
-void LLGradientPaintSetRadialLocation(LLGradientPaintRef gradientPaint, CGPoint startCenter, CGFloat startRadius, CGPoint endCenter, CGFloat endRadius) {
+void LLGradientPaintSetRadialLocation(LLGradientPaintRef gradientPaint, CGPoint startCenter, double startRadius, CGPoint endCenter, double endRadius) {
     gradientPaint->type = kLLGradientPaintRadial;
     gradientPaint->locationPoints[0] = startCenter;
     gradientPaint->locationFloats[0] = startRadius;

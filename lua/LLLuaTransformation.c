@@ -66,7 +66,7 @@ static int identity(lua_State * L) {
 static int rotate(lua_State * L) {
     LL_LUA_DEBUG_STACK_BEGIN(L);
     LLTransformationRef transformation = *(LLTransformationRef *)luaL_checkudata(L, 1, LLTransformationClassName);
-    CGFloat angle = lua_tonumber(L, 2);
+    double angle = lua_tonumber(L, 2);
     
     luaL_argcheck(L, transformation, 1, "Transformation expected");
     LLTransformationRotate(transformation, angle);
@@ -79,8 +79,8 @@ static int rotate(lua_State * L) {
 static int translate(lua_State * L) {
     LL_LUA_DEBUG_STACK_BEGIN(L);
     LLTransformationRef transformation = *(LLTransformationRef *)luaL_checkudata(L, 1, LLTransformationClassName);
-    CGFloat dx = lua_tonumber(L, 2);
-    CGFloat dy = lua_tonumber(L, 3);
+    double dx = lua_tonumber(L, 2);
+    double dy = lua_tonumber(L, 3);
     
     luaL_argcheck(L, transformation, 1, "Transformation expected");
     LLTransformationTranslate(transformation, dx, dy);
@@ -93,7 +93,7 @@ static int translate(lua_State * L) {
 static int scale(lua_State * L) {
     LL_LUA_DEBUG_STACK_BEGIN(L);
     LLTransformationRef transformation = *(LLTransformationRef *)luaL_checkudata(L, 1, LLTransformationClassName);
-    CGFloat ratio = lua_tonumber(L, 2);
+    double ratio = lua_tonumber(L, 2);
     
     luaL_argcheck(L, transformation, 1, "Transformation expected");
     LLTransformationScale(transformation, ratio);
@@ -132,8 +132,8 @@ static int concat(lua_State * L) {
 static int transformPoint(lua_State * L) {
     LL_LUA_DEBUG_STACK_BEGIN(L);
     LLTransformationRef transformation = *(LLTransformationRef *)luaL_checkudata(L, 1, LLTransformationClassName);
-    CGFloat x = lua_tonumber(L, 2);
-    CGFloat y = lua_tonumber(L, 3);
+    double x = lua_tonumber(L, 2);
+    double y = lua_tonumber(L, 3);
     
     luaL_argcheck(L, transformation, 1, "Transformation expected");
     CGPoint point = CGPointMake(x, y);
@@ -148,8 +148,8 @@ static int transformPoint(lua_State * L) {
 static int transformSize(lua_State * L) {
     LL_LUA_DEBUG_STACK_BEGIN(L);
     LLTransformationRef transformation = *(LLTransformationRef *)luaL_checkudata(L, 1, LLTransformationClassName);
-    CGFloat x = lua_tonumber(L, 2);
-    CGFloat y = lua_tonumber(L, 3);
+    double x = lua_tonumber(L, 2);
+    double y = lua_tonumber(L, 3);
     
     luaL_argcheck(L, transformation, 1, "Transformation expected");
     CGSize size = CGSizeMake(x, y);

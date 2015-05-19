@@ -18,10 +18,10 @@ LLPathRef LLPathCreate(void);
 void LLPathMoveToPoint(LLPathRef path, CGPoint aPoint);
 void LLPathAddLineToPoint(LLPathRef path, CGPoint aPoint);
 void LLPathAddCurveToPoint(LLPathRef path, CGPoint aPoint, CGPoint controlPoint1, CGPoint controlPoint2);
-void LLPathAddArc(LLPathRef path, CGPoint centerPoint, CGFloat arcAngle);
+void LLPathAddArc(LLPathRef path, CGPoint centerPoint, double arcAngle);
 void LLPathCloseSubpath(LLPathRef path);
 void LLPathAddRect(LLPathRef path, CGRect aRect);
-void LLPathAddRoundedRect(LLPathRef path, CGRect aRect, CGFloat radius);
+void LLPathAddRoundedRect(LLPathRef path, CGRect aRect, double radius);
 void LLPathAddOvalInRect(LLPathRef path, CGRect aRect);
 
 CGPathRef LLPathGetCGPath(const LLPathRef path);

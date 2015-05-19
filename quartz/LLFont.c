@@ -22,7 +22,7 @@ static const LLBaseFunctions baseFunctions = {
     .dealloc = (LLBaseDeallocFunction)&LLFontDealloc,
 };
 
-LLFontRef LLFontCreate(const char * name, CGFloat size) {
+LLFontRef LLFontCreate(const char * name, double size) {
     LLFontRef font = LLAlloc(sizeof(struct LLFont), &baseFunctions);
     if (font) {
         if (!name) {
@@ -38,7 +38,7 @@ LLFontRef LLFontCreate(const char * name, CGFloat size) {
     return LLRetain(font);
 }
 
-LLFontRef LLFontCreateSystem(CGFloat size) {
+LLFontRef LLFontCreateSystem(double size) {
     LLFontRef font = LLAlloc(sizeof(struct LLFont), &baseFunctions);
     if (font) {
         CTFontRef fontRef = CTFontCreateUIFontForLanguage(kCTFontSystemFontType, size, NULL);
@@ -47,7 +47,7 @@ LLFontRef LLFontCreateSystem(CGFloat size) {
     return LLRetain(font);
 }
 
-LLFontRef LLFontCreateBoldSystem(CGFloat size) {
+LLFontRef LLFontCreateBoldSystem(double size) {
     LLFontRef font = LLAlloc(sizeof(struct LLFont), &baseFunctions);
     if (font) {
         CTFontRef fontRef = CTFontCreateUIFontForLanguage(kCTFontEmphasizedSystemFontType, size, NULL);
@@ -76,19 +76,19 @@ char * LLFontCopyName(LLFontRef font) {
     return buffer;
 }
 
-CGFloat LLFontGetSize(LLFontRef font) {
+double LLFontGetSize(LLFontRef font) {
     return CTFontGetSize(font->fontRef);
 }
 
-CGFloat LLFontGetAscent(LLFontRef font) {
+double LLFontGetAscent(LLFontRef font) {
     return CTFontGetAscent(font->fontRef);
 }
 
-CGFloat LLFontGetDescent(LLFontRef font) {
+double LLFontGetDescent(LLFontRef font) {
     return CTFontGetDescent(font->fontRef);
 }
 
-CGFloat LLFontGetLeading(LLFontRef font) {
+double LLFontGetLeading(LLFontRef font) {
     return CTFontGetLeading(font->fontRef);
 }
 

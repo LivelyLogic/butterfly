@@ -33,7 +33,7 @@ void LLCanvasSetPaint(LLCanvasRef canvas, LLPaintRef paint);
 void LLCanvasSetPaintMode(LLCanvasRef canvas, LLPaintModeRef paintMode);
 void LLCanvasSetFont(LLCanvasRef canvas, LLFontRef font);
 LLFontRef LLCanvasGetFont(LLCanvasRef canvas);
-void LLCanvasSetThickness(LLCanvasRef canvas, CGFloat thickness);
+void LLCanvasSetThickness(LLCanvasRef canvas, double thickness);
 void LLCanvasConcatTransformation(LLCanvasRef canvas, LLTransformationRef transformation);
 void LLCanvasClipRect(LLCanvasRef canvas, CGRect rect);
 void LLCanvasClipPath(LLCanvasRef canvas, const LLPathRef path);

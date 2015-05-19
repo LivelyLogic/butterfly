@@ -23,16 +23,16 @@ CF_RETURNS_RETAINED static CFAttributedStringRef LLStyledStringNewAttributedStri
 static void LLStyledStringEnsureLine(LLStyledStringRef styledString);
 static void LLStyledStringEnsurePath(LLStyledStringRef styledString);
 
-typedef void (* LLStyledStringRunIterationFunction)(CTFontRef font, CGFloat baselineOffset, const CGGlyph * glyphs, const CGPoint * positions, CFIndex glyphCount, void * userData);
+typedef void (* LLStyledStringRunIterationFunction)(CTFontRef font, double baselineOffset, const CGGlyph * glyphs, const CGPoint * positions, CFIndex glyphCount, void * userData);
 static void LLStyledStringIterateRuns(LLStyledStringRef, LLStyledStringRunIterationFunction, void *);
 
-static void LLStyledStringBuildPathRunIterationFunction(CTFontRef font, CGFloat baselineOffset, const CGGlyph * glyphs, const CGPoint * positions, CFIndex glyphCount, CGMutablePathRef path);
+static void LLStyledStringBuildPathRunIterationFunction(CTFontRef font, double baselineOffset, const CGGlyph * glyphs, const CGPoint * positions, CFIndex glyphCount, CGMutablePathRef path);
 
 typedef struct LLStyledStringShowGlyphsRunIterationFunctionUserData {
     CGContextRef context;
     CGPoint textPosition;
 } LLStyledStringShowGlyphsRunIterationFunctionUserData;
-static void LLStyledStringShowGlyphsRunIterationFunction(CTFontRef font, CGFloat baselineOffset, const CGGlyph * glyphs, const CGPoint * positions, CFIndex glyphCount, LLStyledStringShowGlyphsRunIterationFunctionUserData * userData);
+static void LLStyledStringShowGlyphsRunIterationFunction(CTFontRef font, double baselineOffset, const CGGlyph * glyphs, const CGPoint * positions, CFIndex glyphCount, LLStyledStringShowGlyphsRunIterationFunctionUserData * userData);
 
 static const LLBaseFunctions baseFunctions = {
     .name = LLStyledStringClassName,
@@ -61,7 +61,7 @@ LLStyledStringRef LLStyledStringCreateJoining(LLStyledStringRef styledString1, L
     return styledString;
 }
 
-CFIndex LLStyledStringCreateBreaking(LLStyledStringRef styledString, CFIndex startPosition, CGFloat width, CFIndex lineCount, LLStyledStringRef resultStyledStrings[]) {
+CFIndex LLStyledStringCreateBreaking(LLStyledStringRef styledString, CFIndex startPosition, double width, CFIndex lineCount, LLStyledStringRef resultStyledStrings[]) {
     CTTypesetterRef typesetter = CTTypesetterCreateWithAttributedString(styledString->stringRef);
     CFIndex stringLength = CFAttributedStringGetLength(styledString->stringRef);
     CFIndex index;
@@ -80,7 +80,7 @@ CFIndex LLStyledStringCreateBreaking(LLStyledStringRef styledString, CFIndex sta
     return startPosition;
 }
 
-LLStyledStringRef LLStyledStringCreateTruncating(LLStyledStringRef styledString, CGFloat width) {
+LLStyledStringRef LLStyledStringCreateTruncating(LLStyledStringRef styledString, double width) {
     CGRect rect = LLStyledStringMeasure(styledString);
     if (rect.size.width > width) {
         CFStringRef ellipsis = CFStringCreateWithCString(NULL, "…", kCFStringEncodingUTF8);
@@ -209,7 +209,7 @@ static void LLStyledStringIterateRuns(LLStyledStringRef styledString, LLStyledSt
         CTRunRef run = CFArrayGetValueAtIndex(runs, runIndex);
         CFDictionaryRef attributes = CTRunGetAttributes(run);
         CTFontRef font = CFDictionaryGetValue(attributes, kCTFontAttributeName);
-        CGFloat baselineOffset = 0;
+        double baselineOffset = 0;
         if (CFDictionaryContainsKey(attributes, kCTSuperscriptAttributeName)) {
             CFNumberRef number = CFDictionaryGetValue(attributes, kCTSuperscriptAttributeName);
             int superscriptIndex = 0;
@@ -240,7 +240,7 @@ static void LLStyledStringIterateRuns(LLStyledStringRef styledString, LLStyledSt
     }
 }
 
-static void LLStyledStringBuildPathRunIterationFunction(CTFontRef font, CGFloat baselineOffset, const CGGlyph * glyphs, const CGPoint * positions, CFIndex glyphCount, CGMutablePathRef path) {
+static void LLStyledStringBuildPathRunIterationFunction(CTFontRef font, double baselineOffset, const CGGlyph * glyphs, const CGPoint * positions, CFIndex glyphCount, CGMutablePathRef path) {
     CGAffineTransform glyphTransform = CGAffineTransformIdentity;
     for (CFIndex glyphIndex = 0; glyphIndex < glyphCount; glyphIndex++) {
         glyphTransform.tx = positions[glyphIndex].x;
@@ -251,7 +251,7 @@ static void LLStyledStringBuildPathRunIterationFunction(CTFontRef font, CGFloat 
     }
 }
 
-static void LLStyledStringShowGlyphsRunIterationFunction(CTFontRef font, CGFloat baselineOffset, const CGGlyph * glyphs, const CGPoint * positions, CFIndex glyphCount, LLStyledStringShowGlyphsRunIterationFunctionUserData * userData) {
+static void LLStyledStringShowGlyphsRunIterationFunction(CTFontRef font, double baselineOffset, const CGGlyph * glyphs, const CGPoint * positions, CFIndex glyphCount, LLStyledStringShowGlyphsRunIterationFunctionUserData * userData) {
     CGContextRef context = userData->context;
     CGPoint textPosition = userData->textPosition;
     
@@ -260,7 +260,7 @@ static void LLStyledStringShowGlyphsRunIterationFunction(CTFontRef font, CGFloat
     CGContextSetFontSize(context, CTFontGetSize(font));
     CGFontRelease(graphicsFont);
     
-    CGFloat ty = textPosition.y;
+    double ty = textPosition.y;
     textPosition.y += baselineOffset;
     CGContextSetTextPosition(context, textPosition.x, textPosition.y);
     textPosition.y = ty;
@@ -275,7 +275,7 @@ CFIndex LLStyledStringGetLength(LLStyledStringRef styledString) {
 CGRect LLStyledStringMeasure(LLStyledStringRef styledString) {
     LLStyledStringEnsureLine(styledString);
     double length;
-    CGFloat ascent, descent, leading;
+    double ascent, descent, leading;
     length = CTLineGetTypographicBounds(styledString->lineRef, &ascent, &descent, &leading);
     length -= CTLineGetTrailingWhitespaceWidth(styledString->lineRef);
     return CGRectMake(0, 0 - descent - leading, 0 + length, ascent + descent + leading);
