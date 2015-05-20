@@ -30,10 +30,10 @@ LLIconRef LLIconCreate(CGRect boundsRect) {
     return LLRetain(icon);
 }
 
-LLIconRef LLIconCreateWithImage(CGImageRef image, CGSize boundsSize) {
+LLIconRef LLIconCreateWithImage(CGImageRef image, double width, double height) {
     LLIconRef icon = LLAlloc(sizeof(struct LLIcon), &baseFunctions);
     if (icon) {
-        CGRect boundsRect = CGRectMake(0, 0, boundsSize.width, boundsSize.height);
+        CGRect boundsRect = CGRectMake(0, 0, width, height);
         LLCanvasRef canvas = LLIconNewCanvas(boundsRect, CGImageGetWidth(image), CGImageGetHeight(image));
         CGContextRef context = LLCanvasGetCGContext(canvas);
         CGContextDrawImage(context, boundsRect, image);

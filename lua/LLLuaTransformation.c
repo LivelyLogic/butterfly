@@ -17,7 +17,6 @@ static int scale(lua_State * L);
 static int invert(lua_State * L);
 static int concat(lua_State * L);
 static int transformPoint(lua_State * L);
-static int transformSize(lua_State * L);
 static int transformRect(lua_State * L);
 
 static const LLLuaClass luaTransformationLibrary = {
@@ -37,7 +36,6 @@ static const LLLuaClass luaTransformationClass = {
         {"invert", invert},
         {"concat", concat},
         {"transformPoint", transformPoint},
-        {"transformSize", transformSize},
         {"transformRect", transformRect},
         {NULL, NULL}
     }
@@ -140,23 +138,7 @@ static int transformPoint(lua_State * L) {
     point = LLTransformationTransformPoint(transformation, point);
     lua_pushnumber(L, point.x);
     lua_pushnumber(L, point.y);
-    
-    LL_LUA_DEBUG_STACK_ENDR(L, 2);
-    return 2;
-}
 
-static int transformSize(lua_State * L) {
-    LL_LUA_DEBUG_STACK_BEGIN(L);
-    LLTransformationRef transformation = *(LLTransformationRef *)luaL_checkudata(L, 1, LLTransformationClassName);
-    double x = lua_tonumber(L, 2);
-    double y = lua_tonumber(L, 3);
-    
-    luaL_argcheck(L, transformation, 1, "Transformation expected");
-    CGSize size = CGSizeMake(x, y);
-    size = LLTransformationTransformSize(transformation, size);
-    lua_pushnumber(L, size.width);
-    lua_pushnumber(L, size.height);
-    
     LL_LUA_DEBUG_STACK_ENDR(L, 2);
     return 2;
 }

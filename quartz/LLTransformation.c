@@ -61,10 +61,6 @@ CGPoint LLTransformationTransformPoint(LLTransformationRef transformation, CGPoi
     return CGPointApplyAffineTransform(point, transformation->affine);
 }
 
-CGSize LLTransformationTransformSize(LLTransformationRef transformation, CGSize size) {
-    return CGSizeApplyAffineTransform(size, transformation->affine);
-}
-
 CGRect LLTransformationTransformRect(LLTransformationRef transformation, CGRect rect) {
     return CGRectApplyAffineTransform(rect, transformation->affine);
 }

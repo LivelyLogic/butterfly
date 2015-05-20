@@ -16,7 +16,7 @@
 typedef struct LLIcon * LLIconRef;
 
 LLIconRef LLIconCreate(CGRect boundsRect);
-LLIconRef LLIconCreateWithImage(CGImageRef image, CGSize boundsSize);
+LLIconRef LLIconCreateWithImage(CGImageRef image, double width, double height);
 
 LLCanvasRef LLIconGetCanvas(LLIconRef icon);
 CGImageRef LLIconCopyCGImage(LLIconRef icon);

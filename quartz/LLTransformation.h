@@ -22,7 +22,6 @@ void LLTransformationInvert(LLTransformationRef transformation);
 void LLTransformationConcat(LLTransformationRef transformation1, LLTransformationRef transformation2);
 
 CGPoint LLTransformationTransformPoint(LLTransformationRef transformation, CGPoint point);
-CGSize LLTransformationTransformSize(LLTransformationRef transformation, CGSize size);
 CGRect LLTransformationTransformRect(LLTransformationRef transformation, CGRect rect);
 
 CGAffineTransform LLTransformationGetCGAffineTransform(LLTransformationRef transformation);
