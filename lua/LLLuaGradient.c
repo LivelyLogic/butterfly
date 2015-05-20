@@ -100,10 +100,14 @@ static int processArray(lua_State * L, LLColorPaintRef ** retColorPaints, double
 
 static int linear(lua_State * L) {
     LL_LUA_DEBUG_STACK_BEGIN(L);
-    double x1 = lua_tonumber(L, 2);
-    double y1 = lua_tonumber(L, 3);
-    double x2 = lua_tonumber(L, 4);
-    double y2 = lua_tonumber(L, 5);
+    LLPoint p1 = {
+        .x = lua_tonumber(L, 2),
+        .y = lua_tonumber(L, 3),
+    };
+    LLPoint p2 = {
+        .x = lua_tonumber(L, 4),
+        .y = lua_tonumber(L, 5),
+    };
     LLGradientPaintRef gradientPaint = LLGradientPaintCreate();
     LLColorPaintRef * colorPaints;
     double * locations;
@@ -115,7 +119,7 @@ static int linear(lua_State * L) {
     free(locations);
     free(colorPaints);
     
-    LLGradientPaintSetLinearLocation(gradientPaint, CGPointMake(x1, y1), CGPointMake(x2, y2));
+    LLGradientPaintSetLinearLocation(gradientPaint, p1, p2);
     
     pushNewUserdata(L, gradientPaint, LLGradientPaintClassName);
     LLRelease(gradientPaint);
@@ -126,11 +130,15 @@ static int linear(lua_State * L) {
 
 static int radial(lua_State * L) {
     LL_LUA_DEBUG_STACK_BEGIN(L);
-    double x1 = lua_tonumber(L, 2);
-    double y1 = lua_tonumber(L, 3);
+    LLPoint p1 = {
+        .x = lua_tonumber(L, 2),
+        .y = lua_tonumber(L, 3),
+    };
     double r1 = lua_tonumber(L, 4);
-    double x2 = lua_tonumber(L, 5);
-    double y2 = lua_tonumber(L, 6);
+    LLPoint p2 = {
+        .x = lua_tonumber(L, 5),
+        .y = lua_tonumber(L, 6),
+    };
     double r2 = lua_tonumber(L, 7);
     LLGradientPaintRef gradientPaint = LLGradientPaintCreate();
     LLColorPaintRef * colorPaints;
@@ -143,7 +151,7 @@ static int radial(lua_State * L) {
     free(locations);
     free(colorPaints);
     
-    LLGradientPaintSetRadialLocation(gradientPaint, CGPointMake(x1, y1), r1, CGPointMake(x2, y2), r2);
+    LLGradientPaintSetRadialLocation(gradientPaint, p1, r1, p2, r2);
     
     pushNewUserdata(L, gradientPaint, LLGradientPaintClassName);
     LLRelease(gradientPaint);

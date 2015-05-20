@@ -23,7 +23,7 @@ CFIndex LLStyledStringCreateBreaking(LLStyledStringRef styledString, CFIndex sta
 
 CFIndex LLStyledStringGetLength(LLStyledStringRef styledString);
 
-CGRect LLStyledStringMeasure(LLStyledStringRef styledString);
+LLRect LLStyledStringMeasure(LLStyledStringRef styledString);
 CFAttributedStringRef LLStyledStringGetAttributedString(LLStyledStringRef styledString);
 void LLStyledStringDrawInCGContext(const LLStyledStringRef styledString, CGContextRef context);
 CGPathRef LLStyledStringGetCGPath(const LLStyledStringRef styledString);

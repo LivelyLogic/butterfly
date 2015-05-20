@@ -6,6 +6,8 @@
 
 #include "LLTransformation.h"
 
+#include "LLQuartzTypes.h"
+
 struct LLTransformation {
     struct LLBase __base;
     CGAffineTransform affine;
@@ -57,12 +59,16 @@ void LLTransformationConcat(LLTransformationRef transformation1, LLTransformatio
     transformation1->affine = CGAffineTransformConcat(transformation1->affine, transformation2->affine);
 }
 
-CGPoint LLTransformationTransformPoint(LLTransformationRef transformation, CGPoint point) {
-    return CGPointApplyAffineTransform(point, transformation->affine);
+LLPoint LLTransformationTransformPoint(LLTransformationRef transformation, LLPoint point) {
+    CGPoint cgPoint = CGPointMake(point.x, point.y);
+    cgPoint = CGPointApplyAffineTransform(cgPoint, transformation->affine);
+    return (LLPoint){ .x = cgPoint.x, .y = cgPoint.y };
 }
 
-CGRect LLTransformationTransformRect(LLTransformationRef transformation, CGRect rect) {
-    return CGRectApplyAffineTransform(rect, transformation->affine);
+LLRect LLTransformationTransformRect(LLTransformationRef transformation, LLRect rect) {
+    CGRect cgRect = LLConvertRectToQuartz(rect);
+    cgRect = CGRectApplyAffineTransform(cgRect, transformation->affine);
+    return LLConvertQuartzRect(cgRect);
 }
 
 CGAffineTransform LLTransformationGetCGAffineTransform(LLTransformationRef transformation) {

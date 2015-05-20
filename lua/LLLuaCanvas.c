@@ -119,8 +119,8 @@ static int drawText(lua_State * L) {
         styledString = LLStyledStringCreate(cstring, LLCanvasGetFont(canvas), 0);
     }
 
-    CGRect stringRect = LLStyledStringMeasure(styledString);
-    CGPoint stringPoint = CGPointMake(x - alignment * stringRect.size.width, y);
+    LLRect stringRect = LLStyledStringMeasure(styledString);
+    LLPoint stringPoint = { .x = x - alignment * (stringRect.right - stringRect.left), .y = y };
     LLCanvasDrawStyledString(canvas, styledString, stringPoint);
     LLRelease(styledString);
 
@@ -145,8 +145,8 @@ static int strokeText(lua_State * L) {
         styledString = LLStyledStringCreate(cstring, LLCanvasGetFont(canvas), 0);
     }
 
-    CGRect stringRect = LLStyledStringMeasure(styledString);
-    CGPoint stringPoint = CGPointMake(x - alignment * stringRect.size.width, y);
+    LLRect stringRect = LLStyledStringMeasure(styledString);
+    LLPoint stringPoint = { .x = x - alignment * (stringRect.right - stringRect.left), .y = y };
     LLCanvasStrokeStyledString(canvas, styledString, stringPoint);
     LLRelease(styledString);
 
@@ -320,22 +320,22 @@ static int clipRect(lua_State * L) {
     LLCanvasRef canvas = *(LLCanvasRef *)luaL_checkudata(L, 1, LLCanvasClassName);
 
     if (lua_istable(L, 2)) {
-        double left, bottom, right, top;
+        LLRect rect;
 
         lua_getfield(L, 2, "left");
-        left = lua_tonumber(L, -1);
+        rect.left = lua_tonumber(L, -1);
         lua_pop(L, 1);
         lua_getfield(L, 2, "bottom");
-        bottom = lua_tonumber(L, -1);
+        rect.bottom = lua_tonumber(L, -1);
         lua_pop(L, 1);
         lua_getfield(L, 2, "right");
-        right = lua_tonumber(L, -1);
+        rect.right = lua_tonumber(L, -1);
         lua_pop(L, 1);
         lua_getfield(L, 2, "top");
-        top = lua_tonumber(L, -1);
+        rect.top = lua_tonumber(L, -1);
         lua_pop(L, 1);
 
-        LLCanvasClipRect(canvas, CGRectMake(left, bottom, right - left, top - bottom));
+        LLCanvasClipRect(canvas, rect);
     }
 
     LL_LUA_DEBUG_STACK_END(L);
@@ -409,7 +409,7 @@ static int metrics(lua_State * L) {
 static int dirtyRect(lua_State * L) {
     LL_LUA_DEBUG_STACK_BEGIN(L);
     LLCanvasRef canvas = *(LLCanvasRef *)luaL_checkudata(L, 1, LLCanvasClassName);
-    CGRect dirtyRect;
+    LLRect dirtyRect;
 
     dirtyRect = LLCanvasGetDirtyRect(canvas);
 
@@ -419,13 +419,13 @@ static int dirtyRect(lua_State * L) {
     lua_insert(L, -2);
 
     lua_newtable(L);
-    lua_pushnumber(L, dirtyRect.origin.x);
+    lua_pushnumber(L, dirtyRect.left);
     lua_setfield(L, -2, "left");
-    lua_pushnumber(L, dirtyRect.origin.y);
+    lua_pushnumber(L, dirtyRect.bottom);
     lua_setfield(L, -2, "bottom");
-    lua_pushnumber(L, dirtyRect.origin.x + dirtyRect.size.width);
+    lua_pushnumber(L, dirtyRect.right);
     lua_setfield(L, -2, "right");
-    lua_pushnumber(L, dirtyRect.origin.y + dirtyRect.size.height);
+    lua_pushnumber(L, dirtyRect.top);
     lua_setfield(L, -2, "top");
 
     lua_pcall(L, 2, 1, 0);

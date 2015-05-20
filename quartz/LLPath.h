@@ -15,14 +15,14 @@ typedef struct LLPath * LLPathRef;
 
 LLPathRef LLPathCreate(void);
 
-void LLPathMoveToPoint(LLPathRef path, CGPoint aPoint);
-void LLPathAddLineToPoint(LLPathRef path, CGPoint aPoint);
-void LLPathAddCurveToPoint(LLPathRef path, CGPoint aPoint, CGPoint controlPoint1, CGPoint controlPoint2);
-void LLPathAddArc(LLPathRef path, CGPoint centerPoint, double arcAngle);
+void LLPathMoveToPoint(LLPathRef path, LLPoint point);
+void LLPathAddLineToPoint(LLPathRef path, LLPoint point);
+void LLPathAddCurveToPoint(LLPathRef path, LLPoint point, LLPoint controlPoint1, LLPoint controlPoint2);
+void LLPathAddArc(LLPathRef path, LLPoint centerPoint, double arcAngle);
 void LLPathCloseSubpath(LLPathRef path);
-void LLPathAddRect(LLPathRef path, CGRect aRect);
-void LLPathAddRoundedRect(LLPathRef path, CGRect aRect, double radius);
-void LLPathAddOvalInRect(LLPathRef path, CGRect aRect);
+void LLPathAddRect(LLPathRef path, LLRect rect);
+void LLPathAddRoundedRect(LLPathRef path, LLRect rect, double radius);
+void LLPathAddOvalInRect(LLPathRef path, LLRect rect);
 
 CGPathRef LLPathGetCGPath(const LLPathRef path);
 

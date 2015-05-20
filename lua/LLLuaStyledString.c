@@ -82,15 +82,15 @@ static int measure(lua_State * L) {
     lua_getfield(L, -1, "new");
     lua_insert(L, -2);
     
-    CGRect rect = LLStyledStringMeasure(styledString);
+    LLRect rect = LLStyledStringMeasure(styledString);
     lua_newtable(L);
-    lua_pushnumber(L, rect.origin.x);
+    lua_pushnumber(L, rect.left);
     lua_setfield(L, -2, "left");
-    lua_pushnumber(L, rect.origin.y);
+    lua_pushnumber(L, rect.bottom);
     lua_setfield(L, -2, "bottom");
-    lua_pushnumber(L, rect.origin.x + rect.size.width);
+    lua_pushnumber(L, rect.right);
     lua_setfield(L, -2, "right");
-    lua_pushnumber(L, rect.origin.y + rect.size.height);
+    lua_pushnumber(L, rect.top);
     lua_setfield(L, -2, "top");
     
     l_pcall(L, 2, 1);

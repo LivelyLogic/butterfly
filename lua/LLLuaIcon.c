@@ -43,17 +43,19 @@ int initLuaIconLibrary(lua_State * L) {
 
 static int new(lua_State * L) {
     LL_LUA_DEBUG_STACK_BEGIN(L);
-    double width, height;
+    LLRect rect;
     LLIconRef icon;
     
+    rect.left = 0;
+    rect.bottom = 0;
     lua_getfield(L, 2, "width");
-    width = lua_tonumber(L, -1);
+    rect.right = lua_tonumber(L, -1);
     lua_pop(L, 1);
     lua_getfield(L, 2, "height");
-    height = lua_tonumber(L, -1);
+    rect.top = lua_tonumber(L, -1);
     lua_pop(L, 1);
     
-    icon = LLIconCreate(CGRectMake(0, 0, width, height));
+    icon = LLIconCreate(rect);
     
     pushNewUserdata(L, icon, LLIconClassName);
     LLRelease(icon);

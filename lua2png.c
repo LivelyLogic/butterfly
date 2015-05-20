@@ -65,7 +65,7 @@ int main(int argc, char * argv[]) {
     // These functions follow the same naming conventions as Core Foundation, namely the
     // Create Rule and the Get Rule. This means that when we call `LLCanvasMetricsCreate`
     // below, we own the returned object and are responsible for releasing it.
-    CGRect bounds = CGRectMake(0, 0, width, height);
+    LLRect bounds = { 0, 0, width, height };
     LLCanvasMetricsRef canvasMetrics = LLCanvasMetricsCreate(bounds, 1, 1);
 
     // Create a bitmap graphics context for the canvas to use.

@@ -7,6 +7,7 @@
 #include "LLCanvas.h"
 
 #include "LLColorPaint.h"
+#include "LLQuartzTypes.h"
 
 typedef enum LLCanvasType {
     kLLCanvasDisplay,
@@ -24,7 +25,7 @@ struct LLCanvas {
     LLCanvasType type;
     CGContextRef context;
     LLCanvasMetricsRef metrics;
-    CGRect dirtyRect;
+    LLRect dirtyRect;
     LLCanvasState state;
     unsigned char hitTestData;
 };
@@ -112,11 +113,11 @@ LLCanvasMetricsRef LLCanvasGetMetrics(LLCanvasRef canvas) {
     return canvas->metrics;
 }
 
-void LLCanvasSetDirtyRect(LLCanvasRef canvas, CGRect rect) {
+void LLCanvasSetDirtyRect(LLCanvasRef canvas, LLRect rect) {
     canvas->dirtyRect = rect;
 }
 
-CGRect LLCanvasGetDirtyRect(LLCanvasRef canvas) {
+LLRect LLCanvasGetDirtyRect(LLCanvasRef canvas) {
     return canvas->dirtyRect;
 }
 
@@ -158,8 +159,8 @@ void LLCanvasConcatTransformation(LLCanvasRef canvas, LLTransformationRef transf
     CGContextConcatCTM(canvas->context, LLTransformationGetCGAffineTransform(transformation));
 }
 
-void LLCanvasClipRect(LLCanvasRef canvas, CGRect rect) {
-    CGContextClipToRect(canvas->context, rect);
+void LLCanvasClipRect(LLCanvasRef canvas, LLRect rect) {
+    CGContextClipToRect(canvas->context, LLConvertRectToQuartz(rect));
 }
 
 void LLCanvasClipPath(LLCanvasRef canvas, const LLPathRef path) {
@@ -240,7 +241,7 @@ static bool LLCanvasIsCGAffineTransformRotated(CGAffineTransform affineTransform
     return (affineTransform.b != 0 || affineTransform.c != 0);
 }
 
-void LLCanvasDrawStyledString(LLCanvasRef canvas, LLStyledStringRef styledString, CGPoint point) {
+void LLCanvasDrawStyledString(LLCanvasRef canvas, LLStyledStringRef styledString, LLPoint point) {
     CGContextSaveGState(canvas->context);
     CGAffineTransform ctm = CGContextGetCTM(canvas->context);
     if (!LLCanvasIsCGAffineTransformRotated(ctm) && LLPaintSetInContext(canvas->state.paint, canvas->context)) {
@@ -258,7 +259,7 @@ void LLCanvasDrawStyledString(LLCanvasRef canvas, LLStyledStringRef styledString
     CGContextRestoreGState(canvas->context);
 }
 
-void LLCanvasStrokeStyledString(LLCanvasRef canvas, LLStyledStringRef styledString, CGPoint point) {
+void LLCanvasStrokeStyledString(LLCanvasRef canvas, LLStyledStringRef styledString, LLPoint point) {
     CGContextSaveGState(canvas->context);
     CGAffineTransform ctm = CGContextGetCTM(canvas->context);
     if (!LLCanvasIsCGAffineTransformRotated(ctm) && LLPaintSetInContext(canvas->state.paint, canvas->context)) {

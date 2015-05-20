@@ -31,4 +31,16 @@ void LLRelease(void * base);
 const void * LLSubclassFunctions(void * object);
 const char * LLSubclassName(void * object);
 
+typedef struct {
+    double x;
+    double y;
+} LLPoint;
+
+typedef struct {
+    double left;
+    double bottom;
+    double right;
+    double top;
+} LLRect;
+
 #endif /* __LL_BASE_H__ */

@@ -32,16 +32,16 @@ int initLuaCanvasMetricsLibrary(lua_State * L) {
 static int rect(lua_State * L) {
     LL_LUA_DEBUG_STACK_BEGIN(L);
     LLCanvasMetricsRef canvasMetrics = *(LLCanvasMetricsRef *)luaL_checkudata(L, 1, LLCanvasMetricsClassName);
-    CGRect bounds = LLCanvasMetricsGetBoundsRect(canvasMetrics);
+    LLRect bounds = LLCanvasMetricsGetBoundsRect(canvasMetrics);
 
     lua_newtable(L);
-    lua_pushnumber(L, bounds.origin.x);
+    lua_pushnumber(L, bounds.left);
     lua_setfield(L, -2, "left");
-    lua_pushnumber(L, bounds.origin.y);
+    lua_pushnumber(L, bounds.bottom);
     lua_setfield(L, -2, "bottom");
-    lua_pushnumber(L, bounds.origin.x + bounds.size.width);
+    lua_pushnumber(L, bounds.right);
     lua_setfield(L, -2, "right");
-    lua_pushnumber(L, bounds.origin.y + bounds.size.height);
+    lua_pushnumber(L, bounds.top);
     lua_setfield(L, -2, "top");
 
     LL_LUA_DEBUG_STACK_ENDR(L, 1);

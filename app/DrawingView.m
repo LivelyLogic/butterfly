@@ -91,7 +91,8 @@
     // These functions follow the same naming conventions as Core Foundation, namely the
     // Create Rule and the Get Rule. This means that when we call `LLCanvasMetricsCreate`
     // below, we own the returned object and are responsible for releasing it.
-    CGRect bounds = NSRectToCGRect([self bounds]);
+    NSRect viewBounds = [self bounds];
+    LLRect bounds = { .left = NSMinX(viewBounds), .bottom = NSMinY(viewBounds), .right = NSMaxX(viewBounds), .top = NSMaxY(viewBounds) };
     CGFloat backingScale = [self.window.screen backingScaleFactor];
     LLCanvasMetricsRef canvasMetrics = LLCanvasMetricsCreate(bounds, backingScale, 1);
     

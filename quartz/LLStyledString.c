@@ -81,8 +81,9 @@ CFIndex LLStyledStringCreateBreaking(LLStyledStringRef styledString, CFIndex sta
 }
 
 LLStyledStringRef LLStyledStringCreateTruncating(LLStyledStringRef styledString, double width) {
-    CGRect rect = LLStyledStringMeasure(styledString);
-    if (rect.size.width > width) {
+    LLRect stringRect = LLStyledStringMeasure(styledString);
+    double stringWidth = stringRect.right - stringRect.left;
+    if (stringWidth > width) {
         CFStringRef ellipsis = CFStringCreateWithCString(NULL, "…", kCFStringEncodingUTF8);
         CFMutableAttributedStringRef mutableString = CFAttributedStringCreateMutableCopy(NULL, 0, styledString->stringRef);
         CTLineRef lineRef = CTLineCreateWithAttributedString(mutableString);
@@ -114,7 +115,7 @@ LLStyledStringRef LLStyledStringCreateTruncating(LLStyledStringRef styledString,
             range.length = 2;
         }
         CFRelease(ellipsis);
-        if (CTLineGetTypographicBounds(lineRef, NULL, NULL, NULL) < rect.size.width) {
+        if (CTLineGetTypographicBounds(lineRef, NULL, NULL, NULL) < stringWidth) {
             CFAttributedStringRef attributedString = CFAttributedStringCreateCopy(NULL, mutableString);
             styledString = LLStyledStringCreateUsingAttributedString(attributedString);
             CFRelease(attributedString);
@@ -272,13 +273,18 @@ CFIndex LLStyledStringGetLength(LLStyledStringRef styledString) {
     return CFAttributedStringGetLength(styledString->stringRef);
 }
 
-CGRect LLStyledStringMeasure(LLStyledStringRef styledString) {
+LLRect LLStyledStringMeasure(LLStyledStringRef styledString) {
     LLStyledStringEnsureLine(styledString);
     double length;
     double ascent, descent, leading;
     length = CTLineGetTypographicBounds(styledString->lineRef, &ascent, &descent, &leading);
     length -= CTLineGetTrailingWhitespaceWidth(styledString->lineRef);
-    return CGRectMake(0, 0 - descent - leading, 0 + length, ascent + descent + leading);
+    return (LLRect){
+        .left = 0,
+        .bottom = 0 - descent - leading,
+        .right = length,
+        .top = ascent,
+    };
 }
 
 void LLStyledStringDrawInCGContext(const LLStyledStringRef styledString, CGContextRef context) {

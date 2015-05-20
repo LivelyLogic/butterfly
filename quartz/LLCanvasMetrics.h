@@ -13,9 +13,9 @@
 
 typedef struct LLCanvasMetrics * LLCanvasMetricsRef;
 
-LLCanvasMetricsRef LLCanvasMetricsCreate(CGRect boundsRect, double backingScale, double pointScale);
+LLCanvasMetricsRef LLCanvasMetricsCreate(LLRect boundsRect, double backingScale, double pointScale);
 
-CGRect LLCanvasMetricsGetBoundsRect(LLCanvasMetricsRef canvasMetrics);
+LLRect LLCanvasMetricsGetBoundsRect(LLCanvasMetricsRef canvasMetrics);
 double LLCanvasMetricsGetBackingScale(LLCanvasMetricsRef canvasMetrics);
 double LLCanvasMetricsGetPointScale(LLCanvasMetricsRef canvasMetrics);
 

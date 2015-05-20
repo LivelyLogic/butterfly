@@ -134,7 +134,7 @@ static int transformPoint(lua_State * L) {
     double y = lua_tonumber(L, 3);
     
     luaL_argcheck(L, transformation, 1, "Transformation expected");
-    CGPoint point = CGPointMake(x, y);
+    LLPoint point = { .x = x, .y = y };
     point = LLTransformationTransformPoint(transformation, point);
     lua_pushnumber(L, point.x);
     lua_pushnumber(L, point.y);
@@ -146,21 +146,21 @@ static int transformPoint(lua_State * L) {
 static int transformRect(lua_State * L) {
     LL_LUA_DEBUG_STACK_BEGIN(L);
     LLTransformationRef transformation = *(LLTransformationRef *)luaL_checkudata(L, 1, LLTransformationClassName);
-    CGRect rect;
+    LLRect rect;
     
     luaL_argcheck(L, transformation, 1, "Transformation expected");
     
     lua_getfield(L, 2, "left");
-    rect.origin.x = lua_tonumber(L, -1);
+    rect.left = lua_tonumber(L, -1);
     lua_pop(L, 1);
     lua_getfield(L, 2, "bottom");
-    rect.origin.y = lua_tonumber(L, -1);
+    rect.bottom = lua_tonumber(L, -1);
     lua_pop(L, 1);
     lua_getfield(L, 2, "right");
-    rect.size.width = lua_tonumber(L, -1) - rect.origin.x;
+    rect.right = lua_tonumber(L, -1);
     lua_pop(L, 1);
     lua_getfield(L, 2, "top");
-    rect.size.height = lua_tonumber(L, -1) - rect.origin.y;
+    rect.top = lua_tonumber(L, -1);
     lua_pop(L, 1);
     
     rect = LLTransformationTransformRect(transformation, rect);
@@ -170,13 +170,13 @@ static int transformRect(lua_State * L) {
     lua_insert(L, -2);
     
     lua_newtable(L);
-    lua_pushnumber(L, rect.origin.x);
+    lua_pushnumber(L, rect.left);
     lua_setfield(L, -2, "left");
-    lua_pushnumber(L, rect.origin.y);
+    lua_pushnumber(L, rect.bottom);
     lua_setfield(L, -2, "bottom");
-    lua_pushnumber(L, rect.origin.x + rect.size.width);
+    lua_pushnumber(L, rect.right);
     lua_setfield(L, -2, "right");
-    lua_pushnumber(L, rect.origin.y + rect.size.height);
+    lua_pushnumber(L, rect.top);
     lua_setfield(L, -2, "top");
     
     l_pcall(L, 2, 1);

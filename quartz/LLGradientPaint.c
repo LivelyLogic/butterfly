@@ -7,6 +7,7 @@
 #include "LLGradientPaint.h"
 
 #include "LLPaint.h"
+#include "LLQuartzTypes.h"
 
 typedef enum LLGradientPaintType {
     kLLGradientPaintLinear,
@@ -64,17 +65,17 @@ void LLGradientPaintSetColors(LLGradientPaintRef gradientPaint, int count, const
     CFRelease(colors);
 }
 
-void LLGradientPaintSetLinearLocation(LLGradientPaintRef gradientPaint, CGPoint startPoint, CGPoint endPoint) {
+void LLGradientPaintSetLinearLocation(LLGradientPaintRef gradientPaint, LLPoint startPoint, LLPoint endPoint) {
     gradientPaint->type = kLLGradientPaintLinear;
-    gradientPaint->locationPoints[0] = startPoint;
-    gradientPaint->locationPoints[1] = endPoint;
+    gradientPaint->locationPoints[0] = LLConvertPointToQuartz(startPoint);
+    gradientPaint->locationPoints[1] = LLConvertPointToQuartz(endPoint);
 }
 
-void LLGradientPaintSetRadialLocation(LLGradientPaintRef gradientPaint, CGPoint startCenter, double startRadius, CGPoint endCenter, double endRadius) {
+void LLGradientPaintSetRadialLocation(LLGradientPaintRef gradientPaint, LLPoint startCenter, double startRadius, LLPoint endCenter, double endRadius) {
     gradientPaint->type = kLLGradientPaintRadial;
-    gradientPaint->locationPoints[0] = startCenter;
+    gradientPaint->locationPoints[0] = LLConvertPointToQuartz(startCenter);
     gradientPaint->locationFloats[0] = startRadius;
-    gradientPaint->locationPoints[1] = endCenter;
+    gradientPaint->locationPoints[1] = LLConvertPointToQuartz(endCenter);
     gradientPaint->locationFloats[1] = endRadius;
 }
 

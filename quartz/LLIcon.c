@@ -6,6 +6,8 @@
 
 #include "LLIcon.h"
 
+#include "LLQuartzTypes.h"
+
 struct LLIcon {
     struct LLBase __base;
     LLCanvasRef canvas;
@@ -14,17 +16,17 @@ struct LLIcon {
 static void LLIconInit(LLIconRef icon, LLCanvasRef canvas);
 static void LLIconDealloc(LLIconRef icon);
 
-static LLCanvasRef LLIconNewCanvas(CGRect boundsRect, size_t width, size_t height);
+static LLCanvasRef LLIconNewCanvas(LLRect boundsRect, size_t pixelWidth, size_t pixelHeight);
 
 static const LLBaseFunctions baseFunctions = {
     .name = LLIconClassName,
     .dealloc = (LLBaseDeallocFunction)&LLIconDealloc,
 };
 
-LLIconRef LLIconCreate(CGRect boundsRect) {
+LLIconRef LLIconCreate(LLRect boundsRect) {
     LLIconRef icon = LLAlloc(sizeof(struct LLIcon), &baseFunctions);
     if (icon) {
-        LLCanvasRef canvas = LLIconNewCanvas(boundsRect, boundsRect.size.width, boundsRect.size.height);
+        LLCanvasRef canvas = LLIconNewCanvas(boundsRect, boundsRect.right - boundsRect.left, boundsRect.top - boundsRect.bottom);
         LLIconInit(icon, canvas);
     }
     return LLRetain(icon);
@@ -33,10 +35,10 @@ LLIconRef LLIconCreate(CGRect boundsRect) {
 LLIconRef LLIconCreateWithImage(CGImageRef image, double width, double height) {
     LLIconRef icon = LLAlloc(sizeof(struct LLIcon), &baseFunctions);
     if (icon) {
-        CGRect boundsRect = CGRectMake(0, 0, width, height);
+        LLRect boundsRect = { .left = 0, .bottom = 0, .right = width, .top = height };
         LLCanvasRef canvas = LLIconNewCanvas(boundsRect, CGImageGetWidth(image), CGImageGetHeight(image));
         CGContextRef context = LLCanvasGetCGContext(canvas);
-        CGContextDrawImage(context, boundsRect, image);
+        CGContextDrawImage(context, LLConvertRectToQuartz(boundsRect), image);
         LLIconInit(icon, canvas);
     }
     return LLRetain(icon);
@@ -53,16 +55,16 @@ static void LLIconDealloc(LLIconRef icon) {
     LLDealloc(icon);
 }
 
-static LLCanvasRef LLIconNewCanvas(CGRect boundsRect, size_t width, size_t height) {
+static LLCanvasRef LLIconNewCanvas(LLRect boundsRect, size_t pixelWidth, size_t pixelHeight) {
     CGColorSpaceRef colorSpace = CGColorSpaceCreateWithName(kCGColorSpaceSRGB);
     CGContextRef context = CGBitmapContextCreate(NULL,
-                                                 width,
-                                                 height,
+                                                 pixelWidth,
+                                                 pixelHeight,
                                                  8,
-                                                 4 * width,
+                                                 4 * pixelWidth,
                                                  colorSpace,
                                                  kCGImageAlphaPremultipliedLast);
-    CGContextScaleCTM(context, width / boundsRect.size.width, height / boundsRect.size.height);
+    CGContextScaleCTM(context, pixelWidth / (boundsRect.right - boundsRect.left), pixelHeight / (boundsRect.top - boundsRect.bottom));
     CGColorSpaceRelease(colorSpace);
     LLCanvasMetricsRef metrics = LLCanvasMetricsCreate(boundsRect, 1, 1);
     LLCanvasRef canvas = LLCanvasCreateForDisplay(context, metrics);

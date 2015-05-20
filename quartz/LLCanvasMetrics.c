@@ -8,12 +8,12 @@
 
 struct LLCanvasMetrics {
     struct LLBase __base;
-    CGRect boundsRect;
+    LLRect boundsRect;
     double backingScale;
     double pointScale;
 };
 
-static void LLCanvasMetricsInit(LLCanvasMetricsRef canvasMetrics, CGRect boundsRect, double backingScale, double pointScale);
+static void LLCanvasMetricsInit(LLCanvasMetricsRef canvasMetrics, LLRect boundsRect, double backingScale, double pointScale);
 static void LLCanvasMetricsDealloc(LLCanvasMetricsRef canvasMetrics);
 
 static const LLBaseFunctions baseFunctions = {
@@ -21,7 +21,7 @@ static const LLBaseFunctions baseFunctions = {
     .dealloc = (LLBaseDeallocFunction)&LLCanvasMetricsDealloc,
 };
 
-LLCanvasMetricsRef LLCanvasMetricsCreate(CGRect boundsRect, double backingScale, double pointScale) {
+LLCanvasMetricsRef LLCanvasMetricsCreate(LLRect boundsRect, double backingScale, double pointScale) {
     LLCanvasMetricsRef canvasMetrics = LLAlloc(sizeof(struct LLCanvasMetrics), &baseFunctions);
     if (canvasMetrics) {
         LLCanvasMetricsInit(canvasMetrics, boundsRect, backingScale, pointScale);
@@ -29,7 +29,7 @@ LLCanvasMetricsRef LLCanvasMetricsCreate(CGRect boundsRect, double backingScale,
     return LLRetain(canvasMetrics);
 }
 
-static void LLCanvasMetricsInit(LLCanvasMetricsRef canvasMetrics, CGRect boundsRect, double backingScale, double pointScale) {
+static void LLCanvasMetricsInit(LLCanvasMetricsRef canvasMetrics, LLRect boundsRect, double backingScale, double pointScale) {
     canvasMetrics->boundsRect = boundsRect;
     canvasMetrics->backingScale = backingScale;
     canvasMetrics->pointScale = pointScale;
@@ -41,7 +41,7 @@ static void LLCanvasMetricsDealloc(LLCanvasMetricsRef canvasMetrics) {
     LLDealloc(canvasMetrics);
 }
 
-CGRect LLCanvasMetricsGetBoundsRect(LLCanvasMetricsRef canvasMetrics) {
+LLRect LLCanvasMetricsGetBoundsRect(LLCanvasMetricsRef canvasMetrics) {
     return canvasMetrics->boundsRect;
 }
 
