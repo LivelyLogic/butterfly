@@ -161,25 +161,22 @@ static int drawIcon(lua_State * L) {
     LLIconRef icon = getLuaNilOrUserdata(L, 2, LLIconClassName);
 
     if (icon) {
-        double left, bottom, right, top;
+        LLRect rect;
 
         lua_getfield(L, 3, "left");
-        left = lua_tonumber(L, -1);
+        rect.left = lua_tonumber(L, -1);
         lua_pop(L, 1);
         lua_getfield(L, 3, "bottom");
-        bottom = lua_tonumber(L, -1);
+        rect.bottom = lua_tonumber(L, -1);
         lua_pop(L, 1);
         lua_getfield(L, 3, "right");
-        right = lua_tonumber(L, -1);
+        rect.right = lua_tonumber(L, -1);
         lua_pop(L, 1);
         lua_getfield(L, 3, "top");
-        top = lua_tonumber(L, -1);
+        rect.top = lua_tonumber(L, -1);
         lua_pop(L, 1);
 
-        CGImageRef image = LLIconCopyCGImage(icon);
-        CGContextRef context = LLCanvasGetCGContext(canvas);
-        CGContextDrawImage(context, CGRectMake(left, bottom, right - left, top - bottom), image);
-        CGImageRelease(image);
+        LLCanvasDrawIcon(canvas, icon, rect);
     }
 
     LL_LUA_DEBUG_STACK_END(L);
@@ -193,25 +190,22 @@ static int clipIcon(lua_State * L) {
     LLIconRef icon = getLuaNilOrUserdata(L, 2, LLIconClassName);
 
     if (icon) {
-        double left, bottom, right, top;
+        LLRect rect;
 
         lua_getfield(L, 3, "left");
-        left = lua_tonumber(L, -1);
+        rect.left = lua_tonumber(L, -1);
         lua_pop(L, 1);
         lua_getfield(L, 3, "bottom");
-        bottom = lua_tonumber(L, -1);
+        rect.bottom = lua_tonumber(L, -1);
         lua_pop(L, 1);
         lua_getfield(L, 3, "right");
-        right = lua_tonumber(L, -1);
+        rect.right = lua_tonumber(L, -1);
         lua_pop(L, 1);
         lua_getfield(L, 3, "top");
-        top = lua_tonumber(L, -1);
+        rect.top = lua_tonumber(L, -1);
         lua_pop(L, 1);
 
-        CGImageRef image = LLIconCopyCGImage(icon);
-        CGContextRef context = LLCanvasGetCGContext(canvas);
-        CGContextClipToMask(context, CGRectMake(left, bottom, right - left, top - bottom), image);
-        CGImageRelease(image);
+        LLCanvasClipIcon(canvas, icon, rect);
     }
 
     LL_LUA_DEBUG_STACK_END(L);

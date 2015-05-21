@@ -9,6 +9,7 @@
 #include "LLCanvasMetrics.h"
 #include "LLColorPaint.h"
 #include "LLFont.h"
+#include "LLIcon.h"
 #include "LLPaint.h"
 #include "LLPaintMode.h"
 #include "LLPath.h"
@@ -177,6 +178,12 @@ void LLCanvasClipPath(LLCanvasRef canvas, const LLPathRef path) {
     }
 }
 
+void LLCanvasClipIcon(LLCanvasRef canvas, const LLIconRef icon, LLRect rect) {
+    CGImageRef image = LLIconCopyCGImage(icon);
+    CGContextClipToMask(canvas->context, LLConvertRectToQuartz(rect), image);
+    CGImageRelease(image);
+}
+
 void LLCanvasPush(LLCanvasRef canvas) {
     LLCanvasState * oldState = (LLCanvasState *)malloc(sizeof(LLCanvasState));
     if (oldState) {
@@ -283,6 +290,12 @@ void LLCanvasStrokeStyledString(LLCanvasRef canvas, LLStyledStringRef styledStri
         LLCanvasStrokeCGPath(canvas, LLStyledStringGetCGPath(styledString));
     }
     CGContextRestoreGState(canvas->context);
+}
+
+void LLCanvasDrawIcon(LLCanvasRef canvas, const LLIconRef icon, LLRect rect) {
+    CGImageRef image = LLIconCopyCGImage(icon);
+    CGContextDrawImage(canvas->context, LLConvertRectToQuartz(rect), image);
+    CGImageRelease(image);
 }
 
 static void LLCanvasFillClipBoundingBox(LLCanvasRef canvas) {

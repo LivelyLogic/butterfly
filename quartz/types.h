@@ -1,11 +1,11 @@
 //
-//  butterfly.h
+//  types.h
 //
 //  Copyright (c) 2011-2015 Ripeware, LLC. All rights reserved.
 //
 
-#ifndef __BUTTERFLY_H__
-#define __BUTTERFLY_H__
+#ifndef __TYPES_H__
+#define __TYPES_H__
 
 typedef struct {
     double x;
@@ -31,4 +31,4 @@ typedef struct LLPath * LLPathRef;
 typedef struct LLStyledString * LLStyledStringRef;
 typedef struct LLTransformation * LLTransformationRef;
 
-#endif /* __BUTTERFLY_H__ */
+#endif /* __TYPES_H__ */

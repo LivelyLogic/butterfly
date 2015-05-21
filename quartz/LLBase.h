@@ -11,7 +11,7 @@
 #include <CoreGraphics/CoreGraphics.h>
 #include <CoreText/CoreText.h>
 
-#include "butterfly.h"
+#include "types.h"
 
 typedef void (* LLBaseDeallocFunction)(void *);
 
