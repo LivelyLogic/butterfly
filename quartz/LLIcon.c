@@ -6,6 +6,8 @@
 
 #include "LLIcon.h"
 
+#include "LLCanvas.h"
+#include "LLCanvasMetrics.h"
 #include "LLQuartzTypes.h"
 
 struct LLIcon {

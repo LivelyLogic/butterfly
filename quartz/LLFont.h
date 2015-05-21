@@ -11,8 +11,6 @@
 
 #define LLFontClassName "Ovaltine.Font"
 
-typedef struct LLFont * LLFontRef;
-
 LLFontRef LLFontCreate(const char * name, double size);
 LLFontRef LLFontCreateSystem(double size);
 LLFontRef LLFontCreateBoldSystem(double size);

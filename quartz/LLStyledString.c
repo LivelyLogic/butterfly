@@ -6,6 +6,7 @@
 
 #include "LLStyledString.h"
 
+#include "LLFont.h"
 #include "LLQuartzTypes.h"
 
 struct LLStyledString {

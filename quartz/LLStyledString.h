@@ -9,11 +9,7 @@
 
 #include "LLBase.h"
 
-#include "LLFont.h"
-
 #define LLStyledStringClassName "Ovaltine.StyledString"
-
-typedef struct LLStyledString * LLStyledStringRef;
 
 LLStyledStringRef LLStyledStringCreate(const char * string, LLFontRef font, int superscriptIndex);
 LLStyledStringRef LLStyledStringCreateUsingAttributedString(CFAttributedStringRef attributedString);

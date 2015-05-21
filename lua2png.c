@@ -22,6 +22,7 @@
 #include "LLLuaTransformation.h"
 
 #include "LLCanvas.h"
+#include "LLCanvasMetrics.h"
 
 int main(int argc, char * argv[]) {
     // Deal with the command-line arguments.

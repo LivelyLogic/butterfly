@@ -6,8 +6,15 @@
 
 #include "LLCanvas.h"
 
+#include "LLCanvasMetrics.h"
 #include "LLColorPaint.h"
+#include "LLFont.h"
+#include "LLPaint.h"
+#include "LLPaintMode.h"
+#include "LLPath.h"
 #include "LLQuartzTypes.h"
+#include "LLStyledString.h"
+#include "LLTransformation.h"
 
 typedef enum LLCanvasType {
     kLLCanvasDisplay,

@@ -9,11 +9,7 @@
 
 #include "LLBase.h"
 
-#include "LLCanvas.h"
-
 #define LLIconClassName "Ovaltine.Icon"
-
-typedef struct LLIcon * LLIconRef;
 
 LLIconRef LLIconCreate(LLRect boundsRect);
 LLIconRef LLIconCreateWithImage(CGImageRef image, double width, double height);

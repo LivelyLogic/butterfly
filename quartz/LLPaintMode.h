@@ -42,8 +42,6 @@ typedef enum LLPaintModeType {
     kLLPaintModePlusLighter,
 } LLPaintModeType;
 
-typedef struct LLPaintMode * LLPaintModeRef;
-
 LLPaintModeRef LLPaintModeCreate(LLPaintModeType type);
 
 CGBlendMode LLPaintModeCGBlendMode(LLPaintModeRef paintMode);

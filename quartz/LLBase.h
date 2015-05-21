@@ -11,6 +11,8 @@
 #include <CoreGraphics/CoreGraphics.h>
 #include <CoreText/CoreText.h>
 
+#include "butterfly.h"
+
 typedef void (* LLBaseDeallocFunction)(void *);
 
 typedef struct LLBaseFunctions {
@@ -30,17 +32,5 @@ void LLRelease(void * base);
 
 const void * LLSubclassFunctions(void * object);
 const char * LLSubclassName(void * object);
-
-typedef struct {
-    double x;
-    double y;
-} LLPoint;
-
-typedef struct {
-    double left;
-    double bottom;
-    double right;
-    double top;
-} LLRect;
 
 #endif /* __LL_BASE_H__ */

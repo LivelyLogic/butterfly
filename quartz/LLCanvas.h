@@ -9,17 +9,7 @@
 
 #include "LLBase.h"
 
-#include "LLCanvasMetrics.h"
-#include "LLFont.h"
-#include "LLPaint.h"
-#include "LLPaintMode.h"
-#include "LLPath.h"
-#include "LLStyledString.h"
-#include "LLTransformation.h"
-
 #define LLCanvasClassName "Ovaltine.Canvas"
-
-typedef struct LLCanvas * LLCanvasRef;
 
 LLCanvasRef LLCanvasCreateForDisplay(CGContextRef context, LLCanvasMetricsRef metrics);
 LLCanvasRef LLCanvasCreateForHitTest(LLCanvasMetricsRef metrics);
@@ -37,6 +27,7 @@ void LLCanvasSetThickness(LLCanvasRef canvas, double thickness);
 void LLCanvasConcatTransformation(LLCanvasRef canvas, LLTransformationRef transformation);
 void LLCanvasClipRect(LLCanvasRef canvas, LLRect rect);
 void LLCanvasClipPath(LLCanvasRef canvas, const LLPathRef path);
+void LLCanvasClipIcon(LLCanvasRef canvas, const LLIconRef icon, LLRect rect);
 void LLCanvasPush(LLCanvasRef canvas);
 void LLCanvasPop(LLCanvasRef canvas);
 void LLCanvasNukeStack(LLCanvasRef canvas);
@@ -45,6 +36,7 @@ void LLCanvasFillPath(LLCanvasRef canvas, const LLPathRef path);
 void LLCanvasStrokePath(LLCanvasRef canvas, const LLPathRef path);
 void LLCanvasDrawStyledString(LLCanvasRef canvas, LLStyledStringRef styledString, LLPoint point);
 void LLCanvasStrokeStyledString(LLCanvasRef canvas, LLStyledStringRef styledString, LLPoint point);
+void LLCanvasDrawIcon(LLCanvasRef canvas, const LLIconRef icon, LLRect rect);
 
 bool LLCanvasIsHitTest(LLCanvasRef canvas);
 bool LLCanvasPerformHitTest(LLCanvasRef canvas);

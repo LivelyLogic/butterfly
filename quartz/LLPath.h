@@ -11,8 +11,6 @@
 
 #define LLPathClassName "Ovaltine.Path"
 
-typedef struct LLPath * LLPathRef;
-
 LLPathRef LLPathCreate(void);
 
 void LLPathMoveToPoint(LLPathRef path, LLPoint point);

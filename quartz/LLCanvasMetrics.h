@@ -11,8 +11,6 @@
 
 #define LLCanvasMetricsClassName "Ovaltine.CanvasMetrics"
 
-typedef struct LLCanvasMetrics * LLCanvasMetricsRef;
-
 LLCanvasMetricsRef LLCanvasMetricsCreate(LLRect boundsRect, double backingScale, double pointScale);
 
 LLRect LLCanvasMetricsGetBoundsRect(LLCanvasMetricsRef canvasMetrics);

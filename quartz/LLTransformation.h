@@ -11,8 +11,6 @@
 
 #define LLTransformationClassName "Ovaltine.Transformation"
 
-typedef struct LLTransformation * LLTransformationRef;
-
 LLTransformationRef LLTransformationCreate(void);
 
 void LLTransformationRotate(LLTransformationRef transformation, double angle);

@@ -21,8 +21,6 @@ typedef struct LLPaintFunctions {
     LLPaintFillRectInContextFunction fillRectInContext;
 } LLPaintFunctions;
 
-typedef struct LLPaint * LLPaintRef;
-
 struct LLPaint {
     struct LLBase __base;
 };

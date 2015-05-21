@@ -16,6 +16,7 @@
 #import "LLLuaPath.h"
 
 #import "LLCanvas.h"
+#import "LLCanvasMetrics.h"
 
 @interface DrawingView ()
 @property (assign) BOOL scriptIsValid;

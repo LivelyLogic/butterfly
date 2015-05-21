@@ -13,8 +13,6 @@
 
 #define LLGradientPaintClassName "Ovaltine.GradientPaint"
 
-typedef struct LLGradientPaint * LLGradientPaintRef;
-
 LLGradientPaintRef LLGradientPaintCreate(void);
 
 void LLGradientPaintSetColors(LLGradientPaintRef gradientPaint, int count, const LLColorPaintRef * colorPaints, const double * locations);

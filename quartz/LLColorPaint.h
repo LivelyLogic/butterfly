@@ -11,8 +11,6 @@
 
 #define LLColorPaintClassName "Ovaltine.ColorPaint"
 
-typedef struct LLColorPaint * LLColorPaintRef;
-
 LLColorPaintRef LLColorPaintCreate(void);
 
 void LLColorPaintSetRGBA(LLColorPaintRef colorPaint, double r, double g, double b, double a);
