@@ -9,17 +9,8 @@
 #include <lua.h>
 #include <lauxlib.h>
 
+#include "libraries.h"
 #include "LLLua.h"
-#include "LLLuaCanvas.h"
-#include "LLLuaCanvasMetrics.h"
-#include "LLLuaColor.h"
-#include "LLLuaFont.h"
-#include "LLLuaGradient.h"
-#include "LLLuaIcon.h"
-#include "LLLuaPath.h"
-#include "LLLuaPaintMode.h"
-#include "LLLuaStyledString.h"
-#include "LLLuaTransformation.h"
 
 #include "LLCanvas.h"
 #include "LLCanvasMetrics.h"
@@ -35,20 +26,9 @@ int main(int argc, char * argv[]) {
     char * inputFileName = argv[3];
     char * outputFileName = argv[4];
 
-    // Create the Lua state.
+    // Create the Lua state and set up the globals and metatables for the classes we're using.
     lua_State * L = luaL_newstate();
-
-    // Set up the globals and metatables for the classes we're using.
-    initLuaCanvasLibrary(L);
-    initLuaCanvasMetricsLibrary(L);
-    initLuaColorLibrary(L);
-    initLuaFontLibrary(L);
-    initLuaGradientLibrary(L);
-    initLuaIconLibrary(L);
-    initLuaPaintModeLibrary(L);
-    initLuaPathLibrary(L);
-    initLuaStyledStringLibrary(L);
-    initLuaTransformationLibrary(L);
+    initLuaLibraries(L);
 
     // Load & run the script, expecting it to return a drawing function.
     if (luaL_loadfile(L, inputFileName) || lua_pcall(L, 0, LUA_MULTRET, 0)) {

@@ -4,8 +4,7 @@
 //  Copyright (c) 2011-2015 Ripeware, LLC. All rights reserved.
 //
 
-#include "LLLuaIcon.h"
-
+#include "libraries.h"
 #include "LLLua.h"
 
 #include "LLCanvas.h"

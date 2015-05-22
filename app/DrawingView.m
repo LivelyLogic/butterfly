@@ -9,11 +9,8 @@
 #include <lua.h>
 #include <lauxlib.h>
 
+#import "libraries.h"
 #import "LLLua.h"
-#import "LLLuaCanvas.h"
-#import "LLLuaCanvasMetrics.h"
-#import "LLLuaColor.h"
-#import "LLLuaPath.h"
 
 #import "LLCanvas.h"
 #import "LLCanvasMetrics.h"
@@ -46,10 +43,7 @@
     L = luaL_newstate();
     
     // Set up the globals and metatables for the classes we're using.
-    initLuaCanvasLibrary(L);
-    initLuaCanvasMetricsLibrary(L);
-    initLuaColorLibrary(L);
-    initLuaPathLibrary(L);
+    initLuaLibraries(L);
 }
 
 - (void)dealloc

@@ -7,8 +7,6 @@
 #ifndef __LL_LUA_PAINT_H__
 #define __LL_LUA_PAINT_H__
 
-#include <lua.h>
-
 #include "LLLua.h"
 
 extern const LLLuaClass luaPaintClass;

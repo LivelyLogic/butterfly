@@ -4,8 +4,7 @@
 //  Copyright (c) 2011-2015 Ripeware, LLC. All rights reserved.
 //
 
-#include "LLLuaPaintMode.h"
-
+#include "libraries.h"
 #include "LLLua.h"
 
 #include "LLPaintMode.h"

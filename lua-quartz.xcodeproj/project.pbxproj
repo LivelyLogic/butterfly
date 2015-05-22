@@ -64,27 +64,17 @@
 		38E3DB5B1AF114BF00F84CBB /* LLLua.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = LLLua.c; sourceTree = "<group>"; };
 		38E3DB5C1AF114BF00F84CBB /* LLLua.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LLLua.h; sourceTree = "<group>"; };
 		38E3DB5D1AF114BF00F84CBB /* LLLuaCanvas.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = LLLuaCanvas.c; sourceTree = "<group>"; };
-		38E3DB5E1AF114BF00F84CBB /* LLLuaCanvas.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LLLuaCanvas.h; sourceTree = "<group>"; };
 		38E3DB5F1AF114BF00F84CBB /* LLLuaCanvasMetrics.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = LLLuaCanvasMetrics.c; sourceTree = "<group>"; };
-		38E3DB601AF114BF00F84CBB /* LLLuaCanvasMetrics.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LLLuaCanvasMetrics.h; sourceTree = "<group>"; };
 		38E3DB611AF114BF00F84CBB /* LLLuaColor.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = LLLuaColor.c; sourceTree = "<group>"; };
-		38E3DB621AF114BF00F84CBB /* LLLuaColor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LLLuaColor.h; sourceTree = "<group>"; };
 		38E3DB631AF114BF00F84CBB /* LLLuaFont.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = LLLuaFont.c; sourceTree = "<group>"; };
-		38E3DB641AF114BF00F84CBB /* LLLuaFont.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LLLuaFont.h; sourceTree = "<group>"; };
 		38E3DB651AF114BF00F84CBB /* LLLuaGradient.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = LLLuaGradient.c; sourceTree = "<group>"; };
-		38E3DB661AF114BF00F84CBB /* LLLuaGradient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LLLuaGradient.h; sourceTree = "<group>"; };
 		38E3DB671AF114BF00F84CBB /* LLLuaIcon.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = LLLuaIcon.c; sourceTree = "<group>"; };
-		38E3DB681AF114BF00F84CBB /* LLLuaIcon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LLLuaIcon.h; sourceTree = "<group>"; };
 		38E3DB691AF114BF00F84CBB /* LLLuaPaint.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = LLLuaPaint.c; sourceTree = "<group>"; };
 		38E3DB6A1AF114BF00F84CBB /* LLLuaPaint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LLLuaPaint.h; sourceTree = "<group>"; };
 		38E3DB6B1AF114BF00F84CBB /* LLLuaPaintMode.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = LLLuaPaintMode.c; sourceTree = "<group>"; };
-		38E3DB6C1AF114BF00F84CBB /* LLLuaPaintMode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LLLuaPaintMode.h; sourceTree = "<group>"; };
 		38E3DB6D1AF114BF00F84CBB /* LLLuaPath.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = LLLuaPath.c; sourceTree = "<group>"; };
-		38E3DB6E1AF114BF00F84CBB /* LLLuaPath.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LLLuaPath.h; sourceTree = "<group>"; };
 		38E3DB6F1AF114BF00F84CBB /* LLLuaStyledString.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = LLLuaStyledString.c; sourceTree = "<group>"; };
-		38E3DB701AF114BF00F84CBB /* LLLuaStyledString.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LLLuaStyledString.h; sourceTree = "<group>"; };
 		38E3DB711AF114BF00F84CBB /* LLLuaTransformation.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = LLLuaTransformation.c; sourceTree = "<group>"; };
-		38E3DB721AF114BF00F84CBB /* LLLuaTransformation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LLLuaTransformation.h; sourceTree = "<group>"; };
 		38E3DB741AF114BF00F84CBB /* LLBase.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = LLBase.c; sourceTree = "<group>"; };
 		38E3DB751AF114BF00F84CBB /* LLBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LLBase.h; sourceTree = "<group>"; };
 		38E3DB761AF114BF00F84CBB /* LLCanvas.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = LLCanvas.c; sourceTree = "<group>"; };
@@ -199,27 +189,17 @@
 				38E3DB5B1AF114BF00F84CBB /* LLLua.c */,
 				38E3DB5C1AF114BF00F84CBB /* LLLua.h */,
 				38E3DB5D1AF114BF00F84CBB /* LLLuaCanvas.c */,
-				38E3DB5E1AF114BF00F84CBB /* LLLuaCanvas.h */,
 				38E3DB5F1AF114BF00F84CBB /* LLLuaCanvasMetrics.c */,
-				38E3DB601AF114BF00F84CBB /* LLLuaCanvasMetrics.h */,
 				38E3DB611AF114BF00F84CBB /* LLLuaColor.c */,
-				38E3DB621AF114BF00F84CBB /* LLLuaColor.h */,
 				38E3DB631AF114BF00F84CBB /* LLLuaFont.c */,
-				38E3DB641AF114BF00F84CBB /* LLLuaFont.h */,
 				38E3DB651AF114BF00F84CBB /* LLLuaGradient.c */,
-				38E3DB661AF114BF00F84CBB /* LLLuaGradient.h */,
 				38E3DB671AF114BF00F84CBB /* LLLuaIcon.c */,
-				38E3DB681AF114BF00F84CBB /* LLLuaIcon.h */,
 				38E3DB691AF114BF00F84CBB /* LLLuaPaint.c */,
 				38E3DB6A1AF114BF00F84CBB /* LLLuaPaint.h */,
 				38E3DB6B1AF114BF00F84CBB /* LLLuaPaintMode.c */,
-				38E3DB6C1AF114BF00F84CBB /* LLLuaPaintMode.h */,
 				38E3DB6D1AF114BF00F84CBB /* LLLuaPath.c */,
-				38E3DB6E1AF114BF00F84CBB /* LLLuaPath.h */,
 				38E3DB6F1AF114BF00F84CBB /* LLLuaStyledString.c */,
-				38E3DB701AF114BF00F84CBB /* LLLuaStyledString.h */,
 				38E3DB711AF114BF00F84CBB /* LLLuaTransformation.c */,
-				38E3DB721AF114BF00F84CBB /* LLLuaTransformation.h */,
 			);
 			path = lua;
 			sourceTree = "<group>";
