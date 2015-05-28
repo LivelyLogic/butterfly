@@ -1,8 +1,10 @@
 CC = clang
 CFLAGS = -Wall
+INSTALL_DIR = install -d
 INSTALL = install -p -m 0644
 
 INSTALL_LIB = /usr/local/lib
+INSTALL_HEADER = /usr/local/include/butterfly
 LUA_LIB = /usr/local/lib/liblua.a
 LUA_INCLUDE = /usr/local/include
 
@@ -20,6 +22,7 @@ LUA2PNG_LIBS = $(LUA_LIB)
 LUA2PNG_FRAMEWORKS = -framework CoreFoundation -framework CoreGraphics -framework CoreText -framework ImageIO
 
 LIB = libbutterfly.a
+HEADER = lua/libraries.h quartz/types.h
 
 quartz/%.o: quartz/%.c $(QUARTZ_HEADERS)
 	$(CC) -c $(CFLAGS) $< -o $@
@@ -40,8 +43,10 @@ clean:
 	rm -f $(QUARTZ_OBJECTS) $(LUA_OBJECTS) $(LIB)
 	rm -f $(LUA2PNG_OBJECT) lua2png
 
-install: $(LIB)
+install: $(LIB) $(HEADER)
 	$(INSTALL) $(LIB) $(INSTALL_LIB)
+	$(INSTALL_DIR) $(INSTALL_HEADER)
+	$(INSTALL) $(HEADER) $(INSTALL_HEADER)
 
 lua2png: $(LUA2PNG_OBJECT) $(LIB)
 	$(CC) -o $@ $(LUA2PNG_OBJECT) $(LIB) $(LUA2PNG_LIBS) $(LUA2PNG_FRAMEWORKS)
