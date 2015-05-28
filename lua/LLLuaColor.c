@@ -8,8 +8,7 @@
 #include "LLLua.h"
 #include "LLLuaPaint.h"
 
-#include "LLColorPaint.h"
-#include "LLPaint.h"
+#include "types.h"
 
 static int rgba(lua_State * L);
 

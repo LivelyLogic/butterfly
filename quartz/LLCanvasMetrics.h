@@ -7,14 +7,4 @@
 #ifndef __LL_CANVAS_METRICS_H__
 #define __LL_CANVAS_METRICS_H__
 
-#include "LLBase.h"
-
-#define LLCanvasMetricsClassName "Ovaltine.CanvasMetrics"
-
-LLCanvasMetricsRef LLCanvasMetricsCreate(LLRect boundsRect, double backingScale, double pointScale);
-
-LLRect LLCanvasMetricsGetBoundsRect(LLCanvasMetricsRef canvasMetrics);
-double LLCanvasMetricsGetBackingScale(LLCanvasMetricsRef canvasMetrics);
-double LLCanvasMetricsGetPointScale(LLCanvasMetricsRef canvasMetrics);
-
 #endif /* __LL_CANVAS_METRICS_H__ */

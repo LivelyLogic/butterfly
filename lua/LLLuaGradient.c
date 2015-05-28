@@ -8,8 +8,7 @@
 #include "LLLua.h"
 #include "LLLuaPaint.h"
 
-#include "LLPaint.h"
-#include "LLGradientPaint.h"
+#include "types.h"
 
 static int linear(lua_State * L);
 static int radial(lua_State * L);

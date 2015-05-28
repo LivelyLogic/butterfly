@@ -7,7 +7,7 @@
 #include "libraries.h"
 #include "LLLua.h"
 
-#include "LLPath.h"
+#include "types.h"
 
 static int rect(lua_State * L);
 static int oval(lua_State * L);

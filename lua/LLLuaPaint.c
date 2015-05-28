@@ -7,7 +7,7 @@
 #include "libraries.h"
 #include "LLLua.h"
 
-#include "LLPaint.h"
+#include "types.h"
 
 const LLLuaClass luaPaintClass = {
     .metatableName = LLPaintClassName,

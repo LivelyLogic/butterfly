@@ -7,6 +7,9 @@
 #ifndef __LL_QUARTZ_TYPES_H__
 #define __LL_QUARTZ_TYPES_H__
 
+#include <CoreFoundation/CoreFoundation.h>
+#include <CoreGraphics/CoreGraphics.h>
+
 #include "LLBase.h"
 
 char * LLConvertQuartzString(CFStringRef string);

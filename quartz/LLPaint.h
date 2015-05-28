@@ -7,9 +7,11 @@
 #ifndef __LL_PAINT_H__
 #define __LL_PAINT_H__
 
-#include "LLBase.h"
+#include <CoreGraphics/CoreGraphics.h>
 
-#define LLPaintClassName "Ovaltine.Paint"
+#include "types.h"
+
+#include "LLBase.h"
 
 typedef void (* LLPaintDeallocFunction)(void *);
 typedef void (* LLPaintSetInContextFunction)(void *, CGContextRef);

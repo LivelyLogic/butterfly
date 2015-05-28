@@ -6,6 +6,8 @@
 
 #include <tgmath.h>
 
+#include "LLBase.h"
+
 #include "LLPath.h"
 
 #include "LLQuartzTypes.h"

@@ -7,7 +7,7 @@
 #include "libraries.h"
 #include "LLLua.h"
 
-#include "LLTransformation.h"
+#include "types.h"
 
 static int identity(lua_State * L);
 static int rotate(lua_State * L);

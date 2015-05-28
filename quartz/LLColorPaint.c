@@ -4,9 +4,10 @@
 //  Copyright (c) 2011-2015 Ripeware, LLC. All rights reserved.
 //
 
-#include "LLColorPaint.h"
-
+#include "LLBase.h"
 #include "LLPaint.h"
+
+#include "LLColorPaint.h"
 
 struct LLColorPaint {
     struct LLPaint __base;

@@ -7,15 +7,7 @@
 #include "libraries.h"
 #include "LLLua.h"
 
-#include "LLCanvas.h"
-#include "LLCanvasMetrics.h"
-#include "LLFont.h"
-#include "LLIcon.h"
-#include "LLPaint.h"
-#include "LLPaintMode.h"
-#include "LLPath.h"
-#include "LLStyledString.h"
-#include "LLTransformation.h"
+#include "types.h"
 
 static int stroke(lua_State * L);
 static int fill(lua_State * L);

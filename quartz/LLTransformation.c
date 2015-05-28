@@ -4,6 +4,8 @@
 //  Copyright (c) 2011-2015 Ripeware, LLC. All rights reserved.
 //
 
+#include "LLBase.h"
+
 #include "LLTransformation.h"
 
 #include "LLQuartzTypes.h"

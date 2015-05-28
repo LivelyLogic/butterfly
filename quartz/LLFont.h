@@ -7,19 +7,7 @@
 #ifndef __LL_FONT_H__
 #define __LL_FONT_H__
 
-#include "LLBase.h"
-
-#define LLFontClassName "Ovaltine.Font"
-
-LLFontRef LLFontCreate(const char * name, double size);
-LLFontRef LLFontCreateSystem(double size);
-LLFontRef LLFontCreateBoldSystem(double size);
-
-char * LLFontCopyName(LLFontRef font);
-double LLFontGetSize(LLFontRef font);
-double LLFontGetAscent(LLFontRef font);
-double LLFontGetDescent(LLFontRef font);
-double LLFontGetLeading(LLFontRef font);
+#include <CoreText/CoreText.h>
 
 CTFontRef LLFontGetCTFont(LLFontRef font);
 

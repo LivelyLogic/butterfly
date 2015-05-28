@@ -7,7 +7,7 @@
 #include "libraries.h"
 #include "LLLua.h"
 
-#include "LLPaintMode.h"
+#include "types.h"
 
 static int get(lua_State * L);
 

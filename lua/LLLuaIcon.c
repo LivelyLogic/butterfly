@@ -7,8 +7,7 @@
 #include "libraries.h"
 #include "LLLua.h"
 
-#include "LLCanvas.h"
-#include "LLIcon.h"
+#include "types.h"
 
 static int new(lua_State * L);
 

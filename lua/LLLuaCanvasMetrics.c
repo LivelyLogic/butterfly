@@ -7,7 +7,7 @@
 #include "libraries.h"
 #include "LLLua.h"
 
-#include "LLCanvasMetrics.h"
+#include "types.h"
 
 static int rect(lua_State * L);
 static int backingScale(lua_State * L);
