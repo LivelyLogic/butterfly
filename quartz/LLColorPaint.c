@@ -15,6 +15,8 @@ struct LLColorPaint {
 
 static void LLColorPaintInit(LLColorPaintRef colorPaint);
 static void LLColorPaintDealloc(LLColorPaintRef colorPaint);
+static void LLColorPaintSetInContext(LLColorPaintRef colorPaint, CGContextRef context);
+static void LLColorPaintFillRectInContext(LLColorPaintRef colorPaint, CGContextRef context, CGRect rect);
 
 static const LLPaintFunctions baseFunctions = {
     .__base = {

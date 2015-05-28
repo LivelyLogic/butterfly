@@ -24,6 +24,7 @@ struct LLGradientPaint {
 
 static void LLGradientPaintInit(LLGradientPaintRef gradientPaint);
 static void LLGradientPaintDealloc(LLGradientPaintRef gradientPaint);
+static void LLGradientPaintFillRectInContext(LLGradientPaintRef gradientPaint, CGContextRef context, CGRect rect);
 
 static const LLPaintFunctions baseFunctions = {
     .__base = {

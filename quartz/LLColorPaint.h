@@ -15,8 +15,6 @@ LLColorPaintRef LLColorPaintCreate(void);
 
 void LLColorPaintSetRGBA(LLColorPaintRef colorPaint, double r, double g, double b, double a);
 void LLColorPaintGetRGBA(LLColorPaintRef colorPaint, double * r, double * g, double * b, double * a);
-void LLColorPaintSetInContext(LLColorPaintRef colorPaint, CGContextRef context);
-void LLColorPaintFillRectInContext(LLColorPaintRef colorPaint, CGContextRef context, CGRect rect);
 
 CGColorRef LLColorPaintGetCGColor(LLColorPaintRef colorPaint);
 
