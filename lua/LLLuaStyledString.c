@@ -39,8 +39,8 @@ static const LLLuaClass luaStyledStringClass = {
 
 // Global functions
 
-int initLuaStyledStringLibrary(lua_State * L) {
-    initLuaModule(L, &luaStyledStringLibrary, &luaStyledStringClass);
+int bf_lua_loadStyledString(lua_State * L) {
+    bf_lua_loadmodule(L, &luaStyledStringLibrary, &luaStyledStringClass);
     return 0;
 }
 
@@ -60,7 +60,7 @@ static int new(lua_State * L) {
         lua_pop(L, 1);
         
         LLStyledStringRef styledString = LLStyledStringCreate(string, font, superscript);
-        pushNewUserdata(L, styledString, LLStyledStringClassName);
+        bf_lua_push(L, styledString, LLStyledStringClassName);
         LLRelease(styledString);
     } else {
         lua_pushnil(L);
@@ -118,7 +118,7 @@ static int wrapToWidth(lua_State * L) {
         for (int index = 0; index < stepSize; index++) {
             if (wrappedStyledStrings[index]) {
                 lua_pushinteger(L, ++lineIndex);
-                pushNewUserdata(L, wrappedStyledStrings[index], LLStyledStringClassName);
+                bf_lua_push(L, wrappedStyledStrings[index], LLStyledStringClassName);
                 lua_settable(L, -3);
                 LLRelease(wrappedStyledStrings[index]);
             }
@@ -138,7 +138,7 @@ static int truncateToWidth(lua_State * L) {
     luaL_argcheck(L, styledString, 1, "StyledString expected");
     
     truncatedStyledString = LLStyledStringCreateTruncating(styledString, width);
-    pushNewUserdata(L, truncatedStyledString, LLStyledStringClassName);
+    bf_lua_push(L, truncatedStyledString, LLStyledStringClassName);
     LLRelease(truncatedStyledString);
     
     LL_LUA_DEBUG_STACK_ENDR(L, 1);
@@ -152,7 +152,7 @@ static int concat(lua_State * L) {
     LLStyledStringRef styledString;
         
     styledString = LLStyledStringCreateJoining(styledString1, styledString2);
-    pushNewUserdata(L, styledString, LLStyledStringClassName);
+    bf_lua_push(L, styledString, LLStyledStringClassName);
     LLRelease(styledString);
     
     LL_LUA_DEBUG_STACK_ENDR(L, 1);

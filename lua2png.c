@@ -10,10 +10,9 @@
 #include <lauxlib.h>
 
 #include "libraries.h"
-#include "LLLua.h"
+#include "types.h"
 
 #include "LLCanvas.h"
-#include "LLCanvasMetrics.h"
 
 int main(int argc, char * argv[]) {
     // Deal with the command-line arguments.
@@ -28,7 +27,7 @@ int main(int argc, char * argv[]) {
 
     // Create the Lua state and set up the globals and metatables for the classes we're using.
     lua_State * L = luaL_newstate();
-    initLuaLibraries(L);
+    bf_lua_load(L);
 
     // Load & run the script, expecting it to return a drawing function.
     if (luaL_loadfile(L, inputFileName) || lua_pcall(L, 0, LUA_MULTRET, 0)) {
@@ -58,9 +57,9 @@ int main(int argc, char * argv[]) {
     // As above with the canvas metrics, we own the object returned by `LLCanvasCreateForDisplay`.
     LLCanvasRef canvas = LLCanvasCreateForDisplay(context, canvasMetrics);
 
-    // Push `canvas` onto the Lua stack. Note that `pushNewUserdata` retains the object
+    // Push `canvas` onto the Lua stack. Note that `bf_lua_push` retains the object
     // on behalf of the Lua state.
-    pushNewUserdata(L, canvas, LLCanvasClassName);
+    bf_lua_push(L, canvas, LLCanvasClassName);
 
     // Normally we should release `canvasMetrics` and `canvas` by calling `LLRelease`,
     // since we no longer need them here. But the process will end soon so all the dynamic

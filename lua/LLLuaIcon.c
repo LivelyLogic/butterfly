@@ -31,8 +31,8 @@ static const LLLuaClass luaIconClass = {
 
 // Global functions
 
-int initLuaIconLibrary(lua_State * L) {
-    initLuaModule(L, &luaIconLibrary, &luaIconClass);
+int bf_lua_loadIcon(lua_State * L) {
+    bf_lua_loadmodule(L, &luaIconLibrary, &luaIconClass);
     return 0;
 }
 
@@ -55,7 +55,7 @@ static int new(lua_State * L) {
     
     icon = LLIconCreate(rect);
     
-    pushNewUserdata(L, icon, LLIconClassName);
+    bf_lua_push(L, icon, LLIconClassName);
     LLRelease(icon);
     
     LL_LUA_DEBUG_STACK_ENDR(L, 1);
@@ -68,7 +68,7 @@ static int getCanvas(lua_State * L) {
     LLCanvasRef canvas = NULL;
     
     canvas = LLIconGetCanvas(icon);
-    pushNewUserdata(L, canvas, LLCanvasClassName);
+    bf_lua_push(L, canvas, LLCanvasClassName);
     
     LL_LUA_DEBUG_STACK_ENDR(L, 1);
     return 1;

@@ -42,8 +42,8 @@ static const LLLuaClass luaTransformationClass = {
 
 // Global functions
 
-int initLuaTransformationLibrary(lua_State * L) {
-    initLuaModule(L, &luaTransformationLibrary, &luaTransformationClass);
+int bf_lua_loadTransformation(lua_State * L) {
+    bf_lua_loadmodule(L, &luaTransformationLibrary, &luaTransformationClass);
     return 0;
 }
 
@@ -53,7 +53,7 @@ int initLuaTransformationLibrary(lua_State * L) {
 static int identity(lua_State * L) {
     LL_LUA_DEBUG_STACK_BEGIN(L);
     LLTransformationRef transformation = LLTransformationCreate();
-    pushNewUserdata(L, transformation, LLTransformationClassName);
+    bf_lua_push(L, transformation, LLTransformationClassName);
     LLRelease(transformation);
     
     LL_LUA_DEBUG_STACK_ENDR(L, 1);

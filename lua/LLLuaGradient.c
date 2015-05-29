@@ -32,10 +32,10 @@ static const LLLuaClass luaGradientClass = {
 
 // Global functions
 
-int initLuaGradientLibrary(lua_State * L) {
-    initLuaClass(L, &luaPaintClass);
+int bf_lua_loadGradient(lua_State * L) {
+    bf_lua_loadclass(L, &luaPaintClass);
     lua_pop(L, 1);
-    initLuaModule(L, &luaGradientLibrary, &luaGradientClass);
+    bf_lua_loadmodule(L, &luaGradientLibrary, &luaGradientClass);
     return 0;
 }
 
@@ -119,7 +119,7 @@ static int linear(lua_State * L) {
     
     LLGradientPaintSetLinearLocation(gradientPaint, p1, p2);
     
-    pushNewUserdata(L, gradientPaint, LLGradientPaintClassName);
+    bf_lua_push(L, gradientPaint, LLGradientPaintClassName);
     LLRelease(gradientPaint);
     
     LL_LUA_DEBUG_STACK_ENDR(L, 1);
@@ -151,7 +151,7 @@ static int radial(lua_State * L) {
     
     LLGradientPaintSetRadialLocation(gradientPaint, p1, r1, p2, r2);
     
-    pushNewUserdata(L, gradientPaint, LLGradientPaintClassName);
+    bf_lua_push(L, gradientPaint, LLGradientPaintClassName);
     LLRelease(gradientPaint);
     
     LL_LUA_DEBUG_STACK_ENDR(L, 1);

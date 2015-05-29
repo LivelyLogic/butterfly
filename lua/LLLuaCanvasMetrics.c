@@ -23,8 +23,8 @@ const LLLuaClass luaCanvasMetricsClass = {
     }
 };
 
-int initLuaCanvasMetricsLibrary(lua_State * L) {
-    initLuaModule(L, NULL, &luaCanvasMetricsClass);
+int bf_lua_loadCanvasMetrics(lua_State * L) {
+    bf_lua_loadmodule(L, NULL, &luaCanvasMetricsClass);
     return 0;
 }
 

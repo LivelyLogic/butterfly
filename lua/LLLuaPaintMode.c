@@ -28,8 +28,8 @@ static const LLLuaClass luaPaintModeClass = {
 
 // Global functions
 
-int initLuaPaintModeLibrary(lua_State * L) {
-    initLuaModule(L, &luaPaintModeLibrary, &luaPaintModeClass);
+int bf_lua_loadPaintMode(lua_State * L) {
+    bf_lua_loadmodule(L, &luaPaintModeLibrary, &luaPaintModeClass);
     return 0;
 }
 
@@ -42,7 +42,7 @@ static int get(lua_State * L) {
     LLPaintModeRef paintMode;
     
     paintMode = LLPaintModeCreate(index);
-    pushNewUserdata(L, paintMode, LLPaintModeClassName);
+    bf_lua_push(L, paintMode, LLPaintModeClassName);
     LLRelease(paintMode);
     
     LL_LUA_DEBUG_STACK_ENDR(L, 1);

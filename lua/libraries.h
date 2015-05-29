@@ -9,17 +9,19 @@
 
 #include <lua.h>
 
-int initLuaLibraries(lua_State * L);
+int bf_lua_load(lua_State * L);
 
-int initLuaCanvasLibrary(lua_State * L);
-int initLuaCanvasMetricsLibrary(lua_State * L);
-int initLuaColorLibrary(lua_State * L);
-int initLuaFontLibrary(lua_State * L);
-int initLuaGradientLibrary(lua_State * L);
-int initLuaIconLibrary(lua_State * L);
-int initLuaPaintModeLibrary(lua_State * L);
-int initLuaPathLibrary(lua_State * L);
-int initLuaStyledStringLibrary(lua_State * L);
-int initLuaTransformationLibrary(lua_State * L);
+int bf_lua_loadCanvas(lua_State * L);
+int bf_lua_loadCanvasMetrics(lua_State * L);
+int bf_lua_loadColor(lua_State * L);
+int bf_lua_loadFont(lua_State * L);
+int bf_lua_loadGradient(lua_State * L);
+int bf_lua_loadIcon(lua_State * L);
+int bf_lua_loadPaintMode(lua_State * L);
+int bf_lua_loadPath(lua_State * L);
+int bf_lua_loadStyledString(lua_State * L);
+int bf_lua_loadTransformation(lua_State * L);
+
+void bf_lua_push(lua_State * L, void * data, const char * tname);
 
 #endif /* __LIBRARIES_H__ */

@@ -43,7 +43,7 @@
     L = luaL_newstate();
     
     // Set up the globals and metatables for the classes we're using.
-    initLuaLibraries(L);
+    bf_lua_load(L);
 }
 
 - (void)dealloc
@@ -99,9 +99,9 @@
     // and it's safe to release.
     LLRelease(canvasMetrics);
     
-    // Push `canvas` onto the Lua stack. Note that `pushNewUserdata` retains the object
+    // Push `canvas` onto the Lua stack. Note that `bf_lua_push` retains the object
     // on behalf of the Lua state.
-    pushNewUserdata(L, canvas, LLCanvasClassName);
+    bf_lua_push(L, canvas, LLCanvasClassName);
     
     // Now that the canvas userdata is in the Lua state, `canvas` is safe for us to release.
     // The object will live until Lua's garbage collector collects the userdata.

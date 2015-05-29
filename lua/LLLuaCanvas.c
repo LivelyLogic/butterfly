@@ -59,8 +59,8 @@ static const LLLuaClass luaCanvasClass = {
 
 // Global functions
 
-int initLuaCanvasLibrary(lua_State * L) {
-    initLuaModule(L, NULL, &luaCanvasClass);
+int bf_lua_loadCanvas(lua_State * L) {
+    bf_lua_loadmodule(L, NULL, &luaCanvasClass);
     return 0;
 }
 
@@ -280,7 +280,7 @@ static int getFont(lua_State * L) {
     LLFontRef font;
 
     font = LLCanvasGetFont(canvas);
-    pushNewUserdata(L, font, LLFontClassName);
+    bf_lua_push(L, font, LLFontClassName);
 
     LL_LUA_DEBUG_STACK_ENDR(L, 1);
     return 1;
@@ -385,7 +385,7 @@ static int metrics(lua_State * L) {
     LLCanvasMetricsRef metrics = NULL;
 
     metrics = LLCanvasGetMetrics(canvas);
-    pushNewUserdata(L, metrics, LLCanvasMetricsClassName);
+    bf_lua_push(L, metrics, LLCanvasMetricsClassName);
 
     LL_LUA_DEBUG_STACK_ENDR(L, 1);
     return 1;

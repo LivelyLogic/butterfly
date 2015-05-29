@@ -11,16 +11,16 @@
 static int retainLuaObject(lua_State * L);
 static int releaseLuaObject(lua_State * L);
 
-void initLuaModule(lua_State * L, const LLLuaClass * luaLibrary, const LLLuaClass * luaClass) {
+void bf_lua_loadmodule(lua_State * L, const LLLuaClass * luaLibrary, const LLLuaClass * luaClass) {
     LL_LUA_DEBUG_STACK_BEGIN(L);
     lua_pushvalue(L, 1);
     if (luaLibrary) {
-        initLuaClass(L, luaLibrary);
+        bf_lua_loadclass(L, luaLibrary);
     } else {
         lua_pushnil(L);
     }
     if (luaClass) {
-        initLuaClass(L, luaClass);
+        bf_lua_loadclass(L, luaClass);
     } else {
         lua_pushnil(L);
     }
@@ -32,7 +32,7 @@ void initLuaModule(lua_State * L, const LLLuaClass * luaLibrary, const LLLuaClas
     LL_LUA_DEBUG_STACK_END(L);
 }
 
-void initLuaClass(lua_State * L, const LLLuaClass * luaClass) {
+void bf_lua_loadclass(lua_State * L, const LLLuaClass * luaClass) {
     if (luaClass->metatableName) {
         luaL_newmetatable(L, luaClass->metatableName);
     } else {
@@ -96,7 +96,7 @@ void * getLuaNilOrUserdata(lua_State * L, int narg, const char * tname) {
     return result;
 }
 
-void pushNewUserdata(lua_State * L, void * data, const char * tname) {
+void bf_lua_push(lua_State * L, void * data, const char * tname) {
     void ** userdata = (void **)lua_newuserdata(L, sizeof(void *));
     *userdata = data;
     if (tname) {

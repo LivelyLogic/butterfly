@@ -8,18 +8,18 @@
 
 #include "LLLua.h"
 
-int initLuaLibraries(lua_State * L) {
+int bf_lua_load(lua_State * L) {
     LL_LUA_DEBUG_STACK_BEGIN(L);
-    initLuaCanvasLibrary(L);
-    initLuaCanvasMetricsLibrary(L);
-    initLuaColorLibrary(L);
-    initLuaFontLibrary(L);
-    initLuaGradientLibrary(L);
-    initLuaIconLibrary(L);
-    initLuaPaintModeLibrary(L);
-    initLuaPathLibrary(L);
-    initLuaStyledStringLibrary(L);
-    initLuaTransformationLibrary(L);
+    bf_lua_loadCanvas(L);
+    bf_lua_loadCanvasMetrics(L);
+    bf_lua_loadColor(L);
+    bf_lua_loadFont(L);
+    bf_lua_loadGradient(L);
+    bf_lua_loadIcon(L);
+    bf_lua_loadPaintMode(L);
+    bf_lua_loadPath(L);
+    bf_lua_loadStyledString(L);
+    bf_lua_loadTransformation(L);
     LL_LUA_DEBUG_STACK_END(L);
     return 0;
 }

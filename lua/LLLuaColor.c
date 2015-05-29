@@ -39,10 +39,10 @@ const LLLuaClass luaColorClass = {
 
 // Global functions
 
-int initLuaColorLibrary(lua_State * L) {
-    initLuaClass(L, &luaPaintClass);
+int bf_lua_loadColor(lua_State * L) {
+    bf_lua_loadclass(L, &luaPaintClass);
     lua_pop(L, 1);
-    initLuaModule(L, &luaColorLibrary, &luaColorClass);
+    bf_lua_loadmodule(L, &luaColorLibrary, &luaColorClass);
     return 0;
 }
 
@@ -59,7 +59,7 @@ static int rgba(lua_State * L) {
     
     colorPaint = LLColorPaintCreate();
     LLColorPaintSetRGBA(colorPaint, red, green, blue, alpha);
-    pushNewUserdata(L, colorPaint, LLColorPaintClassName);
+    bf_lua_push(L, colorPaint, LLColorPaintClassName);
     LLRelease(colorPaint);
     
     LL_LUA_DEBUG_STACK_ENDR(L, 1);

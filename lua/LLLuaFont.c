@@ -49,8 +49,8 @@ static const LLLuaClass luaFontClass = {
 
 // Global functions
 
-int initLuaFontLibrary(lua_State * L) {
-    initLuaModule(L, &luaFontLibrary, &luaFontClass);
+int bf_lua_loadFont(lua_State * L) {
+    bf_lua_loadmodule(L, &luaFontLibrary, &luaFontClass);
     return 0;
 }
 
@@ -64,7 +64,7 @@ static int get(lua_State * L) {
     LLFontRef font;
     
     font = LLFontCreate(name, size);
-    pushNewUserdata(L, font, LLFontClassName);
+    bf_lua_push(L, font, LLFontClassName);
     LLRelease(font);
     
     LL_LUA_DEBUG_STACK_ENDR(L, 1);
@@ -77,7 +77,7 @@ static int getSystem(lua_State * L) {
     LLFontRef font;
     
     font = LLFontCreateSystem(size);
-    pushNewUserdata(L, font, LLFontClassName);
+    bf_lua_push(L, font, LLFontClassName);
     LLRelease(font);
     
     LL_LUA_DEBUG_STACK_ENDR(L, 1);
@@ -90,7 +90,7 @@ static int getBoldSystem(lua_State * L) {
     LLFontRef font;
     
     font = LLFontCreateBoldSystem(size);
-    pushNewUserdata(L, font, LLFontClassName);
+    bf_lua_push(L, font, LLFontClassName);
     LLRelease(font);
     
     LL_LUA_DEBUG_STACK_ENDR(L, 1);

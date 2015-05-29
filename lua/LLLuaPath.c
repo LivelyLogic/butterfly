@@ -51,8 +51,8 @@ static const LLLuaClass luaPathClass = {
 
 // Global functions
 
-int initLuaPathLibrary(lua_State * L) {
-    initLuaModule(L, &luaPathLibrary, &luaPathClass);
+int bf_lua_loadPath(lua_State * L) {
+    bf_lua_loadmodule(L, &luaPathLibrary, &luaPathClass);
     return 0;
 }
 
@@ -85,7 +85,7 @@ static int rect(lua_State * L) {
         LLPathAddRect(path, rect);
     }
     
-    pushNewUserdata(L, path, LLPathClassName);
+    bf_lua_push(L, path, LLPathClassName);
     LLRelease(path);
     
     LL_LUA_DEBUG_STACK_ENDR(L, 1);
@@ -146,7 +146,7 @@ static int oval(lua_State * L) {
     path = LLPathCreate();
     LLPathAddOvalInRect(path, rect);
     
-    pushNewUserdata(L, path, LLPathClassName);
+    bf_lua_push(L, path, LLPathClassName);
     LLRelease(path);
     
     LL_LUA_DEBUG_STACK_ENDR(L, 1);
@@ -195,7 +195,7 @@ static int point(lua_State * L) {
     path = LLPathCreate();
     LLPathMoveToPoint(path, point);
     
-    pushNewUserdata(L, path, LLPathClassName);
+    bf_lua_push(L, path, LLPathClassName);
     LLRelease(path);
     
     LL_LUA_DEBUG_STACK_ENDR(L, 1);
@@ -224,7 +224,7 @@ static int line(lua_State * L) {
     LLPathMoveToPoint(path, point1);
     LLPathAddLineToPoint(path, point2);
     
-    pushNewUserdata(L, path, LLPathClassName);
+    bf_lua_push(L, path, LLPathClassName);
     LLRelease(path);
     
     LL_LUA_DEBUG_STACK_ENDR(L, 1);
@@ -295,7 +295,7 @@ static int arc(lua_State * L) {
     LLPathMoveToPoint(path, point);
     LLPathAddArc(path, centerPoint, angle);
     
-    pushNewUserdata(L, path, LLPathClassName);
+    bf_lua_push(L, path, LLPathClassName);
     LLRelease(path);
     
     LL_LUA_DEBUG_STACK_ENDR(L, 1);

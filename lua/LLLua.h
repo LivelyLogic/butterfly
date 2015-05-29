@@ -20,12 +20,11 @@ typedef struct LLLuaClass {
     struct luaL_Reg methods [];
 } LLLuaClass;
 
-void initLuaModule(lua_State * L, const LLLuaClass * luaLibrary, const LLLuaClass * luaClass);
-void initLuaClass(lua_State * L, const LLLuaClass * luaClass);
+void bf_lua_loadmodule(lua_State * L, const LLLuaClass * luaLibrary, const LLLuaClass * luaClass);
+void bf_lua_loadclass(lua_State * L, const LLLuaClass * luaClass);
 
 void * tryLuaUserdata(lua_State * L, int narg, const char * tname);
 void * getLuaNilOrUserdata(lua_State * L, int narg, const char * tname);
-void pushNewUserdata(lua_State * L, void * data, const char * tname);
 int l_pcall(lua_State * L, int nargs, int nresults);
 void l_pcallNoResults(lua_State * L, int nargs);
 
