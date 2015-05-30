@@ -6,10 +6,10 @@
 
 #include "BFBase.h"
 
-#include "BFFont.h"
+#include "types.h"
+#include "quartz.h"
 
 #include "BFQuartzTypes.h"
-#include "BFStyledString.h"
 
 struct BFFont {
     struct BFBase __base;

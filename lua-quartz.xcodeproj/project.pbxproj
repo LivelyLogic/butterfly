@@ -78,29 +78,19 @@
 		38E3DB741AF114BF00F84CBB /* BFBase.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = BFBase.c; sourceTree = "<group>"; };
 		38E3DB751AF114BF00F84CBB /* BFBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BFBase.h; sourceTree = "<group>"; };
 		38E3DB761AF114BF00F84CBB /* BFCanvas.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = BFCanvas.c; sourceTree = "<group>"; };
-		38E3DB771AF114BF00F84CBB /* BFCanvas.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BFCanvas.h; sourceTree = "<group>"; };
 		38E3DB781AF114BF00F84CBB /* BFCanvasMetrics.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = BFCanvasMetrics.c; sourceTree = "<group>"; };
-		38E3DB791AF114BF00F84CBB /* BFCanvasMetrics.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BFCanvasMetrics.h; sourceTree = "<group>"; };
 		38E3DB7A1AF114BF00F84CBB /* BFColorPaint.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = BFColorPaint.c; sourceTree = "<group>"; };
-		38E3DB7B1AF114BF00F84CBB /* BFColorPaint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BFColorPaint.h; sourceTree = "<group>"; };
 		38E3DB7C1AF114BF00F84CBB /* BFFont.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = BFFont.c; sourceTree = "<group>"; };
-		38E3DB7D1AF114BF00F84CBB /* BFFont.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BFFont.h; sourceTree = "<group>"; };
 		38E3DB7E1AF114BF00F84CBB /* BFGradientPaint.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = BFGradientPaint.c; sourceTree = "<group>"; };
-		38E3DB7F1AF114BF00F84CBB /* BFGradientPaint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BFGradientPaint.h; sourceTree = "<group>"; };
 		38E3DB801AF114BF00F84CBB /* BFIcon.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = BFIcon.c; sourceTree = "<group>"; };
-		38E3DB811AF114BF00F84CBB /* BFIcon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BFIcon.h; sourceTree = "<group>"; };
 		38E3DB821AF114BF00F84CBB /* BFPaint.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = BFPaint.c; sourceTree = "<group>"; };
 		38E3DB831AF114BF00F84CBB /* BFPaint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BFPaint.h; sourceTree = "<group>"; };
 		38E3DB841AF114BF00F84CBB /* BFPaintMode.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = BFPaintMode.c; sourceTree = "<group>"; };
-		38E3DB851AF114BF00F84CBB /* BFPaintMode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BFPaintMode.h; sourceTree = "<group>"; };
 		38E3DB861AF114BF00F84CBB /* BFPath.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = BFPath.c; sourceTree = "<group>"; };
-		38E3DB871AF114BF00F84CBB /* BFPath.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BFPath.h; sourceTree = "<group>"; };
 		38E3DB881AF114BF00F84CBB /* BFQuartzTypes.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = BFQuartzTypes.c; sourceTree = "<group>"; };
 		38E3DB891AF114BF00F84CBB /* BFQuartzTypes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BFQuartzTypes.h; sourceTree = "<group>"; };
 		38E3DB8A1AF114BF00F84CBB /* BFStyledString.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = BFStyledString.c; sourceTree = "<group>"; };
-		38E3DB8B1AF114BF00F84CBB /* BFStyledString.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BFStyledString.h; sourceTree = "<group>"; };
 		38E3DB8C1AF114BF00F84CBB /* BFTransformation.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = BFTransformation.c; sourceTree = "<group>"; };
-		38E3DB8D1AF114BF00F84CBB /* BFTransformation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BFTransformation.h; sourceTree = "<group>"; };
 		38E3DBAA1AF1990F00F84CBB /* DrawingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DrawingView.h; sourceTree = "<group>"; };
 		38E3DBAB1AF1990F00F84CBB /* DrawingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DrawingView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -210,29 +200,19 @@
 				38E3DB741AF114BF00F84CBB /* BFBase.c */,
 				38E3DB751AF114BF00F84CBB /* BFBase.h */,
 				38E3DB761AF114BF00F84CBB /* BFCanvas.c */,
-				38E3DB771AF114BF00F84CBB /* BFCanvas.h */,
 				38E3DB781AF114BF00F84CBB /* BFCanvasMetrics.c */,
-				38E3DB791AF114BF00F84CBB /* BFCanvasMetrics.h */,
 				38E3DB7A1AF114BF00F84CBB /* BFColorPaint.c */,
-				38E3DB7B1AF114BF00F84CBB /* BFColorPaint.h */,
 				38E3DB7C1AF114BF00F84CBB /* BFFont.c */,
-				38E3DB7D1AF114BF00F84CBB /* BFFont.h */,
 				38E3DB7E1AF114BF00F84CBB /* BFGradientPaint.c */,
-				38E3DB7F1AF114BF00F84CBB /* BFGradientPaint.h */,
 				38E3DB801AF114BF00F84CBB /* BFIcon.c */,
-				38E3DB811AF114BF00F84CBB /* BFIcon.h */,
 				38E3DB821AF114BF00F84CBB /* BFPaint.c */,
 				38E3DB831AF114BF00F84CBB /* BFPaint.h */,
 				38E3DB841AF114BF00F84CBB /* BFPaintMode.c */,
-				38E3DB851AF114BF00F84CBB /* BFPaintMode.h */,
 				38E3DB861AF114BF00F84CBB /* BFPath.c */,
-				38E3DB871AF114BF00F84CBB /* BFPath.h */,
 				38E3DB881AF114BF00F84CBB /* BFQuartzTypes.c */,
 				38E3DB891AF114BF00F84CBB /* BFQuartzTypes.h */,
 				38E3DB8A1AF114BF00F84CBB /* BFStyledString.c */,
-				38E3DB8B1AF114BF00F84CBB /* BFStyledString.h */,
 				38E3DB8C1AF114BF00F84CBB /* BFTransformation.c */,
-				38E3DB8D1AF114BF00F84CBB /* BFTransformation.h */,
 			);
 			path = quartz;
 			sourceTree = "<group>";

@@ -7,10 +7,8 @@
 #include "BFBase.h"
 #include "BFPaint.h"
 
-#include "BFGradientPaint.h"
-
-#include "BFColorPaint.h"
-#include "BFQuartzTypes.h"
+#include "types.h"
+#include "quartz.h"
 
 typedef enum BFGradientPaintType {
     kBFGradientPaintLinear,
@@ -71,15 +69,15 @@ void BFGradientPaintSetColors(BFGradientPaintRef gradientPaint, int count, const
 
 void BFGradientPaintSetLinearLocation(BFGradientPaintRef gradientPaint, BFPoint startPoint, BFPoint endPoint) {
     gradientPaint->type = kBFGradientPaintLinear;
-    gradientPaint->locationPoints[0] = BFConvertPointToQuartz(startPoint);
-    gradientPaint->locationPoints[1] = BFConvertPointToQuartz(endPoint);
+    gradientPaint->locationPoints[0] = BFPointToCGPoint(startPoint);
+    gradientPaint->locationPoints[1] = BFPointToCGPoint(endPoint);
 }
 
 void BFGradientPaintSetRadialLocation(BFGradientPaintRef gradientPaint, BFPoint startCenter, double startRadius, BFPoint endCenter, double endRadius) {
     gradientPaint->type = kBFGradientPaintRadial;
-    gradientPaint->locationPoints[0] = BFConvertPointToQuartz(startCenter);
+    gradientPaint->locationPoints[0] = BFPointToCGPoint(startCenter);
     gradientPaint->locationFloats[0] = startRadius;
-    gradientPaint->locationPoints[1] = BFConvertPointToQuartz(endCenter);
+    gradientPaint->locationPoints[1] = BFPointToCGPoint(endCenter);
     gradientPaint->locationFloats[1] = endRadius;
 }
 

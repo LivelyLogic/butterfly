@@ -6,7 +6,8 @@
 
 #include "BFBase.h"
 
-#include "BFTransformation.h"
+#include "types.h"
+#include "quartz.h"
 
 #include "BFQuartzTypes.h"
 
@@ -68,9 +69,9 @@ BFPoint BFTransformationTransformPoint(BFTransformationRef transformation, BFPoi
 }
 
 BFRect BFTransformationTransformRect(BFTransformationRef transformation, BFRect rect) {
-    CGRect cgRect = BFConvertRectToQuartz(rect);
+    CGRect cgRect = BFRectToCGRect(rect);
     cgRect = CGRectApplyAffineTransform(cgRect, transformation->affine);
-    return BFConvertQuartzRect(cgRect);
+    return BFRectFromCGRect(cgRect);
 }
 
 CGAffineTransform BFTransformationGetCGAffineTransform(BFTransformationRef transformation) {

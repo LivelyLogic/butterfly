@@ -8,9 +8,8 @@
 
 #include "BFBase.h"
 
-#include "BFPath.h"
-
-#include "BFQuartzTypes.h"
+#include "types.h"
+#include "quartz.h"
 
 struct BFPath {
     struct BFBase __base;
@@ -70,7 +69,7 @@ void BFPathCloseSubpath(BFPathRef path) {
 }
 
 void BFPathAddRect(BFPathRef path, BFRect rect) {
-    CGPathAddRect(path->pathRef, NULL, BFConvertRectToQuartz(rect));
+    CGPathAddRect(path->pathRef, NULL, BFRectToCGRect(rect));
 }
 
 void BFPathAddRoundedRect(BFPathRef path, BFRect rect, double radius) {
@@ -83,7 +82,7 @@ void BFPathAddRoundedRect(BFPathRef path, BFRect rect, double radius) {
 }
 
 void BFPathAddOvalInRect(BFPathRef path, BFRect rect) {
-    CGPathAddEllipseInRect(path->pathRef, NULL, BFConvertRectToQuartz(rect));
+    CGPathAddEllipseInRect(path->pathRef, NULL, BFRectToCGRect(rect));
 }
 
 CGPathRef BFPathGetCGPath(const BFPathRef path) {

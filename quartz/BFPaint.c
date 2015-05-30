@@ -5,8 +5,10 @@
 //
 
 #include "BFBase.h"
-
 #include "BFPaint.h"
+
+#include "types.h"
+#include "quartz.h"
 
 void BFPaintDealloc(void * object) {
     BFDealloc(object);

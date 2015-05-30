@@ -10,10 +10,8 @@
 #include <lauxlib.h>
 
 #import "libraries.h"
-#import "BFLua.h"
-
-#import "BFCanvas.h"
-#import "BFCanvasMetrics.h"
+#import "types.h"
+#import "quartz.h"
 
 @interface DrawingView ()
 @property (assign) BOOL scriptIsValid;

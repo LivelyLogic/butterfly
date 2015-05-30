@@ -6,7 +6,8 @@
 
 #include "BFBase.h"
 
-#include "BFPaintMode.h"
+#include "types.h"
+#include "quartz.h"
 
 struct BFPaintMode {
     struct BFBase __base;

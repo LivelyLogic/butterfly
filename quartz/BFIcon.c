@@ -6,11 +6,8 @@
 
 #include "BFBase.h"
 
-#include "BFIcon.h"
-
-#include "BFCanvas.h"
-#include "BFCanvasMetrics.h"
-#include "BFQuartzTypes.h"
+#include "types.h"
+#include "quartz.h"
 
 struct BFIcon {
     struct BFBase __base;
@@ -42,7 +39,7 @@ BFIconRef BFIconCreateWithImage(CGImageRef image, double width, double height) {
         BFRect boundsRect = { .left = 0, .bottom = 0, .right = width, .top = height };
         BFCanvasRef canvas = BFIconNewCanvas(boundsRect, CGImageGetWidth(image), CGImageGetHeight(image));
         CGContextRef context = BFCanvasGetCGContext(canvas);
-        CGContextDrawImage(context, BFConvertRectToQuartz(boundsRect), image);
+        CGContextDrawImage(context, BFRectToCGRect(boundsRect), image);
         BFIconInit(icon, canvas);
     }
     return BFRetain(icon);

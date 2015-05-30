@@ -8,11 +8,9 @@
 
 #include <lua.h>
 #include <lauxlib.h>
-
-#include "libraries.h"
-#include "types.h"
-
-#include "BFCanvas.h"
+#include <butterfly/libraries.h>
+#include <butterfly/types.h>
+#include <butterfly/quartz.h>
 
 int main(int argc, char * argv[]) {
     // Deal with the command-line arguments.

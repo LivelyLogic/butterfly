@@ -29,7 +29,4 @@ struct BFPaint {
 
 void BFPaintDealloc(void * paint);
 
-bool BFPaintSetInContext(BFPaintRef paint, CGContextRef context);
-void BFPaintFillRectInContext(BFPaintRef paint, CGContextRef context, CGRect rect);
-
 #endif /* __BF_PAINT_H__ */

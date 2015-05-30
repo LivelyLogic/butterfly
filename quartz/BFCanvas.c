@@ -6,18 +6,8 @@
 
 #include "BFBase.h"
 
-#include "BFCanvas.h"
-
-#include "BFCanvasMetrics.h"
-#include "BFColorPaint.h"
-#include "BFFont.h"
-#include "BFIcon.h"
-#include "BFPaint.h"
-#include "BFPaintMode.h"
-#include "BFPath.h"
-#include "BFQuartzTypes.h"
-#include "BFStyledString.h"
-#include "BFTransformation.h"
+#include "types.h"
+#include "quartz.h"
 
 typedef enum BFCanvasType {
     kBFCanvasDisplay,
@@ -170,7 +160,7 @@ void BFCanvasConcatTransformation(BFCanvasRef canvas, BFTransformationRef transf
 }
 
 void BFCanvasClipRect(BFCanvasRef canvas, BFRect rect) {
-    CGContextClipToRect(canvas->context, BFConvertRectToQuartz(rect));
+    CGContextClipToRect(canvas->context, BFRectToCGRect(rect));
 }
 
 void BFCanvasClipPath(BFCanvasRef canvas, const BFPathRef path) {
@@ -182,7 +172,7 @@ void BFCanvasClipPath(BFCanvasRef canvas, const BFPathRef path) {
 
 void BFCanvasClipIcon(BFCanvasRef canvas, const BFIconRef icon, BFRect rect) {
     CGImageRef image = BFIconCopyCGImage(icon);
-    CGContextClipToMask(canvas->context, BFConvertRectToQuartz(rect), image);
+    CGContextClipToMask(canvas->context, BFRectToCGRect(rect), image);
     CGImageRelease(image);
 }
 
@@ -296,7 +286,7 @@ void BFCanvasStrokeStyledString(BFCanvasRef canvas, BFStyledStringRef styledStri
 
 void BFCanvasDrawIcon(BFCanvasRef canvas, const BFIconRef icon, BFRect rect) {
     CGImageRef image = BFIconCopyCGImage(icon);
-    CGContextDrawImage(canvas->context, BFConvertRectToQuartz(rect), image);
+    CGContextDrawImage(canvas->context, BFRectToCGRect(rect), image);
     CGImageRelease(image);
 }
 

@@ -22,7 +22,7 @@ LUA2PNG_LIBS = $(LUA_LIB)
 LUA2PNG_FRAMEWORKS = -framework CoreFoundation -framework CoreGraphics -framework CoreText -framework ImageIO
 
 LIB = libbutterfly.a
-HEADER = lua/libraries.h quartz/types.h
+HEADER = lua/libraries.h quartz/types.h quartz/quartz.h
 
 quartz/%.o: quartz/%.c $(QUARTZ_HEADERS)
 	$(CC) -c $(CFLAGS) $< -o $@

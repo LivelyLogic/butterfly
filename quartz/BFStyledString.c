@@ -6,9 +6,9 @@
 
 #include "BFBase.h"
 
-#include "BFStyledString.h"
+#include "types.h"
+#include "quartz.h"
 
-#include "BFFont.h"
 #include "BFQuartzTypes.h"
 
 struct BFStyledString {
