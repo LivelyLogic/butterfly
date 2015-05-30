@@ -1,11 +1,11 @@
 //
-//  libraries.h
+//  lua.h
 //
 //  Copyright (c) 2011-2015 Ripeware, LLC. All rights reserved.
 //
 
-#ifndef __LIBRARIES_H__
-#define __LIBRARIES_H__
+#ifndef __BUTTERFLY_LUA_H__
+#define __BUTTERFLY_LUA_H__
 
 #include <lua.h>
 
@@ -24,4 +24,4 @@ int bf_lua_loadTransformation(lua_State * L);
 
 void bf_lua_push(lua_State * L, void * data, const char * tname);
 
-#endif /* __LIBRARIES_H__ */
+#endif /* __BUTTERFLY_LUA_H__ */

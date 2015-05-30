@@ -9,8 +9,8 @@
 #include <lua.h>
 #include <lauxlib.h>
 
-#import "libraries.h"
-#import "types.h"
+#import "butterfly.h"
+#import "lua.h"
 #import "quartz.h"
 
 @interface DrawingView ()

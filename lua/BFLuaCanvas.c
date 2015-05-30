@@ -4,10 +4,10 @@
 //  Copyright (c) 2011-2015 Ripeware, LLC. All rights reserved.
 //
 
-#include "libraries.h"
+#include "lua.h"
 #include "BFLua.h"
 
-#include "types.h"
+#include "butterfly.h"
 
 static int stroke(lua_State * L);
 static int fill(lua_State * L);

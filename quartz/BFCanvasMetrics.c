@@ -6,7 +6,7 @@
 
 #include "BFBase.h"
 
-#include "types.h"
+#include "butterfly.h"
 
 struct BFCanvasMetrics {
     struct BFBase __base;

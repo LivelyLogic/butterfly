@@ -9,7 +9,7 @@
 
 #include <CoreGraphics/CoreGraphics.h>
 
-#include "types.h"
+#include "butterfly.h"
 
 #include "BFBase.h"
 

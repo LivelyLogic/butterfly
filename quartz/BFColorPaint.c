@@ -7,7 +7,7 @@
 #include "BFBase.h"
 #include "BFPaint.h"
 
-#include "types.h"
+#include "butterfly.h"
 #include "quartz.h"
 
 struct BFColorPaint {

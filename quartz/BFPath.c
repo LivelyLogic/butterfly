@@ -8,7 +8,7 @@
 
 #include "BFBase.h"
 
-#include "types.h"
+#include "butterfly.h"
 #include "quartz.h"
 
 struct BFPath {

@@ -1,11 +1,11 @@
 //
-//  types.h
+//  butterfly.h
 //
 //  Copyright (c) 2011-2015 Ripeware, LLC. All rights reserved.
 //
 
-#ifndef __TYPES_H__
-#define __TYPES_H__
+#ifndef __BUTTERFLY_H__
+#define __BUTTERFLY_H__
 
 #include <CoreFoundation/CoreFoundation.h>
 
@@ -196,4 +196,4 @@ void BFTransformationConcat(BFTransformationRef transformation1, BFTransformatio
 BFPoint BFTransformationTransformPoint(BFTransformationRef transformation, BFPoint point);
 BFRect BFTransformationTransformRect(BFTransformationRef transformation, BFRect rect);
 
-#endif /* __TYPES_H__ */
+#endif /* __BUTTERFLY_H__ */

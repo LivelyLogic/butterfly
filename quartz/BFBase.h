@@ -7,7 +7,7 @@
 #ifndef __BF_BASE_H__
 #define __BF_BASE_H__
 
-#include "types.h"
+#include "butterfly.h"
 
 typedef void (* BFBaseDeallocFunction)(void *);
 

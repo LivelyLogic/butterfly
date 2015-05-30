@@ -4,14 +4,14 @@
 //  Copyright (c) 2011-2015 Ripeware, LLC. All rights reserved.
 //
 
-#ifndef __QUARTZ_H__
-#define __QUARTZ_H__
+#ifndef __BUTTERFLY_QUARTZ_H__
+#define __BUTTERFLY_QUARTZ_H__
 
 #include <CoreFoundation/CoreFoundation.h>
 #include <CoreGraphics/CoreGraphics.h>
 #include <CoreText/CoreText.h>
 
-#include "types.h"
+#include "butterfly.h"
 
 // BFPoint
 
@@ -68,4 +68,4 @@ CGPathRef BFStyledStringGetCGPath(const BFStyledStringRef styledString);
 
 CGAffineTransform BFTransformationGetCGAffineTransform(BFTransformationRef transformation);
 
-#endif /* __QUARTZ_H__ */
+#endif /* __BUTTERFLY_QUARTZ_H__ */

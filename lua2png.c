@@ -8,8 +8,8 @@
 
 #include <lua.h>
 #include <lauxlib.h>
-#include <butterfly/libraries.h>
-#include <butterfly/types.h>
+#include <butterfly/butterfly.h>
+#include <butterfly/lua.h>
 #include <butterfly/quartz.h>
 
 int main(int argc, char * argv[]) {
