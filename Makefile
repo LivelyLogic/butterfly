@@ -5,7 +5,6 @@ INSTALL = install -p -m 0644
 
 INSTALL_LIB = /usr/local/lib
 INSTALL_HEADER = /usr/local/include/butterfly
-LUA_LIB = /usr/local/lib/liblua.a
 LUA_INCLUDE = /usr/local/include
 
 QUARTZ_SOURCES = quartz/*.c
@@ -18,7 +17,7 @@ LUA_OBJECTS = $(addsuffix .o, $(basename $(wildcard $(LUA_SOURCES))))
 
 LUA2PNG_SOURCE = lua2png.c
 LUA2PNG_OBJECT = lua2png.o
-LUA2PNG_LIBS = $(LUA_LIB)
+LUA2PNG_LIBS = -llua -lbutterfly
 LUA2PNG_FRAMEWORKS = -framework CoreFoundation -framework CoreGraphics -framework CoreText -framework ImageIO
 
 LIB = libbutterfly.a
@@ -48,5 +47,5 @@ install: $(LIB) $(HEADER)
 	$(INSTALL_DIR) $(INSTALL_HEADER)
 	$(INSTALL) $(HEADER) $(INSTALL_HEADER)
 
-lua2png: $(LUA2PNG_OBJECT) $(LIB)
-	$(CC) -o $@ $(LUA2PNG_OBJECT) $(LIB) $(LUA2PNG_LIBS) $(LUA2PNG_FRAMEWORKS)
+lua2png: $(LUA2PNG_OBJECT)
+	$(CC) -o $@ $(LUA2PNG_OBJECT) $(LUA2PNG_LIBS) $(LUA2PNG_FRAMEWORKS)

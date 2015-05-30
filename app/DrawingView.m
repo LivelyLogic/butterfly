@@ -9,9 +9,9 @@
 #include <lua.h>
 #include <lauxlib.h>
 
-#import "butterfly.h"
-#import "lua.h"
-#import "quartz.h"
+#import <butterfly/butterfly.h>
+#import <butterfly/lua.h>
+#import <butterfly/quartz.h>
 
 @interface DrawingView ()
 @property (assign) BOOL scriptIsValid;
