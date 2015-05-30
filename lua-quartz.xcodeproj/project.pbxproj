@@ -12,31 +12,31 @@
 		38E3DB3E1AF1142100F84CBB /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 38E3DB3D1AF1142100F84CBB /* Images.xcassets */; };
 		38E3DB411AF1142100F84CBB /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38E3DB3F1AF1142100F84CBB /* MainMenu.xib */; };
 		38E3DB4D1AF1142100F84CBB /* lua_quartzTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 38E3DB4C1AF1142100F84CBB /* lua_quartzTests.m */; };
-		38E3DB8E1AF114BF00F84CBB /* LLLua.c in Sources */ = {isa = PBXBuildFile; fileRef = 38E3DB5B1AF114BF00F84CBB /* LLLua.c */; };
-		38E3DB8F1AF114BF00F84CBB /* LLLuaCanvas.c in Sources */ = {isa = PBXBuildFile; fileRef = 38E3DB5D1AF114BF00F84CBB /* LLLuaCanvas.c */; };
-		38E3DB901AF114BF00F84CBB /* LLLuaCanvasMetrics.c in Sources */ = {isa = PBXBuildFile; fileRef = 38E3DB5F1AF114BF00F84CBB /* LLLuaCanvasMetrics.c */; };
-		38E3DB911AF114BF00F84CBB /* LLLuaColor.c in Sources */ = {isa = PBXBuildFile; fileRef = 38E3DB611AF114BF00F84CBB /* LLLuaColor.c */; };
-		38E3DB921AF114BF00F84CBB /* LLLuaFont.c in Sources */ = {isa = PBXBuildFile; fileRef = 38E3DB631AF114BF00F84CBB /* LLLuaFont.c */; };
-		38E3DB931AF114BF00F84CBB /* LLLuaGradient.c in Sources */ = {isa = PBXBuildFile; fileRef = 38E3DB651AF114BF00F84CBB /* LLLuaGradient.c */; };
-		38E3DB941AF114BF00F84CBB /* LLLuaIcon.c in Sources */ = {isa = PBXBuildFile; fileRef = 38E3DB671AF114BF00F84CBB /* LLLuaIcon.c */; };
-		38E3DB951AF114BF00F84CBB /* LLLuaPaint.c in Sources */ = {isa = PBXBuildFile; fileRef = 38E3DB691AF114BF00F84CBB /* LLLuaPaint.c */; };
-		38E3DB961AF114BF00F84CBB /* LLLuaPaintMode.c in Sources */ = {isa = PBXBuildFile; fileRef = 38E3DB6B1AF114BF00F84CBB /* LLLuaPaintMode.c */; };
-		38E3DB971AF114BF00F84CBB /* LLLuaPath.c in Sources */ = {isa = PBXBuildFile; fileRef = 38E3DB6D1AF114BF00F84CBB /* LLLuaPath.c */; };
-		38E3DB981AF114BF00F84CBB /* LLLuaStyledString.c in Sources */ = {isa = PBXBuildFile; fileRef = 38E3DB6F1AF114BF00F84CBB /* LLLuaStyledString.c */; };
-		38E3DB991AF114BF00F84CBB /* LLLuaTransformation.c in Sources */ = {isa = PBXBuildFile; fileRef = 38E3DB711AF114BF00F84CBB /* LLLuaTransformation.c */; };
-		38E3DB9A1AF114BF00F84CBB /* LLBase.c in Sources */ = {isa = PBXBuildFile; fileRef = 38E3DB741AF114BF00F84CBB /* LLBase.c */; };
-		38E3DB9B1AF114BF00F84CBB /* LLCanvas.c in Sources */ = {isa = PBXBuildFile; fileRef = 38E3DB761AF114BF00F84CBB /* LLCanvas.c */; };
-		38E3DB9C1AF114BF00F84CBB /* LLCanvasMetrics.c in Sources */ = {isa = PBXBuildFile; fileRef = 38E3DB781AF114BF00F84CBB /* LLCanvasMetrics.c */; };
-		38E3DB9D1AF114BF00F84CBB /* LLColorPaint.c in Sources */ = {isa = PBXBuildFile; fileRef = 38E3DB7A1AF114BF00F84CBB /* LLColorPaint.c */; };
-		38E3DB9E1AF114BF00F84CBB /* LLFont.c in Sources */ = {isa = PBXBuildFile; fileRef = 38E3DB7C1AF114BF00F84CBB /* LLFont.c */; };
-		38E3DB9F1AF114BF00F84CBB /* LLGradientPaint.c in Sources */ = {isa = PBXBuildFile; fileRef = 38E3DB7E1AF114BF00F84CBB /* LLGradientPaint.c */; };
-		38E3DBA01AF114BF00F84CBB /* LLIcon.c in Sources */ = {isa = PBXBuildFile; fileRef = 38E3DB801AF114BF00F84CBB /* LLIcon.c */; };
-		38E3DBA11AF114BF00F84CBB /* LLPaint.c in Sources */ = {isa = PBXBuildFile; fileRef = 38E3DB821AF114BF00F84CBB /* LLPaint.c */; };
-		38E3DBA21AF114BF00F84CBB /* LLPaintMode.c in Sources */ = {isa = PBXBuildFile; fileRef = 38E3DB841AF114BF00F84CBB /* LLPaintMode.c */; };
-		38E3DBA31AF114BF00F84CBB /* LLPath.c in Sources */ = {isa = PBXBuildFile; fileRef = 38E3DB861AF114BF00F84CBB /* LLPath.c */; };
-		38E3DBA41AF114BF00F84CBB /* LLQuartzTypes.c in Sources */ = {isa = PBXBuildFile; fileRef = 38E3DB881AF114BF00F84CBB /* LLQuartzTypes.c */; };
-		38E3DBA51AF114BF00F84CBB /* LLStyledString.c in Sources */ = {isa = PBXBuildFile; fileRef = 38E3DB8A1AF114BF00F84CBB /* LLStyledString.c */; };
-		38E3DBA61AF114BF00F84CBB /* LLTransformation.c in Sources */ = {isa = PBXBuildFile; fileRef = 38E3DB8C1AF114BF00F84CBB /* LLTransformation.c */; };
+		38E3DB8E1AF114BF00F84CBB /* BFLua.c in Sources */ = {isa = PBXBuildFile; fileRef = 38E3DB5B1AF114BF00F84CBB /* BFLua.c */; };
+		38E3DB8F1AF114BF00F84CBB /* BFLuaCanvas.c in Sources */ = {isa = PBXBuildFile; fileRef = 38E3DB5D1AF114BF00F84CBB /* BFLuaCanvas.c */; };
+		38E3DB901AF114BF00F84CBB /* BFLuaCanvasMetrics.c in Sources */ = {isa = PBXBuildFile; fileRef = 38E3DB5F1AF114BF00F84CBB /* BFLuaCanvasMetrics.c */; };
+		38E3DB911AF114BF00F84CBB /* BFLuaColor.c in Sources */ = {isa = PBXBuildFile; fileRef = 38E3DB611AF114BF00F84CBB /* BFLuaColor.c */; };
+		38E3DB921AF114BF00F84CBB /* BFLuaFont.c in Sources */ = {isa = PBXBuildFile; fileRef = 38E3DB631AF114BF00F84CBB /* BFLuaFont.c */; };
+		38E3DB931AF114BF00F84CBB /* BFLuaGradient.c in Sources */ = {isa = PBXBuildFile; fileRef = 38E3DB651AF114BF00F84CBB /* BFLuaGradient.c */; };
+		38E3DB941AF114BF00F84CBB /* BFLuaIcon.c in Sources */ = {isa = PBXBuildFile; fileRef = 38E3DB671AF114BF00F84CBB /* BFLuaIcon.c */; };
+		38E3DB951AF114BF00F84CBB /* BFLuaPaint.c in Sources */ = {isa = PBXBuildFile; fileRef = 38E3DB691AF114BF00F84CBB /* BFLuaPaint.c */; };
+		38E3DB961AF114BF00F84CBB /* BFLuaPaintMode.c in Sources */ = {isa = PBXBuildFile; fileRef = 38E3DB6B1AF114BF00F84CBB /* BFLuaPaintMode.c */; };
+		38E3DB971AF114BF00F84CBB /* BFLuaPath.c in Sources */ = {isa = PBXBuildFile; fileRef = 38E3DB6D1AF114BF00F84CBB /* BFLuaPath.c */; };
+		38E3DB981AF114BF00F84CBB /* BFLuaStyledString.c in Sources */ = {isa = PBXBuildFile; fileRef = 38E3DB6F1AF114BF00F84CBB /* BFLuaStyledString.c */; };
+		38E3DB991AF114BF00F84CBB /* BFLuaTransformation.c in Sources */ = {isa = PBXBuildFile; fileRef = 38E3DB711AF114BF00F84CBB /* BFLuaTransformation.c */; };
+		38E3DB9A1AF114BF00F84CBB /* BFBase.c in Sources */ = {isa = PBXBuildFile; fileRef = 38E3DB741AF114BF00F84CBB /* BFBase.c */; };
+		38E3DB9B1AF114BF00F84CBB /* BFCanvas.c in Sources */ = {isa = PBXBuildFile; fileRef = 38E3DB761AF114BF00F84CBB /* BFCanvas.c */; };
+		38E3DB9C1AF114BF00F84CBB /* BFCanvasMetrics.c in Sources */ = {isa = PBXBuildFile; fileRef = 38E3DB781AF114BF00F84CBB /* BFCanvasMetrics.c */; };
+		38E3DB9D1AF114BF00F84CBB /* BFColorPaint.c in Sources */ = {isa = PBXBuildFile; fileRef = 38E3DB7A1AF114BF00F84CBB /* BFColorPaint.c */; };
+		38E3DB9E1AF114BF00F84CBB /* BFFont.c in Sources */ = {isa = PBXBuildFile; fileRef = 38E3DB7C1AF114BF00F84CBB /* BFFont.c */; };
+		38E3DB9F1AF114BF00F84CBB /* BFGradientPaint.c in Sources */ = {isa = PBXBuildFile; fileRef = 38E3DB7E1AF114BF00F84CBB /* BFGradientPaint.c */; };
+		38E3DBA01AF114BF00F84CBB /* BFIcon.c in Sources */ = {isa = PBXBuildFile; fileRef = 38E3DB801AF114BF00F84CBB /* BFIcon.c */; };
+		38E3DBA11AF114BF00F84CBB /* BFPaint.c in Sources */ = {isa = PBXBuildFile; fileRef = 38E3DB821AF114BF00F84CBB /* BFPaint.c */; };
+		38E3DBA21AF114BF00F84CBB /* BFPaintMode.c in Sources */ = {isa = PBXBuildFile; fileRef = 38E3DB841AF114BF00F84CBB /* BFPaintMode.c */; };
+		38E3DBA31AF114BF00F84CBB /* BFPath.c in Sources */ = {isa = PBXBuildFile; fileRef = 38E3DB861AF114BF00F84CBB /* BFPath.c */; };
+		38E3DBA41AF114BF00F84CBB /* BFQuartzTypes.c in Sources */ = {isa = PBXBuildFile; fileRef = 38E3DB881AF114BF00F84CBB /* BFQuartzTypes.c */; };
+		38E3DBA51AF114BF00F84CBB /* BFStyledString.c in Sources */ = {isa = PBXBuildFile; fileRef = 38E3DB8A1AF114BF00F84CBB /* BFStyledString.c */; };
+		38E3DBA61AF114BF00F84CBB /* BFTransformation.c in Sources */ = {isa = PBXBuildFile; fileRef = 38E3DB8C1AF114BF00F84CBB /* BFTransformation.c */; };
 		38E3DBAC1AF1990F00F84CBB /* DrawingView.m in Sources */ = {isa = PBXBuildFile; fileRef = 38E3DBAB1AF1990F00F84CBB /* DrawingView.m */; };
 /* End PBXBuildFile section */
 
@@ -61,46 +61,46 @@
 		38E3DB461AF1142100F84CBB /* lua-quartzTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "lua-quartzTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		38E3DB4B1AF1142100F84CBB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		38E3DB4C1AF1142100F84CBB /* lua_quartzTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = lua_quartzTests.m; sourceTree = "<group>"; };
-		38E3DB5B1AF114BF00F84CBB /* LLLua.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = LLLua.c; sourceTree = "<group>"; };
-		38E3DB5C1AF114BF00F84CBB /* LLLua.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LLLua.h; sourceTree = "<group>"; };
-		38E3DB5D1AF114BF00F84CBB /* LLLuaCanvas.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = LLLuaCanvas.c; sourceTree = "<group>"; };
-		38E3DB5F1AF114BF00F84CBB /* LLLuaCanvasMetrics.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = LLLuaCanvasMetrics.c; sourceTree = "<group>"; };
-		38E3DB611AF114BF00F84CBB /* LLLuaColor.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = LLLuaColor.c; sourceTree = "<group>"; };
-		38E3DB631AF114BF00F84CBB /* LLLuaFont.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = LLLuaFont.c; sourceTree = "<group>"; };
-		38E3DB651AF114BF00F84CBB /* LLLuaGradient.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = LLLuaGradient.c; sourceTree = "<group>"; };
-		38E3DB671AF114BF00F84CBB /* LLLuaIcon.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = LLLuaIcon.c; sourceTree = "<group>"; };
-		38E3DB691AF114BF00F84CBB /* LLLuaPaint.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = LLLuaPaint.c; sourceTree = "<group>"; };
-		38E3DB6A1AF114BF00F84CBB /* LLLuaPaint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LLLuaPaint.h; sourceTree = "<group>"; };
-		38E3DB6B1AF114BF00F84CBB /* LLLuaPaintMode.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = LLLuaPaintMode.c; sourceTree = "<group>"; };
-		38E3DB6D1AF114BF00F84CBB /* LLLuaPath.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = LLLuaPath.c; sourceTree = "<group>"; };
-		38E3DB6F1AF114BF00F84CBB /* LLLuaStyledString.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = LLLuaStyledString.c; sourceTree = "<group>"; };
-		38E3DB711AF114BF00F84CBB /* LLLuaTransformation.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = LLLuaTransformation.c; sourceTree = "<group>"; };
-		38E3DB741AF114BF00F84CBB /* LLBase.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = LLBase.c; sourceTree = "<group>"; };
-		38E3DB751AF114BF00F84CBB /* LLBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LLBase.h; sourceTree = "<group>"; };
-		38E3DB761AF114BF00F84CBB /* LLCanvas.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = LLCanvas.c; sourceTree = "<group>"; };
-		38E3DB771AF114BF00F84CBB /* LLCanvas.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LLCanvas.h; sourceTree = "<group>"; };
-		38E3DB781AF114BF00F84CBB /* LLCanvasMetrics.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = LLCanvasMetrics.c; sourceTree = "<group>"; };
-		38E3DB791AF114BF00F84CBB /* LLCanvasMetrics.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LLCanvasMetrics.h; sourceTree = "<group>"; };
-		38E3DB7A1AF114BF00F84CBB /* LLColorPaint.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = LLColorPaint.c; sourceTree = "<group>"; };
-		38E3DB7B1AF114BF00F84CBB /* LLColorPaint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LLColorPaint.h; sourceTree = "<group>"; };
-		38E3DB7C1AF114BF00F84CBB /* LLFont.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = LLFont.c; sourceTree = "<group>"; };
-		38E3DB7D1AF114BF00F84CBB /* LLFont.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LLFont.h; sourceTree = "<group>"; };
-		38E3DB7E1AF114BF00F84CBB /* LLGradientPaint.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = LLGradientPaint.c; sourceTree = "<group>"; };
-		38E3DB7F1AF114BF00F84CBB /* LLGradientPaint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LLGradientPaint.h; sourceTree = "<group>"; };
-		38E3DB801AF114BF00F84CBB /* LLIcon.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = LLIcon.c; sourceTree = "<group>"; };
-		38E3DB811AF114BF00F84CBB /* LLIcon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LLIcon.h; sourceTree = "<group>"; };
-		38E3DB821AF114BF00F84CBB /* LLPaint.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = LLPaint.c; sourceTree = "<group>"; };
-		38E3DB831AF114BF00F84CBB /* LLPaint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LLPaint.h; sourceTree = "<group>"; };
-		38E3DB841AF114BF00F84CBB /* LLPaintMode.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = LLPaintMode.c; sourceTree = "<group>"; };
-		38E3DB851AF114BF00F84CBB /* LLPaintMode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LLPaintMode.h; sourceTree = "<group>"; };
-		38E3DB861AF114BF00F84CBB /* LLPath.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = LLPath.c; sourceTree = "<group>"; };
-		38E3DB871AF114BF00F84CBB /* LLPath.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LLPath.h; sourceTree = "<group>"; };
-		38E3DB881AF114BF00F84CBB /* LLQuartzTypes.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = LLQuartzTypes.c; sourceTree = "<group>"; };
-		38E3DB891AF114BF00F84CBB /* LLQuartzTypes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LLQuartzTypes.h; sourceTree = "<group>"; };
-		38E3DB8A1AF114BF00F84CBB /* LLStyledString.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = LLStyledString.c; sourceTree = "<group>"; };
-		38E3DB8B1AF114BF00F84CBB /* LLStyledString.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LLStyledString.h; sourceTree = "<group>"; };
-		38E3DB8C1AF114BF00F84CBB /* LLTransformation.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = LLTransformation.c; sourceTree = "<group>"; };
-		38E3DB8D1AF114BF00F84CBB /* LLTransformation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LLTransformation.h; sourceTree = "<group>"; };
+		38E3DB5B1AF114BF00F84CBB /* BFLua.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = BFLua.c; sourceTree = "<group>"; };
+		38E3DB5C1AF114BF00F84CBB /* BFLua.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BFLua.h; sourceTree = "<group>"; };
+		38E3DB5D1AF114BF00F84CBB /* BFLuaCanvas.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = BFLuaCanvas.c; sourceTree = "<group>"; };
+		38E3DB5F1AF114BF00F84CBB /* BFLuaCanvasMetrics.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = BFLuaCanvasMetrics.c; sourceTree = "<group>"; };
+		38E3DB611AF114BF00F84CBB /* BFLuaColor.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = BFLuaColor.c; sourceTree = "<group>"; };
+		38E3DB631AF114BF00F84CBB /* BFLuaFont.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = BFLuaFont.c; sourceTree = "<group>"; };
+		38E3DB651AF114BF00F84CBB /* BFLuaGradient.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = BFLuaGradient.c; sourceTree = "<group>"; };
+		38E3DB671AF114BF00F84CBB /* BFLuaIcon.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = BFLuaIcon.c; sourceTree = "<group>"; };
+		38E3DB691AF114BF00F84CBB /* BFLuaPaint.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = BFLuaPaint.c; sourceTree = "<group>"; };
+		38E3DB6A1AF114BF00F84CBB /* BFLuaPaint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BFLuaPaint.h; sourceTree = "<group>"; };
+		38E3DB6B1AF114BF00F84CBB /* BFLuaPaintMode.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = BFLuaPaintMode.c; sourceTree = "<group>"; };
+		38E3DB6D1AF114BF00F84CBB /* BFLuaPath.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = BFLuaPath.c; sourceTree = "<group>"; };
+		38E3DB6F1AF114BF00F84CBB /* BFLuaStyledString.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = BFLuaStyledString.c; sourceTree = "<group>"; };
+		38E3DB711AF114BF00F84CBB /* BFLuaTransformation.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = BFLuaTransformation.c; sourceTree = "<group>"; };
+		38E3DB741AF114BF00F84CBB /* BFBase.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = BFBase.c; sourceTree = "<group>"; };
+		38E3DB751AF114BF00F84CBB /* BFBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BFBase.h; sourceTree = "<group>"; };
+		38E3DB761AF114BF00F84CBB /* BFCanvas.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = BFCanvas.c; sourceTree = "<group>"; };
+		38E3DB771AF114BF00F84CBB /* BFCanvas.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BFCanvas.h; sourceTree = "<group>"; };
+		38E3DB781AF114BF00F84CBB /* BFCanvasMetrics.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = BFCanvasMetrics.c; sourceTree = "<group>"; };
+		38E3DB791AF114BF00F84CBB /* BFCanvasMetrics.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BFCanvasMetrics.h; sourceTree = "<group>"; };
+		38E3DB7A1AF114BF00F84CBB /* BFColorPaint.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = BFColorPaint.c; sourceTree = "<group>"; };
+		38E3DB7B1AF114BF00F84CBB /* BFColorPaint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BFColorPaint.h; sourceTree = "<group>"; };
+		38E3DB7C1AF114BF00F84CBB /* BFFont.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = BFFont.c; sourceTree = "<group>"; };
+		38E3DB7D1AF114BF00F84CBB /* BFFont.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BFFont.h; sourceTree = "<group>"; };
+		38E3DB7E1AF114BF00F84CBB /* BFGradientPaint.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = BFGradientPaint.c; sourceTree = "<group>"; };
+		38E3DB7F1AF114BF00F84CBB /* BFGradientPaint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BFGradientPaint.h; sourceTree = "<group>"; };
+		38E3DB801AF114BF00F84CBB /* BFIcon.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = BFIcon.c; sourceTree = "<group>"; };
+		38E3DB811AF114BF00F84CBB /* BFIcon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BFIcon.h; sourceTree = "<group>"; };
+		38E3DB821AF114BF00F84CBB /* BFPaint.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = BFPaint.c; sourceTree = "<group>"; };
+		38E3DB831AF114BF00F84CBB /* BFPaint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BFPaint.h; sourceTree = "<group>"; };
+		38E3DB841AF114BF00F84CBB /* BFPaintMode.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = BFPaintMode.c; sourceTree = "<group>"; };
+		38E3DB851AF114BF00F84CBB /* BFPaintMode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BFPaintMode.h; sourceTree = "<group>"; };
+		38E3DB861AF114BF00F84CBB /* BFPath.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = BFPath.c; sourceTree = "<group>"; };
+		38E3DB871AF114BF00F84CBB /* BFPath.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BFPath.h; sourceTree = "<group>"; };
+		38E3DB881AF114BF00F84CBB /* BFQuartzTypes.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = BFQuartzTypes.c; sourceTree = "<group>"; };
+		38E3DB891AF114BF00F84CBB /* BFQuartzTypes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BFQuartzTypes.h; sourceTree = "<group>"; };
+		38E3DB8A1AF114BF00F84CBB /* BFStyledString.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = BFStyledString.c; sourceTree = "<group>"; };
+		38E3DB8B1AF114BF00F84CBB /* BFStyledString.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BFStyledString.h; sourceTree = "<group>"; };
+		38E3DB8C1AF114BF00F84CBB /* BFTransformation.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = BFTransformation.c; sourceTree = "<group>"; };
+		38E3DB8D1AF114BF00F84CBB /* BFTransformation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BFTransformation.h; sourceTree = "<group>"; };
 		38E3DBAA1AF1990F00F84CBB /* DrawingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DrawingView.h; sourceTree = "<group>"; };
 		38E3DBAB1AF1990F00F84CBB /* DrawingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DrawingView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -186,20 +186,20 @@
 		38E3DB5A1AF114BF00F84CBB /* lua */ = {
 			isa = PBXGroup;
 			children = (
-				38E3DB5B1AF114BF00F84CBB /* LLLua.c */,
-				38E3DB5C1AF114BF00F84CBB /* LLLua.h */,
-				38E3DB5D1AF114BF00F84CBB /* LLLuaCanvas.c */,
-				38E3DB5F1AF114BF00F84CBB /* LLLuaCanvasMetrics.c */,
-				38E3DB611AF114BF00F84CBB /* LLLuaColor.c */,
-				38E3DB631AF114BF00F84CBB /* LLLuaFont.c */,
-				38E3DB651AF114BF00F84CBB /* LLLuaGradient.c */,
-				38E3DB671AF114BF00F84CBB /* LLLuaIcon.c */,
-				38E3DB691AF114BF00F84CBB /* LLLuaPaint.c */,
-				38E3DB6A1AF114BF00F84CBB /* LLLuaPaint.h */,
-				38E3DB6B1AF114BF00F84CBB /* LLLuaPaintMode.c */,
-				38E3DB6D1AF114BF00F84CBB /* LLLuaPath.c */,
-				38E3DB6F1AF114BF00F84CBB /* LLLuaStyledString.c */,
-				38E3DB711AF114BF00F84CBB /* LLLuaTransformation.c */,
+				38E3DB5B1AF114BF00F84CBB /* BFLua.c */,
+				38E3DB5C1AF114BF00F84CBB /* BFLua.h */,
+				38E3DB5D1AF114BF00F84CBB /* BFLuaCanvas.c */,
+				38E3DB5F1AF114BF00F84CBB /* BFLuaCanvasMetrics.c */,
+				38E3DB611AF114BF00F84CBB /* BFLuaColor.c */,
+				38E3DB631AF114BF00F84CBB /* BFLuaFont.c */,
+				38E3DB651AF114BF00F84CBB /* BFLuaGradient.c */,
+				38E3DB671AF114BF00F84CBB /* BFLuaIcon.c */,
+				38E3DB691AF114BF00F84CBB /* BFLuaPaint.c */,
+				38E3DB6A1AF114BF00F84CBB /* BFLuaPaint.h */,
+				38E3DB6B1AF114BF00F84CBB /* BFLuaPaintMode.c */,
+				38E3DB6D1AF114BF00F84CBB /* BFLuaPath.c */,
+				38E3DB6F1AF114BF00F84CBB /* BFLuaStyledString.c */,
+				38E3DB711AF114BF00F84CBB /* BFLuaTransformation.c */,
 			);
 			path = lua;
 			sourceTree = "<group>";
@@ -207,32 +207,32 @@
 		38E3DB731AF114BF00F84CBB /* quartz */ = {
 			isa = PBXGroup;
 			children = (
-				38E3DB741AF114BF00F84CBB /* LLBase.c */,
-				38E3DB751AF114BF00F84CBB /* LLBase.h */,
-				38E3DB761AF114BF00F84CBB /* LLCanvas.c */,
-				38E3DB771AF114BF00F84CBB /* LLCanvas.h */,
-				38E3DB781AF114BF00F84CBB /* LLCanvasMetrics.c */,
-				38E3DB791AF114BF00F84CBB /* LLCanvasMetrics.h */,
-				38E3DB7A1AF114BF00F84CBB /* LLColorPaint.c */,
-				38E3DB7B1AF114BF00F84CBB /* LLColorPaint.h */,
-				38E3DB7C1AF114BF00F84CBB /* LLFont.c */,
-				38E3DB7D1AF114BF00F84CBB /* LLFont.h */,
-				38E3DB7E1AF114BF00F84CBB /* LLGradientPaint.c */,
-				38E3DB7F1AF114BF00F84CBB /* LLGradientPaint.h */,
-				38E3DB801AF114BF00F84CBB /* LLIcon.c */,
-				38E3DB811AF114BF00F84CBB /* LLIcon.h */,
-				38E3DB821AF114BF00F84CBB /* LLPaint.c */,
-				38E3DB831AF114BF00F84CBB /* LLPaint.h */,
-				38E3DB841AF114BF00F84CBB /* LLPaintMode.c */,
-				38E3DB851AF114BF00F84CBB /* LLPaintMode.h */,
-				38E3DB861AF114BF00F84CBB /* LLPath.c */,
-				38E3DB871AF114BF00F84CBB /* LLPath.h */,
-				38E3DB881AF114BF00F84CBB /* LLQuartzTypes.c */,
-				38E3DB891AF114BF00F84CBB /* LLQuartzTypes.h */,
-				38E3DB8A1AF114BF00F84CBB /* LLStyledString.c */,
-				38E3DB8B1AF114BF00F84CBB /* LLStyledString.h */,
-				38E3DB8C1AF114BF00F84CBB /* LLTransformation.c */,
-				38E3DB8D1AF114BF00F84CBB /* LLTransformation.h */,
+				38E3DB741AF114BF00F84CBB /* BFBase.c */,
+				38E3DB751AF114BF00F84CBB /* BFBase.h */,
+				38E3DB761AF114BF00F84CBB /* BFCanvas.c */,
+				38E3DB771AF114BF00F84CBB /* BFCanvas.h */,
+				38E3DB781AF114BF00F84CBB /* BFCanvasMetrics.c */,
+				38E3DB791AF114BF00F84CBB /* BFCanvasMetrics.h */,
+				38E3DB7A1AF114BF00F84CBB /* BFColorPaint.c */,
+				38E3DB7B1AF114BF00F84CBB /* BFColorPaint.h */,
+				38E3DB7C1AF114BF00F84CBB /* BFFont.c */,
+				38E3DB7D1AF114BF00F84CBB /* BFFont.h */,
+				38E3DB7E1AF114BF00F84CBB /* BFGradientPaint.c */,
+				38E3DB7F1AF114BF00F84CBB /* BFGradientPaint.h */,
+				38E3DB801AF114BF00F84CBB /* BFIcon.c */,
+				38E3DB811AF114BF00F84CBB /* BFIcon.h */,
+				38E3DB821AF114BF00F84CBB /* BFPaint.c */,
+				38E3DB831AF114BF00F84CBB /* BFPaint.h */,
+				38E3DB841AF114BF00F84CBB /* BFPaintMode.c */,
+				38E3DB851AF114BF00F84CBB /* BFPaintMode.h */,
+				38E3DB861AF114BF00F84CBB /* BFPath.c */,
+				38E3DB871AF114BF00F84CBB /* BFPath.h */,
+				38E3DB881AF114BF00F84CBB /* BFQuartzTypes.c */,
+				38E3DB891AF114BF00F84CBB /* BFQuartzTypes.h */,
+				38E3DB8A1AF114BF00F84CBB /* BFStyledString.c */,
+				38E3DB8B1AF114BF00F84CBB /* BFStyledString.h */,
+				38E3DB8C1AF114BF00F84CBB /* BFTransformation.c */,
+				38E3DB8D1AF114BF00F84CBB /* BFTransformation.h */,
 			);
 			path = quartz;
 			sourceTree = "<group>";
@@ -336,33 +336,33 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				38E3DB9F1AF114BF00F84CBB /* LLGradientPaint.c in Sources */,
-				38E3DB9C1AF114BF00F84CBB /* LLCanvasMetrics.c in Sources */,
-				38E3DB931AF114BF00F84CBB /* LLLuaGradient.c in Sources */,
-				38E3DBA51AF114BF00F84CBB /* LLStyledString.c in Sources */,
-				38E3DB9D1AF114BF00F84CBB /* LLColorPaint.c in Sources */,
-				38E3DB901AF114BF00F84CBB /* LLLuaCanvasMetrics.c in Sources */,
-				38E3DB961AF114BF00F84CBB /* LLLuaPaintMode.c in Sources */,
-				38E3DBA31AF114BF00F84CBB /* LLPath.c in Sources */,
-				38E3DBA41AF114BF00F84CBB /* LLQuartzTypes.c in Sources */,
-				38E3DB971AF114BF00F84CBB /* LLLuaPath.c in Sources */,
-				38E3DBA01AF114BF00F84CBB /* LLIcon.c in Sources */,
-				38E3DB9E1AF114BF00F84CBB /* LLFont.c in Sources */,
-				38E3DB8F1AF114BF00F84CBB /* LLLuaCanvas.c in Sources */,
-				38E3DBA11AF114BF00F84CBB /* LLPaint.c in Sources */,
-				38E3DB981AF114BF00F84CBB /* LLLuaStyledString.c in Sources */,
-				38E3DB8E1AF114BF00F84CBB /* LLLua.c in Sources */,
+				38E3DB9F1AF114BF00F84CBB /* BFGradientPaint.c in Sources */,
+				38E3DB9C1AF114BF00F84CBB /* BFCanvasMetrics.c in Sources */,
+				38E3DB931AF114BF00F84CBB /* BFLuaGradient.c in Sources */,
+				38E3DBA51AF114BF00F84CBB /* BFStyledString.c in Sources */,
+				38E3DB9D1AF114BF00F84CBB /* BFColorPaint.c in Sources */,
+				38E3DB901AF114BF00F84CBB /* BFLuaCanvasMetrics.c in Sources */,
+				38E3DB961AF114BF00F84CBB /* BFLuaPaintMode.c in Sources */,
+				38E3DBA31AF114BF00F84CBB /* BFPath.c in Sources */,
+				38E3DBA41AF114BF00F84CBB /* BFQuartzTypes.c in Sources */,
+				38E3DB971AF114BF00F84CBB /* BFLuaPath.c in Sources */,
+				38E3DBA01AF114BF00F84CBB /* BFIcon.c in Sources */,
+				38E3DB9E1AF114BF00F84CBB /* BFFont.c in Sources */,
+				38E3DB8F1AF114BF00F84CBB /* BFLuaCanvas.c in Sources */,
+				38E3DBA11AF114BF00F84CBB /* BFPaint.c in Sources */,
+				38E3DB981AF114BF00F84CBB /* BFLuaStyledString.c in Sources */,
+				38E3DB8E1AF114BF00F84CBB /* BFLua.c in Sources */,
 				38E3DB3C1AF1142100F84CBB /* main.m in Sources */,
-				38E3DBA21AF114BF00F84CBB /* LLPaintMode.c in Sources */,
-				38E3DB911AF114BF00F84CBB /* LLLuaColor.c in Sources */,
-				38E3DB991AF114BF00F84CBB /* LLLuaTransformation.c in Sources */,
-				38E3DB941AF114BF00F84CBB /* LLLuaIcon.c in Sources */,
-				38E3DB951AF114BF00F84CBB /* LLLuaPaint.c in Sources */,
-				38E3DB921AF114BF00F84CBB /* LLLuaFont.c in Sources */,
+				38E3DBA21AF114BF00F84CBB /* BFPaintMode.c in Sources */,
+				38E3DB911AF114BF00F84CBB /* BFLuaColor.c in Sources */,
+				38E3DB991AF114BF00F84CBB /* BFLuaTransformation.c in Sources */,
+				38E3DB941AF114BF00F84CBB /* BFLuaIcon.c in Sources */,
+				38E3DB951AF114BF00F84CBB /* BFLuaPaint.c in Sources */,
+				38E3DB921AF114BF00F84CBB /* BFLuaFont.c in Sources */,
 				38E3DB3A1AF1142100F84CBB /* AppDelegate.m in Sources */,
-				38E3DB9A1AF114BF00F84CBB /* LLBase.c in Sources */,
-				38E3DBA61AF114BF00F84CBB /* LLTransformation.c in Sources */,
-				38E3DB9B1AF114BF00F84CBB /* LLCanvas.c in Sources */,
+				38E3DB9A1AF114BF00F84CBB /* BFBase.c in Sources */,
+				38E3DBA61AF114BF00F84CBB /* BFTransformation.c in Sources */,
+				38E3DB9B1AF114BF00F84CBB /* BFCanvas.c in Sources */,
 				38E3DBAC1AF1990F00F84CBB /* DrawingView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

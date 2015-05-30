@@ -10,10 +10,10 @@
 #include <lauxlib.h>
 
 #import "libraries.h"
-#import "LLLua.h"
+#import "BFLua.h"
 
-#import "LLCanvas.h"
-#import "LLCanvasMetrics.h"
+#import "BFCanvas.h"
+#import "BFCanvasMetrics.h"
 
 @interface DrawingView ()
 @property (assign) BOOL scriptIsValid;
@@ -84,28 +84,28 @@
     
     // Create the metrics object for the canvas.
     // These functions follow the same naming conventions as Core Foundation, namely the
-    // Create Rule and the Get Rule. This means that when we call `LLCanvasMetricsCreate`
+    // Create Rule and the Get Rule. This means that when we call `BFCanvasMetricsCreate`
     // below, we own the returned object and are responsible for releasing it.
     NSRect viewBounds = [self bounds];
-    LLRect bounds = { .left = NSMinX(viewBounds), .bottom = NSMinY(viewBounds), .right = NSMaxX(viewBounds), .top = NSMaxY(viewBounds) };
+    BFRect bounds = { .left = NSMinX(viewBounds), .bottom = NSMinY(viewBounds), .right = NSMaxX(viewBounds), .top = NSMaxY(viewBounds) };
     CGFloat backingScale = [self.window.screen backingScaleFactor];
-    LLCanvasMetricsRef canvasMetrics = LLCanvasMetricsCreate(bounds, backingScale, 1);
+    BFCanvasMetricsRef canvasMetrics = BFCanvasMetricsCreate(bounds, backingScale, 1);
     
     // Create the canvas object for the Lua scripts to draw into.
-    // As above with the canvas metrics, we own the object returned by `LLCanvasCreateForDisplay`.
-    LLCanvasRef canvas = LLCanvasCreateForDisplay(context, canvasMetrics);
+    // As above with the canvas metrics, we own the object returned by `BFCanvasCreateForDisplay`.
+    BFCanvasRef canvas = BFCanvasCreateForDisplay(context, canvasMetrics);
     
     // Now that we've given `canvasMetrics` to the canvas object, we no longer need it here
     // and it's safe to release.
-    LLRelease(canvasMetrics);
+    BFRelease(canvasMetrics);
     
     // Push `canvas` onto the Lua stack. Note that `bf_lua_push` retains the object
     // on behalf of the Lua state.
-    bf_lua_push(L, canvas, LLCanvasClassName);
+    bf_lua_push(L, canvas, BFCanvasClassName);
     
     // Now that the canvas userdata is in the Lua state, `canvas` is safe for us to release.
     // The object will live until Lua's garbage collector collects the userdata.
-    LLRelease(canvas);
+    BFRelease(canvas);
     
     // Call the drawing function. One argument (`canvas`), zero return values.
     if (lua_pcall(L, 1, 0, 0)) {

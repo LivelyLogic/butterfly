@@ -12,7 +12,7 @@
 #include "libraries.h"
 #include "types.h"
 
-#include "LLCanvas.h"
+#include "BFCanvas.h"
 
 int main(int argc, char * argv[]) {
     // Deal with the command-line arguments.
@@ -43,10 +43,10 @@ int main(int argc, char * argv[]) {
 
     // Create the metrics object for the canvas.
     // These functions follow the same naming conventions as Core Foundation, namely the
-    // Create Rule and the Get Rule. This means that when we call `LLCanvasMetricsCreate`
+    // Create Rule and the Get Rule. This means that when we call `BFCanvasMetricsCreate`
     // below, we own the returned object and are responsible for releasing it.
-    LLRect bounds = { 0, 0, width, height };
-    LLCanvasMetricsRef canvasMetrics = LLCanvasMetricsCreate(bounds, 1, 1);
+    BFRect bounds = { 0, 0, width, height };
+    BFCanvasMetricsRef canvasMetrics = BFCanvasMetricsCreate(bounds, 1, 1);
 
     // Create a bitmap graphics context for the canvas to use.
     CGColorSpaceRef colorSpace = CGColorSpaceCreateWithName(kCGColorSpaceSRGB);
@@ -54,14 +54,14 @@ int main(int argc, char * argv[]) {
     CGColorSpaceRelease(colorSpace);
 
     // Create the canvas object for the Lua scripts to draw into.
-    // As above with the canvas metrics, we own the object returned by `LLCanvasCreateForDisplay`.
-    LLCanvasRef canvas = LLCanvasCreateForDisplay(context, canvasMetrics);
+    // As above with the canvas metrics, we own the object returned by `BFCanvasCreateForDisplay`.
+    BFCanvasRef canvas = BFCanvasCreateForDisplay(context, canvasMetrics);
 
     // Push `canvas` onto the Lua stack. Note that `bf_lua_push` retains the object
     // on behalf of the Lua state.
-    bf_lua_push(L, canvas, LLCanvasClassName);
+    bf_lua_push(L, canvas, BFCanvasClassName);
 
-    // Normally we should release `canvasMetrics` and `canvas` by calling `LLRelease`,
+    // Normally we should release `canvasMetrics` and `canvas` by calling `BFRelease`,
     // since we no longer need them here. But the process will end soon so all the dynamic
     // memory allocations will be cleaned up then.
 

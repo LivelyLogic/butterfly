@@ -12,185 +12,188 @@
 typedef struct {
     double x;
     double y;
-} LLPoint;
+} BFPoint;
 
 typedef struct {
     double left;
     double bottom;
     double right;
     double top;
-} LLRect;
+} BFRect;
 
-void * LLRetain(void * base);
-void LLRelease(void * base);
+void * BFRetain(void * base);
+void BFRelease(void * base);
 
-typedef struct LLCanvas * LLCanvasRef;
-typedef struct LLCanvasMetrics * LLCanvasMetricsRef;
-typedef struct LLColorPaint * LLColorPaintRef;
-typedef struct LLFont * LLFontRef;
-typedef struct LLGradientPaint * LLGradientPaintRef;
-typedef struct LLIcon * LLIconRef;
-typedef struct LLPaint * LLPaintRef;
-typedef struct LLPaintMode * LLPaintModeRef;
-typedef struct LLPath * LLPathRef;
-typedef struct LLStyledString * LLStyledStringRef;
-typedef struct LLTransformation * LLTransformationRef;
+typedef struct BFCanvas * BFCanvasRef;
+typedef struct BFCanvasMetrics * BFCanvasMetricsRef;
+typedef struct BFColorPaint * BFColorPaintRef;
+typedef struct BFFont * BFFontRef;
+typedef struct BFGradientPaint * BFGradientPaintRef;
+typedef struct BFIcon * BFIconRef;
+typedef struct BFPaint * BFPaintRef;
+typedef struct BFPaintMode * BFPaintModeRef;
+typedef struct BFPath * BFPathRef;
+typedef struct BFStyledString * BFStyledStringRef;
+typedef struct BFTransformation * BFTransformationRef;
 
-#define LLCanvasClassName "Ovaltine.Canvas"
-#define LLCanvasMetricsClassName "Ovaltine.CanvasMetrics"
-#define LLColorPaintClassName "Ovaltine.ColorPaint"
-#define LLFontClassName "Ovaltine.Font"
-#define LLGradientPaintClassName "Ovaltine.GradientPaint"
-#define LLIconClassName "Ovaltine.Icon"
-#define LLPaintClassName "Ovaltine.Paint"
-#define LLPaintModeClassName "Ovaltine.PaintMode"
-#define LLPathClassName "Ovaltine.Path"
-#define LLStyledStringClassName "Ovaltine.StyledString"
-#define LLTransformationClassName "Ovaltine.Transformation"
+#define BFCanvasClassName "butterfly.Canvas"
+#define BFCanvasMetricsClassName "butterfly.CanvasMetrics"
+#define BFColorPaintClassName "butterfly.ColorPaint"
+#define BFFontClassName "butterfly.Font"
+#define BFGradientPaintClassName "butterfly.GradientPaint"
+#define BFIconClassName "butterfly.Icon"
+#define BFPaintClassName "butterfly.Paint"
+#define BFPaintModeClassName "butterfly.PaintMode"
+#define BFPathClassName "butterfly.Path"
+#define BFStyledStringClassName "butterfly.StyledString"
+#define BFTransformationClassName "butterfly.Transformation"
 
-// LLCanvas
+// BFCanvas
 
-LLCanvasRef LLCanvasCreateForHitTest(LLCanvasMetricsRef metrics);
+// BFCanvasRef BFCanvasCreateForDisplay(CGContextRef context, BFCanvasMetricsRef metrics);
+BFCanvasRef BFCanvasCreateForHitTest(BFCanvasMetricsRef metrics);
 
-LLCanvasMetricsRef LLCanvasGetMetrics(LLCanvasRef canvas);
-void LLCanvasSetDirtyRect(LLCanvasRef canvas, LLRect rect);
-LLRect LLCanvasGetDirtyRect(LLCanvasRef canvas);
-void LLCanvasSetOpacity(LLCanvasRef canvas, double opacity);
-void LLCanvasSetPaint(LLCanvasRef canvas, LLPaintRef paint);
-void LLCanvasSetPaintMode(LLCanvasRef canvas, LLPaintModeRef paintMode);
-void LLCanvasSetFont(LLCanvasRef canvas, LLFontRef font);
-LLFontRef LLCanvasGetFont(LLCanvasRef canvas);
-void LLCanvasSetThickness(LLCanvasRef canvas, double thickness);
-void LLCanvasConcatTransformation(LLCanvasRef canvas, LLTransformationRef transformation);
-void LLCanvasClipRect(LLCanvasRef canvas, LLRect rect);
-void LLCanvasClipPath(LLCanvasRef canvas, const LLPathRef path);
-void LLCanvasClipIcon(LLCanvasRef canvas, const LLIconRef icon, LLRect rect);
-void LLCanvasPush(LLCanvasRef canvas);
-void LLCanvasPop(LLCanvasRef canvas);
-void LLCanvasNukeStack(LLCanvasRef canvas);
+BFCanvasMetricsRef BFCanvasGetMetrics(BFCanvasRef canvas);
+void BFCanvasSetDirtyRect(BFCanvasRef canvas, BFRect rect);
+BFRect BFCanvasGetDirtyRect(BFCanvasRef canvas);
+void BFCanvasSetOpacity(BFCanvasRef canvas, double opacity);
+void BFCanvasSetPaint(BFCanvasRef canvas, BFPaintRef paint);
+void BFCanvasSetPaintMode(BFCanvasRef canvas, BFPaintModeRef paintMode);
+void BFCanvasSetFont(BFCanvasRef canvas, BFFontRef font);
+BFFontRef BFCanvasGetFont(BFCanvasRef canvas);
+void BFCanvasSetThickness(BFCanvasRef canvas, double thickness);
+void BFCanvasConcatTransformation(BFCanvasRef canvas, BFTransformationRef transformation);
+void BFCanvasClipRect(BFCanvasRef canvas, BFRect rect);
+void BFCanvasClipPath(BFCanvasRef canvas, const BFPathRef path);
+void BFCanvasClipIcon(BFCanvasRef canvas, const BFIconRef icon, BFRect rect);
+void BFCanvasPush(BFCanvasRef canvas);
+void BFCanvasPop(BFCanvasRef canvas);
+void BFCanvasNukeStack(BFCanvasRef canvas);
 
-void LLCanvasFillPath(LLCanvasRef canvas, const LLPathRef path);
-void LLCanvasStrokePath(LLCanvasRef canvas, const LLPathRef path);
-void LLCanvasDrawStyledString(LLCanvasRef canvas, LLStyledStringRef styledString, LLPoint point);
-void LLCanvasStrokeStyledString(LLCanvasRef canvas, LLStyledStringRef styledString, LLPoint point);
-void LLCanvasDrawIcon(LLCanvasRef canvas, const LLIconRef icon, LLRect rect);
+void BFCanvasFillPath(BFCanvasRef canvas, const BFPathRef path);
+void BFCanvasStrokePath(BFCanvasRef canvas, const BFPathRef path);
+void BFCanvasDrawStyledString(BFCanvasRef canvas, BFStyledStringRef styledString, BFPoint point);
+void BFCanvasStrokeStyledString(BFCanvasRef canvas, BFStyledStringRef styledString, BFPoint point);
+void BFCanvasDrawIcon(BFCanvasRef canvas, const BFIconRef icon, BFRect rect);
 
-bool LLCanvasIsHitTest(LLCanvasRef canvas);
-bool LLCanvasPerformHitTest(LLCanvasRef canvas);
+bool BFCanvasIsHitTest(BFCanvasRef canvas);
+bool BFCanvasPerformHitTest(BFCanvasRef canvas);
 
-// LLCanvasMetrics
+// BFCanvasMetrics
 
-LLCanvasMetricsRef LLCanvasMetricsCreate(LLRect boundsRect, double backingScale, double pointScale);
+BFCanvasMetricsRef BFCanvasMetricsCreate(BFRect boundsRect, double backingScale, double pointScale);
 
-LLRect LLCanvasMetricsGetBoundsRect(LLCanvasMetricsRef canvasMetrics);
-double LLCanvasMetricsGetBackingScale(LLCanvasMetricsRef canvasMetrics);
-double LLCanvasMetricsGetPointScale(LLCanvasMetricsRef canvasMetrics);
+BFRect BFCanvasMetricsGetBoundsRect(BFCanvasMetricsRef canvasMetrics);
+double BFCanvasMetricsGetBackingScale(BFCanvasMetricsRef canvasMetrics);
+double BFCanvasMetricsGetPointScale(BFCanvasMetricsRef canvasMetrics);
 
-// LLColorPaint
+// BFColorPaint
 
-LLColorPaintRef LLColorPaintCreate(void);
+BFColorPaintRef BFColorPaintCreate(void);
 
-void LLColorPaintSetRGBA(LLColorPaintRef colorPaint, double r, double g, double b, double a);
-void LLColorPaintGetRGBA(LLColorPaintRef colorPaint, double * r, double * g, double * b, double * a);
+void BFColorPaintSetRGBA(BFColorPaintRef colorPaint, double r, double g, double b, double a);
+void BFColorPaintGetRGBA(BFColorPaintRef colorPaint, double * r, double * g, double * b, double * a);
 
-bool LLColorPaintEquals(LLColorPaintRef colorPaint1, LLColorPaintRef colorPaint2);
+bool BFColorPaintEquals(BFColorPaintRef colorPaint1, BFColorPaintRef colorPaint2);
 
-// LLFont
+// BFFont
 
-LLFontRef LLFontCreate(const char * name, double size);
-LLFontRef LLFontCreateSystem(double size);
-LLFontRef LLFontCreateBoldSystem(double size);
+BFFontRef BFFontCreate(const char * name, double size);
+BFFontRef BFFontCreateSystem(double size);
+BFFontRef BFFontCreateBoldSystem(double size);
 
-char * LLFontCopyName(LLFontRef font);
-double LLFontGetSize(LLFontRef font);
-double LLFontGetAscent(LLFontRef font);
-double LLFontGetDescent(LLFontRef font);
-double LLFontGetLeading(LLFontRef font);
+char * BFFontCopyName(BFFontRef font);
+double BFFontGetSize(BFFontRef font);
+double BFFontGetAscent(BFFontRef font);
+double BFFontGetDescent(BFFontRef font);
+double BFFontGetLeading(BFFontRef font);
 
-// LLGradientPaint
+// BFGradientPaint
 
-LLGradientPaintRef LLGradientPaintCreate(void);
+BFGradientPaintRef BFGradientPaintCreate(void);
 
-void LLGradientPaintSetColors(LLGradientPaintRef gradientPaint, int count, const LLColorPaintRef * colorPaints, const double * locations);
-void LLGradientPaintSetLinearLocation(LLGradientPaintRef gradientPaint, LLPoint startPoint, LLPoint endPoint);
-void LLGradientPaintSetRadialLocation(LLGradientPaintRef gradientPaint, LLPoint startCenter, double startRadius, LLPoint endCenter, double endRadius);
+void BFGradientPaintSetColors(BFGradientPaintRef gradientPaint, int count, const BFColorPaintRef * colorPaints, const double * locations);
+void BFGradientPaintSetLinearLocation(BFGradientPaintRef gradientPaint, BFPoint startPoint, BFPoint endPoint);
+void BFGradientPaintSetRadialLocation(BFGradientPaintRef gradientPaint, BFPoint startCenter, double startRadius, BFPoint endCenter, double endRadius);
 
-// LLIcon
+// BFIcon
 
-LLIconRef LLIconCreate(LLRect boundsRect);
+BFIconRef BFIconCreate(BFRect boundsRect);
+// BFIconRef BFIconCreateWithImage(CGImageRef image, double width, double height);
 
-LLCanvasRef LLIconGetCanvas(LLIconRef icon);
+BFCanvasRef BFIconGetCanvas(BFIconRef icon);
 
-// LLPaintMode
+// BFPaintMode
 
-typedef enum LLPaintModeType {
-    kLLPaintModeNormal,
-    kLLPaintModeMultiply,
-    kLLPaintModeScreen,
-    kLLPaintModeOverlay,
-    kLLPaintModeDarken,
-    kLLPaintModeLighten,
-    kLLPaintModeColorDodge,
-    kLLPaintModeColorBurn,
-    kLLPaintModeSoftLight,
-    kLLPaintModeHardLight,
-    kLLPaintModeDifference,
-    kLLPaintModeExclusion,
-    kLLPaintModeHue,
-    kLLPaintModeSaturation,
-    kLLPaintModeColor,
-    kLLPaintModeLuminosity,
-    kLLPaintModeClear,
-    kLLPaintModeCopy,
-    kLLPaintModeSourceIn,
-    kLLPaintModeSourceOut,
-    kLLPaintModeSourceAtop,
-    kLLPaintModeDestinationOver,
-    kLLPaintModeDestinationIn,
-    kLLPaintModeDestinationOut,
-    kLLPaintModeDestinationAtop,
-    kLLPaintModeXOR,
-    kLLPaintModePlusDarker,
-    kLLPaintModePlusLighter,
-} LLPaintModeType;
+typedef enum BFPaintModeType {
+    kBFPaintModeNormal,
+    kBFPaintModeMultiply,
+    kBFPaintModeScreen,
+    kBFPaintModeOverlay,
+    kBFPaintModeDarken,
+    kBFPaintModeLighten,
+    kBFPaintModeColorDodge,
+    kBFPaintModeColorBurn,
+    kBFPaintModeSoftLight,
+    kBFPaintModeHardLight,
+    kBFPaintModeDifference,
+    kBFPaintModeExclusion,
+    kBFPaintModeHue,
+    kBFPaintModeSaturation,
+    kBFPaintModeColor,
+    kBFPaintModeLuminosity,
+    kBFPaintModeClear,
+    kBFPaintModeCopy,
+    kBFPaintModeSourceIn,
+    kBFPaintModeSourceOut,
+    kBFPaintModeSourceAtop,
+    kBFPaintModeDestinationOver,
+    kBFPaintModeDestinationIn,
+    kBFPaintModeDestinationOut,
+    kBFPaintModeDestinationAtop,
+    kBFPaintModeXOR,
+    kBFPaintModePlusDarker,
+    kBFPaintModePlusLighter,
+} BFPaintModeType;
 
-LLPaintModeRef LLPaintModeCreate(LLPaintModeType type);
+BFPaintModeRef BFPaintModeCreate(BFPaintModeType type);
 
-// LLPath
+// BFPath
 
-LLPathRef LLPathCreate(void);
+BFPathRef BFPathCreate(void);
 
-void LLPathMoveToPoint(LLPathRef path, LLPoint point);
-void LLPathAddLineToPoint(LLPathRef path, LLPoint point);
-void LLPathAddCurveToPoint(LLPathRef path, LLPoint point, LLPoint controlPoint1, LLPoint controlPoint2);
-void LLPathAddArc(LLPathRef path, LLPoint centerPoint, double arcAngle);
-void LLPathCloseSubpath(LLPathRef path);
-void LLPathAddRect(LLPathRef path, LLRect rect);
-void LLPathAddRoundedRect(LLPathRef path, LLRect rect, double radius);
-void LLPathAddOvalInRect(LLPathRef path, LLRect rect);
+void BFPathMoveToPoint(BFPathRef path, BFPoint point);
+void BFPathAddLineToPoint(BFPathRef path, BFPoint point);
+void BFPathAddCurveToPoint(BFPathRef path, BFPoint point, BFPoint controlPoint1, BFPoint controlPoint2);
+void BFPathAddArc(BFPathRef path, BFPoint centerPoint, double arcAngle);
+void BFPathCloseSubpath(BFPathRef path);
+void BFPathAddRect(BFPathRef path, BFRect rect);
+void BFPathAddRoundedRect(BFPathRef path, BFRect rect, double radius);
+void BFPathAddOvalInRect(BFPathRef path, BFRect rect);
 
-// LLStyledString
+// BFStyledString
 
-LLStyledStringRef LLStyledStringCreate(const char * string, LLFontRef font, int superscriptIndex);
-LLStyledStringRef LLStyledStringCreateJoining(LLStyledStringRef styledString1, LLStyledStringRef styledString2);
-LLStyledStringRef LLStyledStringCreateTruncating(LLStyledStringRef styledString, double width);
-CFIndex LLStyledStringCreateBreaking(LLStyledStringRef styledString, CFIndex startPosition, double width, CFIndex lineCount, LLStyledStringRef resultStyledStrings[]);
+BFStyledStringRef BFStyledStringCreate(const char * string, BFFontRef font, int superscriptIndex);
+// BFStyledStringRef BFStyledStringCreateUsingAttributedString(CFAttributedStringRef attributedString);
+BFStyledStringRef BFStyledStringCreateJoining(BFStyledStringRef styledString1, BFStyledStringRef styledString2);
+BFStyledStringRef BFStyledStringCreateTruncating(BFStyledStringRef styledString, double width);
+CFIndex BFStyledStringCreateBreaking(BFStyledStringRef styledString, CFIndex startPosition, double width, CFIndex lineCount, BFStyledStringRef resultStyledStrings[]);
 
-CFIndex LLStyledStringGetLength(LLStyledStringRef styledString);
-LLRect LLStyledStringMeasure(LLStyledStringRef styledString);
-char * LLStyledStringCopyString(LLStyledStringRef styledString);
+CFIndex BFStyledStringGetLength(BFStyledStringRef styledString);
+BFRect BFStyledStringMeasure(BFStyledStringRef styledString);
+char * BFStyledStringCopyString(BFStyledStringRef styledString);
 
-// LLTransformation
+// BFTransformation
 
-LLTransformationRef LLTransformationCreate(void);
+BFTransformationRef BFTransformationCreate(void);
 
-void LLTransformationRotate(LLTransformationRef transformation, double angle);
-void LLTransformationTranslate(LLTransformationRef transformation, double dx, double dy);
-void LLTransformationScale(LLTransformationRef transformation, double ratio);
-void LLTransformationInvert(LLTransformationRef transformation);
-void LLTransformationConcat(LLTransformationRef transformation1, LLTransformationRef transformation2);
+void BFTransformationRotate(BFTransformationRef transformation, double angle);
+void BFTransformationTranslate(BFTransformationRef transformation, double dx, double dy);
+void BFTransformationScale(BFTransformationRef transformation, double ratio);
+void BFTransformationInvert(BFTransformationRef transformation);
+void BFTransformationConcat(BFTransformationRef transformation1, BFTransformationRef transformation2);
 
-LLPoint LLTransformationTransformPoint(LLTransformationRef transformation, LLPoint point);
-LLRect LLTransformationTransformRect(LLTransformationRef transformation, LLRect rect);
+BFPoint BFTransformationTransformPoint(BFTransformationRef transformation, BFPoint point);
+BFRect BFTransformationTransformRect(BFTransformationRef transformation, BFRect rect);
 
 #endif /* __TYPES_H__ */

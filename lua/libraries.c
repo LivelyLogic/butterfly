@@ -6,10 +6,10 @@
 
 #include "libraries.h"
 
-#include "LLLua.h"
+#include "BFLua.h"
 
 int bf_lua_load(lua_State * L) {
-    LL_LUA_DEBUG_STACK_BEGIN(L);
+    BF_LUA_DEBUG_STACK_BEGIN(L);
     bf_lua_loadCanvas(L);
     bf_lua_loadCanvasMetrics(L);
     bf_lua_loadColor(L);
@@ -20,6 +20,6 @@ int bf_lua_load(lua_State * L) {
     bf_lua_loadPath(L);
     bf_lua_loadStyledString(L);
     bf_lua_loadTransformation(L);
-    LL_LUA_DEBUG_STACK_END(L);
+    BF_LUA_DEBUG_STACK_END(L);
     return 0;
 }
