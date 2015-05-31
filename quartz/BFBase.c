@@ -4,7 +4,7 @@
 //  Copyright (c) 2011-2015 Ripeware, LLC. All rights reserved.
 //
 
-#include "BFBase.h"
+#include "butterfly.h"
 
 #define BF_BASE_DEBUG_REFCOUNTS 0
 
@@ -15,7 +15,7 @@ int refcountTotal = 0;
 void * BFAlloc(size_t size, const BFBaseFunctions * subclass) {
     BFBaseRef base = malloc(size);
     base->subclass = subclass;
-    base->refcount = 0;
+    base->_refcount = 0;
     return base;
 }
 
@@ -28,9 +28,9 @@ void BFDealloc(void * object) {
 void * BFRetain(void * object) {
     BFBaseRef base = object;
     if (base) {
-        base->refcount++;
+        base->_refcount++;
 #if BF_BASE_DEBUG_REFCOUNTS
-        printf("Retain %s %p (%d refs remaining)\n", base->subclass->name, base, base->refcount);
+        printf("Retain %s %p (%d refs remaining)\n", base->subclass->name, base, base->_refcount);
         printf("(%d references total)\n", ++refcountTotal);
 #endif
     }
@@ -40,12 +40,12 @@ void * BFRetain(void * object) {
 void BFRelease(void * object) {
     BFBaseRef base = object;
     if (base) {
-        base->refcount--;
+        base->_refcount--;
 #if BF_BASE_DEBUG_REFCOUNTS
-        printf("Release %s %p (%d refs remaining)\n", base->subclass->name, base, base->refcount);
+        printf("Release %s %p (%d refs remaining)\n", base->subclass->name, base, base->_refcount);
         printf("(%d references total)\n", --refcountTotal);
 #endif
-        if (base->refcount <= 0) {
+        if (base->_refcount <= 0) {
             if (base->subclass && base->subclass->dealloc) {
                 base->subclass->dealloc((void *)base);
             }

@@ -11,8 +11,6 @@
 
 #include "butterfly.h"
 
-#include "BFBase.h"
-
 typedef void (* BFPaintDeallocFunction)(void *);
 typedef void (* BFPaintSetInContextFunction)(void *, CGContextRef);
 typedef void (* BFPaintFillRectInContextFunction)(void *, CGContextRef, CGRect);

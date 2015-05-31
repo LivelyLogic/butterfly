@@ -6,8 +6,6 @@
 
 #include <tgmath.h>
 
-#include "BFBase.h"
-
 #include "butterfly.h"
 #include "quartz.h"
 

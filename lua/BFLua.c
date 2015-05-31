@@ -6,7 +6,7 @@
 
 #include "BFLua.h"
 
-#include "BFBase.h"
+#include "butterfly.h"
 
 static int retainLuaObject(lua_State * L);
 static int releaseLuaObject(lua_State * L);

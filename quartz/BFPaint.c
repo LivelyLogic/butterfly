@@ -4,11 +4,10 @@
 //  Copyright (c) 2011-2015 Ripeware, LLC. All rights reserved.
 //
 
-#include "BFBase.h"
-#include "BFPaint.h"
-
 #include "butterfly.h"
 #include "quartz.h"
+
+#include "BFPaint.h"
 
 void BFPaintDealloc(void * object) {
     BFDealloc(object);

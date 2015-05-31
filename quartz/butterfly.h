@@ -24,6 +24,7 @@ typedef struct {
 void * BFRetain(void * base);
 void BFRelease(void * base);
 
+typedef struct BFBase * BFBaseRef;
 typedef struct BFCanvas * BFCanvasRef;
 typedef struct BFCanvasMetrics * BFCanvasMetricsRef;
 typedef struct BFColorPaint * BFColorPaintRef;
@@ -47,6 +48,26 @@ typedef struct BFTransformation * BFTransformationRef;
 #define BFPathClassName "butterfly.Path"
 #define BFStyledStringClassName "butterfly.StyledString"
 #define BFTransformationClassName "butterfly.Transformation"
+
+// BFBase
+
+typedef void (* BFBaseDeallocFunction)(void *);
+
+typedef struct BFBaseFunctions {
+    char * name;
+    BFBaseDeallocFunction dealloc;
+} BFBaseFunctions;
+
+struct BFBase {
+    const BFBaseFunctions * subclass;
+    int _refcount;
+};
+
+void * BFAlloc(size_t size, const BFBaseFunctions * subclass);
+void BFDealloc(void * base);
+
+const void * BFSubclassFunctions(void * object);
+const char * BFSubclassName(void * object);
 
 // BFCanvas
 
