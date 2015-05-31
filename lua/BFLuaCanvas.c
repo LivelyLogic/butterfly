@@ -69,7 +69,7 @@ int bf_lua_loadCanvas(lua_State * L) {
 static int stroke(lua_State * L) {
     BF_LUA_DEBUG_STACK_BEGIN(L);
     BFCanvasRef canvas = *(BFCanvasRef *)luaL_checkudata(L, 1, BFCanvasClassName);
-    BFPathRef path = getLuaNilOrUserdata(L, 2, BFPathClassName);
+    BFPathRef path = bf_lua_getoptionaluserdata(L, 2, BFPathClassName);
 
     if (path) {
         BFCanvasStrokePath(canvas, path);
@@ -83,7 +83,7 @@ static int stroke(lua_State * L) {
 static int fill(lua_State * L) {
     BF_LUA_DEBUG_STACK_BEGIN(L);
     BFCanvasRef canvas = *(BFCanvasRef *)luaL_checkudata(L, 1, BFCanvasClassName);
-    BFPathRef path = getLuaNilOrUserdata(L, 2, BFPathClassName);
+    BFPathRef path = bf_lua_getoptionaluserdata(L, 2, BFPathClassName);
 
     if (path) {
         BFCanvasFillPath(canvas, path);
@@ -149,7 +149,7 @@ static int strokeText(lua_State * L) {
 static int drawIcon(lua_State * L) {
     BF_LUA_DEBUG_STACK_BEGIN(L);
     BFCanvasRef canvas = *(BFCanvasRef *)luaL_checkudata(L, 1, BFCanvasClassName);
-    BFIconRef icon = getLuaNilOrUserdata(L, 2, BFIconClassName);
+    BFIconRef icon = bf_lua_getoptionaluserdata(L, 2, BFIconClassName);
 
     if (icon) {
         BFRect rect;
@@ -178,7 +178,7 @@ static int drawIcon(lua_State * L) {
 static int clipIcon(lua_State * L) {
     BF_LUA_DEBUG_STACK_BEGIN(L);
     BFCanvasRef canvas = *(BFCanvasRef *)luaL_checkudata(L, 1, BFCanvasClassName);
-    BFIconRef icon = getLuaNilOrUserdata(L, 2, BFIconClassName);
+    BFIconRef icon = bf_lua_getoptionaluserdata(L, 2, BFIconClassName);
 
     if (icon) {
         BFRect rect;
@@ -221,7 +221,7 @@ static int setOpacity(lua_State * L) {
 static int setPaint(lua_State * L) {
     BF_LUA_DEBUG_STACK_BEGIN(L);
     BFCanvasRef canvas = *(BFCanvasRef *)luaL_checkudata(L, 1, BFCanvasClassName);
-    BFPaintRef paint = getLuaNilOrUserdata(L, 2, BFPaintClassName);
+    BFPaintRef paint = bf_lua_getoptionaluserdata(L, 2, BFPaintClassName);
 
     if (paint) {
         BFCanvasSetPaint(canvas, paint);
@@ -235,7 +235,7 @@ static int setPaint(lua_State * L) {
 static int setPaintMode(lua_State * L) {
     BF_LUA_DEBUG_STACK_BEGIN(L);
     BFCanvasRef canvas = *(BFCanvasRef *)luaL_checkudata(L, 1, BFCanvasClassName);
-    BFPaintModeRef paintMode = getLuaNilOrUserdata(L, 2, BFPaintModeClassName);
+    BFPaintModeRef paintMode = bf_lua_getoptionaluserdata(L, 2, BFPaintModeClassName);
 
     if (paintMode) {
         BFCanvasSetPaintMode(canvas, paintMode);
@@ -263,7 +263,7 @@ static int setThickness(lua_State * L) {
 static int setFont(lua_State * L) {
     BF_LUA_DEBUG_STACK_BEGIN(L);
     BFCanvasRef canvas = *(BFCanvasRef *)luaL_checkudata(L, 1, BFCanvasClassName);
-    BFFontRef font = getLuaNilOrUserdata(L, 2, BFFontClassName);
+    BFFontRef font = bf_lua_getoptionaluserdata(L, 2, BFFontClassName);
 
     if (font) {
         BFCanvasSetFont(canvas, font);
@@ -289,7 +289,7 @@ static int getFont(lua_State * L) {
 static int concatTransformation(lua_State * L) {
     BF_LUA_DEBUG_STACK_BEGIN(L);
     BFCanvasRef canvas = *(BFCanvasRef *)luaL_checkudata(L, 1, BFCanvasClassName);
-    BFTransformationRef transformation = getLuaNilOrUserdata(L, 2, BFTransformationClassName);
+    BFTransformationRef transformation = bf_lua_getoptionaluserdata(L, 2, BFTransformationClassName);
 
     if (transformation) {
         BFCanvasConcatTransformation(canvas, transformation);
@@ -331,7 +331,7 @@ static int clipRect(lua_State * L) {
 static int clipPath(lua_State * L) {
     BF_LUA_DEBUG_STACK_BEGIN(L);
     BFCanvasRef canvas = *(BFCanvasRef *)luaL_checkudata(L, 1, BFCanvasClassName);
-    BFPathRef path = getLuaNilOrUserdata(L, 2, BFPathClassName);
+    BFPathRef path = bf_lua_getoptionaluserdata(L, 2, BFPathClassName);
 
     if (path) {
         BFCanvasClipPath(canvas, path);

@@ -8,8 +8,9 @@
 
 #include "butterfly.h"
 
-static int retainLuaObject(lua_State * L);
-static int releaseLuaObject(lua_State * L);
+static int bf_lua_retain(lua_State * L);
+static int bf_lua_release(lua_State * L);
+static void * bf_lua_tryuserdata(lua_State * L, int narg, const char * tname);
 
 void bf_lua_loadmodule(lua_State * L, const BFLuaClass * luaLibrary, const BFLuaClass * luaClass) {
     BF_LUA_DEBUG_STACK_BEGIN(L);
@@ -44,29 +45,29 @@ void bf_lua_loadclass(lua_State * L, const BFLuaClass * luaClass) {
         luaL_getmetatable(L, luaClass->superClass->metatableName);
         lua_setmetatable(L, -2);
     }
-    lua_pushcfunction(L, &retainLuaObject);
+    lua_pushcfunction(L, &bf_lua_retain);
     lua_setfield(L, -2, "_ref");
-    lua_pushcfunction(L, &releaseLuaObject);
+    lua_pushcfunction(L, &bf_lua_release);
     lua_setfield(L, -2, "__gc");
     lua_pushvalue(L, -1);
     lua_setfield(L, -2, "__index");
 }
 
-static int retainLuaObject(lua_State * L) {
+static int bf_lua_retain(lua_State * L) {
     // TODO: check the userdata type here!
     BFBaseRef base = *(BFBaseRef *)lua_touserdata(L, 1);
     BFRetain(base);
     return 0;
 }
 
-static int releaseLuaObject(lua_State * L) {
+static int bf_lua_release(lua_State * L) {
     // TODO: check the userdata type here!
     BFBaseRef base = *(BFBaseRef *)lua_touserdata(L, 1);
     BFRelease(base);
     return 0;
 }
 
-void * tryLuaUserdata(lua_State * L, int narg, const char * tname) {
+static void * bf_lua_tryuserdata(lua_State * L, int narg, const char * tname) {
     void ** userdata = lua_touserdata(L, narg);
     if (userdata) {
         lua_pushvalue(L, narg);
@@ -85,11 +86,11 @@ void * tryLuaUserdata(lua_State * L, int narg, const char * tname) {
     return NULL;
 }
 
-void * getLuaNilOrUserdata(lua_State * L, int narg, const char * tname) {
+void * bf_lua_getoptionaluserdata(lua_State * L, int narg, const char * tname) {
     if (!lua_toboolean(L, narg)) {
         return NULL;
     }
-    void * result = tryLuaUserdata(L, narg, tname);
+    void * result = bf_lua_tryuserdata(L, narg, tname);
     if (!result) {
         luaL_typerror(L, narg, tname);
     }

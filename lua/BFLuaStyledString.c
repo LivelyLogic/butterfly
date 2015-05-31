@@ -52,7 +52,7 @@ static int new(lua_State * L) {
     
     if (lua_istable(L, 2)) {
         lua_getfield(L, 2, "font");
-        BFFontRef font = getLuaNilOrUserdata(L, -1, BFFontClassName);
+        BFFontRef font = bf_lua_getoptionaluserdata(L, -1, BFFontClassName);
         lua_pop(L, 1);
         
         lua_getfield(L, 2, "superscript");

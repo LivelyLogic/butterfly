@@ -23,8 +23,7 @@ typedef struct BFLuaClass {
 void bf_lua_loadmodule(lua_State * L, const BFLuaClass * luaLibrary, const BFLuaClass * luaClass);
 void bf_lua_loadclass(lua_State * L, const BFLuaClass * luaClass);
 
-void * tryLuaUserdata(lua_State * L, int narg, const char * tname);
-void * getLuaNilOrUserdata(lua_State * L, int narg, const char * tname);
+void * bf_lua_getoptionaluserdata(lua_State * L, int narg, const char * tname);
 
 #if BF_LUA_DEBUG_STACK
 #define BF_LUA_DEBUG_STACK_BEGIN(L) int _top1 = lua_gettop(L); int _top2;
