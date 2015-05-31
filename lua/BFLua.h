@@ -25,8 +25,6 @@ void bf_lua_loadclass(lua_State * L, const BFLuaClass * luaClass);
 
 void * tryLuaUserdata(lua_State * L, int narg, const char * tname);
 void * getLuaNilOrUserdata(lua_State * L, int narg, const char * tname);
-int l_pcall(lua_State * L, int nargs, int nresults);
-void l_pcallNoResults(lua_State * L, int nargs);
 
 #if BF_LUA_DEBUG_STACK
 #define BF_LUA_DEBUG_STACK_BEGIN(L) int _top1 = lua_gettop(L); int _top2;

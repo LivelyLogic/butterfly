@@ -164,10 +164,6 @@ static int transformRect(lua_State * L) {
     
     rect = BFTransformationTransformRect(transformation, rect);
     
-    lua_getglobal(L, "Rect");
-    lua_getfield(L, -1, "new");
-    lua_insert(L, -2);
-    
     lua_newtable(L);
     lua_pushnumber(L, rect.left);
     lua_setfield(L, -2, "left");
@@ -177,8 +173,6 @@ static int transformRect(lua_State * L) {
     lua_setfield(L, -2, "right");
     lua_pushnumber(L, rect.top);
     lua_setfield(L, -2, "top");
-    
-    l_pcall(L, 2, 1);
     
     BF_LUA_DEBUG_STACK_ENDR(L, 1);
     return 1;

@@ -106,30 +106,12 @@ void bf_lua_push(lua_State * L, void * data, const char * tname) {
         lua_getfield(L, -1, "_ref");
         if (lua_isfunction(L, -1)) {
             lua_pushvalue(L, -3);
-            l_pcallNoResults(L, 1);
+            if (lua_pcall(L, 1, 0, 0)) {
+                lua_pop(L, 1); /* error */
+            }
         } else {
             lua_pop(L, 1); /* _ref */
         }
         lua_pop(L, 1); /* metatable */
     }
-}
-
-int l_pcall(lua_State * L, int nargs, int nresults) {
-    int top = lua_gettop(L) - nargs - 1;
-    int error = 0;
-    lua_getglobal(L, "warn");
-    lua_insert(L, -2 - nargs); /* warn: skipping function, nargs */
-    error = lua_pcall(L, nargs, nresults, -2 - nargs);
-    if (error) {
-        lua_pop(L, 1);
-        nresults = 0;
-    } else if (nresults == LUA_MULTRET) {
-        nresults = lua_gettop(L) - top;
-    }
-    lua_remove(L, -1 - nresults); /* warn: skipping nresults */
-    return error;
-}
-
-void l_pcallNoResults(lua_State * L, int nargs) {
-    l_pcall(L, nargs, 0);
 }
