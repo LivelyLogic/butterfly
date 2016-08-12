@@ -84,7 +84,9 @@ CFIndex BFStyledStringCreateBreaking(BFStyledStringRef styledString, CFIndex sta
 BFStyledStringRef BFStyledStringCreateTruncating(BFStyledStringRef styledString, double width) {
     BFRect stringRect = BFStyledStringMeasure(styledString);
     double stringWidth = stringRect.right - stringRect.left;
-    if (stringWidth > width) {
+    if (stringWidth <= width) {
+        BFRetain(styledString);
+    } else {
         CFStringRef ellipsis = CFStringCreateWithCString(NULL, "…", kCFStringEncodingUTF8);
         CFMutableAttributedStringRef mutableString = CFAttributedStringCreateMutableCopy(NULL, 0, styledString->stringRef);
         CTLineRef lineRef = CTLineCreateWithAttributedString(mutableString);
@@ -120,11 +122,13 @@ BFStyledStringRef BFStyledStringCreateTruncating(BFStyledStringRef styledString,
             CFAttributedStringRef attributedString = CFAttributedStringCreateCopy(NULL, mutableString);
             styledString = BFStyledStringCreateUsingAttributedString(attributedString);
             CFRelease(attributedString);
+        } else {
+            BFRetain(styledString);
         }
         CFRelease(mutableString);
         CFRelease(lineRef);
     }
-    return BFRetain(styledString);
+    return styledString;
 }
 
 static void BFStyledStringInit(BFStyledStringRef styledString, CFAttributedStringRef attributedString, CTLineRef line) {
