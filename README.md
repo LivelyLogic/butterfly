@@ -1,5 +1,7 @@
 # butterfly
 
+**butterfly** is an object-oriented 2D graphics library for Lua, targeting the Quartz graphics engine.
+
 ## Adding the library to an Xcode project
 
 ```sh
