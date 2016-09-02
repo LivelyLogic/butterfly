@@ -17,7 +17,7 @@ LUA_OBJECTS = $(addsuffix .o, $(basename $(wildcard $(LUA_SOURCES))))
 
 LUA2PNG_SOURCE = lua2png.c
 LUA2PNG_OBJECT = lua2png.o
-LUA2PNG_LIBS = -llua -lbutterfly
+LUA2PNG_LIBS = -L$(INSTALL_LIB) -llua -lbutterfly
 LUA2PNG_FRAMEWORKS = -framework CoreFoundation -framework CoreGraphics -framework CoreText -framework ImageIO
 
 LIB = libbutterfly.a
@@ -27,10 +27,10 @@ quartz/%.o: quartz/%.c $(QUARTZ_HEADERS)
 	$(CC) -c $(CFLAGS) $< -o $@
 
 lua/%.o: lua/%.c $(LUA_HEADERS) $(QUARTZ_HEADERS)
-	$(CC) -c -Iquartz -F$(LUA_INCLUDE) $(CFLAGS) $< -o $@
+	$(CC) -c -Iquartz -I$(LUA_INCLUDE) $(CFLAGS) $< -o $@
 
 $(LUA2PNG_OBJECT): $(LUA2PNG_SOURCE) $(LUA_HEADERS) $(QUARTZ_HEADERS)
-	$(CC) -c -F$(LUA_INCLUDE) $(CFLAGS) $< -o $@
+	$(CC) -c -I$(LUA_INCLUDE) $(CFLAGS) $< -o $@
 
 $(LIB): $(QUARTZ_OBJECTS) $(LUA_OBJECTS)
 	ar -cru $@ $(QUARTZ_OBJECTS) $(LUA_OBJECTS)
