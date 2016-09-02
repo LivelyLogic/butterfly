@@ -160,7 +160,7 @@
 		38E3DB2B1AF1142100F84CBB /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0630;
+				LastUpgradeCheck = 0730;
 				ORGANIZATIONNAME = "Ripeware, LLC";
 				TargetAttributes = {
 					38E3DB321AF1142100F84CBB = {
@@ -272,6 +272,7 @@
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -335,12 +336,14 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				COMBINE_HIDPI_IMAGES = YES;
 				INFOPLIST_FILE = app/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				OTHER_LDFLAGS = (
 					/usr/local/lib/liblua.a,
 					/usr/local/lib/libbutterfly.a,
 				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.ripeware.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "lua-quartz";
 				USER_HEADER_SEARCH_PATHS = /usr/local/include;
 			};
@@ -351,12 +354,14 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				COMBINE_HIDPI_IMAGES = YES;
 				INFOPLIST_FILE = app/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				OTHER_LDFLAGS = (
 					/usr/local/lib/liblua.a,
 					/usr/local/lib/libbutterfly.a,
 				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.ripeware.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "lua-quartz";
 				USER_HEADER_SEARCH_PATHS = /usr/local/include;
 			};
@@ -377,6 +382,7 @@
 				);
 				INFOPLIST_FILE = "lua-quartzTests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.ripeware.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/lua-quartz.app/Contents/MacOS/lua-quartz";
 			};
@@ -393,6 +399,7 @@
 				);
 				INFOPLIST_FILE = "lua-quartzTests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.ripeware.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/lua-quartz.app/Contents/MacOS/lua-quartz";
 			};
