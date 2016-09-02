@@ -11,19 +11,8 @@
 		38E3DB3C1AF1142100F84CBB /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 38E3DB3B1AF1142100F84CBB /* main.m */; };
 		38E3DB3E1AF1142100F84CBB /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 38E3DB3D1AF1142100F84CBB /* Images.xcassets */; };
 		38E3DB411AF1142100F84CBB /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38E3DB3F1AF1142100F84CBB /* MainMenu.xib */; };
-		38E3DB4D1AF1142100F84CBB /* lua_quartzTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 38E3DB4C1AF1142100F84CBB /* lua_quartzTests.m */; };
 		38E3DBAC1AF1990F00F84CBB /* DrawingView.m in Sources */ = {isa = PBXBuildFile; fileRef = 38E3DBAB1AF1990F00F84CBB /* DrawingView.m */; };
 /* End PBXBuildFile section */
-
-/* Begin PBXContainerItemProxy section */
-		38E3DB471AF1142100F84CBB /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 38E3DB2B1AF1142100F84CBB /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 38E3DB321AF1142100F84CBB;
-			remoteInfo = "lua-quartz";
-		};
-/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		38E3DB331AF1142100F84CBB /* lua-quartz.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "lua-quartz.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -33,22 +22,12 @@
 		38E3DB3B1AF1142100F84CBB /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		38E3DB3D1AF1142100F84CBB /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		38E3DB401AF1142100F84CBB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
-		38E3DB461AF1142100F84CBB /* lua-quartzTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "lua-quartzTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		38E3DB4B1AF1142100F84CBB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		38E3DB4C1AF1142100F84CBB /* lua_quartzTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = lua_quartzTests.m; sourceTree = "<group>"; };
 		38E3DBAA1AF1990F00F84CBB /* DrawingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DrawingView.h; sourceTree = "<group>"; };
 		38E3DBAB1AF1990F00F84CBB /* DrawingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DrawingView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		38E3DB301AF1142100F84CBB /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		38E3DB431AF1142100F84CBB /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -62,7 +41,6 @@
 			isa = PBXGroup;
 			children = (
 				38E3DB351AF1142100F84CBB /* app */,
-				38E3DB491AF1142100F84CBB /* lua-quartzTests */,
 				38E3DB341AF1142100F84CBB /* Products */,
 			);
 			sourceTree = "<group>";
@@ -71,7 +49,6 @@
 			isa = PBXGroup;
 			children = (
 				38E3DB331AF1142100F84CBB /* lua-quartz.app */,
-				38E3DB461AF1142100F84CBB /* lua-quartzTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -99,23 +76,6 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		38E3DB491AF1142100F84CBB /* lua-quartzTests */ = {
-			isa = PBXGroup;
-			children = (
-				38E3DB4C1AF1142100F84CBB /* lua_quartzTests.m */,
-				38E3DB4A1AF1142100F84CBB /* Supporting Files */,
-			);
-			path = "lua-quartzTests";
-			sourceTree = "<group>";
-		};
-		38E3DB4A1AF1142100F84CBB /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				38E3DB4B1AF1142100F84CBB /* Info.plist */,
-			);
-			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -136,24 +96,6 @@
 			productReference = 38E3DB331AF1142100F84CBB /* lua-quartz.app */;
 			productType = "com.apple.product-type.application";
 		};
-		38E3DB451AF1142100F84CBB /* lua-quartzTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 38E3DB531AF1142100F84CBB /* Build configuration list for PBXNativeTarget "lua-quartzTests" */;
-			buildPhases = (
-				38E3DB421AF1142100F84CBB /* Sources */,
-				38E3DB431AF1142100F84CBB /* Frameworks */,
-				38E3DB441AF1142100F84CBB /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				38E3DB481AF1142100F84CBB /* PBXTargetDependency */,
-			);
-			name = "lua-quartzTests";
-			productName = "lua-quartzTests";
-			productReference = 38E3DB461AF1142100F84CBB /* lua-quartzTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -165,10 +107,6 @@
 				TargetAttributes = {
 					38E3DB321AF1142100F84CBB = {
 						CreatedOnToolsVersion = 6.3.1;
-					};
-					38E3DB451AF1142100F84CBB = {
-						CreatedOnToolsVersion = 6.3.1;
-						TestTargetID = 38E3DB321AF1142100F84CBB;
 					};
 				};
 			};
@@ -186,7 +124,6 @@
 			projectRoot = "";
 			targets = (
 				38E3DB321AF1142100F84CBB /* lua-quartz */,
-				38E3DB451AF1142100F84CBB /* lua-quartzTests */,
 			);
 		};
 /* End PBXProject section */
@@ -198,13 +135,6 @@
 			files = (
 				38E3DB3E1AF1142100F84CBB /* Images.xcassets in Resources */,
 				38E3DB411AF1142100F84CBB /* MainMenu.xib in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		38E3DB441AF1142100F84CBB /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -221,23 +151,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		38E3DB421AF1142100F84CBB /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				38E3DB4D1AF1142100F84CBB /* lua_quartzTests.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		38E3DB481AF1142100F84CBB /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 38E3DB321AF1142100F84CBB /* lua-quartz */;
-			targetProxy = 38E3DB471AF1142100F84CBB /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		38E3DB3F1AF1142100F84CBB /* MainMenu.xib */ = {
@@ -367,44 +281,6 @@
 			};
 			name = Release;
 		};
-		38E3DB541AF1142100F84CBB /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				COMBINE_HIDPI_IMAGES = YES;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(DEVELOPER_FRAMEWORKS_DIR)",
-					"$(inherited)",
-				);
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
-				INFOPLIST_FILE = "lua-quartzTests/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.ripeware.$(PRODUCT_NAME:rfc1034identifier)";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/lua-quartz.app/Contents/MacOS/lua-quartz";
-			};
-			name = Debug;
-		};
-		38E3DB551AF1142100F84CBB /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				COMBINE_HIDPI_IMAGES = YES;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(DEVELOPER_FRAMEWORKS_DIR)",
-					"$(inherited)",
-				);
-				INFOPLIST_FILE = "lua-quartzTests/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.ripeware.$(PRODUCT_NAME:rfc1034identifier)";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/lua-quartz.app/Contents/MacOS/lua-quartz";
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -422,15 +298,6 @@
 			buildConfigurations = (
 				38E3DB511AF1142100F84CBB /* Debug */,
 				38E3DB521AF1142100F84CBB /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		38E3DB531AF1142100F84CBB /* Build configuration list for PBXNativeTarget "lua-quartzTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				38E3DB541AF1142100F84CBB /* Debug */,
-				38E3DB551AF1142100F84CBB /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
