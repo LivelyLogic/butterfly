@@ -49,7 +49,7 @@ BFIconRef BFIconCreate(BFRect boundsRect) {
     return BFRetain(icon);
 }
 
-BFIconRef BFIconCreateWithImage(CGImageRef image, double width, double height) {
+BFIconRef BFIconCreateWithCGImage(CGImageRef image, double width, double height) {
     BFIconRef icon = BFAlloc(sizeof(struct BFIcon), &baseFunctions);
     if (icon) {
         BFRect boundsRect = { .left = 0, .bottom = 0, .right = width, .top = height };

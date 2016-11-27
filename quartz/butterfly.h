@@ -158,7 +158,7 @@ void BFGradientPaintSetRadialLocation(BFGradientPaintRef gradientPaint, BFPoint 
 // BFIcon
 
 BFIconRef BFIconCreate(BFRect boundsRect);
-// BFIconRef BFIconCreateWithImage(CGImageRef image, double width, double height);
+// BFIconRef BFIconCreateWithCGImage(CGImageRef image, double width, double height);
 
 BFCanvasRef BFIconGetCanvas(BFIconRef icon);
 

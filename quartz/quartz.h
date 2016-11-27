@@ -57,7 +57,7 @@ CTFontRef BFFontGetCTFont(BFFontRef font);
 
 // BFIcon
 
-BFIconRef BFIconCreateWithImage(CGImageRef image, double width, double height);
+BFIconRef BFIconCreateWithCGImage(CGImageRef image, double width, double height);
 
 CGImageRef BFIconCopyCGImage(BFIconRef icon);
 
