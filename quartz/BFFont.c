@@ -59,7 +59,7 @@ BFFontRef BFFontCreate(const char * name, double size) {
 BFFontRef BFFontCreateSystem(double size) {
     BFFontRef font = BFAlloc(sizeof(struct BFFont), &baseFunctions);
     if (font) {
-        CTFontRef fontRef = CTFontCreateUIFontForLanguage(kCTFontSystemFontType, size, NULL);
+        CTFontRef fontRef = CTFontCreateUIFontForLanguage(kCTFontUIFontSystem, size, NULL);
         BFFontInit(font, fontRef);
     }
     return BFRetain(font);
@@ -68,7 +68,7 @@ BFFontRef BFFontCreateSystem(double size) {
 BFFontRef BFFontCreateBoldSystem(double size) {
     BFFontRef font = BFAlloc(sizeof(struct BFFont), &baseFunctions);
     if (font) {
-        CTFontRef fontRef = CTFontCreateUIFontForLanguage(kCTFontEmphasizedSystemFontType, size, NULL);
+        CTFontRef fontRef = CTFontCreateUIFontForLanguage(kCTFontUIFontEmphasizedSystem, size, NULL);
         BFFontInit(font, fontRef);
     }
     return BFRetain(font);
