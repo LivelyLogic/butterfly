@@ -77,9 +77,16 @@ int bf_lua_loadFont(lua_State * L) {
 
 static int get(lua_State * L) {
     BF_LUA_DEBUG_STACK_BEGIN(L);
-    const char * name = lua_tostring(L, 1);
-    double size = lua_tonumber(L, 2);
+    const char * name;
+    double size;
     BFFontRef font;
+    
+    lua_getfield(L, 1, "name");
+    name = lua_tostring(L, -1);
+    lua_pop(L, 1);
+    lua_getfield(L, 1, "size");
+    size = lua_tonumber(L, -1);
+    lua_pop(L, 1);
     
     font = BFFontCreate(name, size);
     bf_lua_push(L, font, BFFontClassName);
