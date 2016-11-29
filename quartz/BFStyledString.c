@@ -37,7 +37,7 @@ struct BFStyledString {
 static void BFStyledStringInit(BFStyledStringRef styledString, CFAttributedStringRef attributedString, CTLineRef line);
 static void BFStyledStringDealloc(BFStyledStringRef styledString);
 
-CF_RETURNS_RETAINED static CFAttributedStringRef BFStyledStringNewAttributedString(const char * cString, BFFontRef font, int superscriptIndex);
+CF_RETURNS_RETAINED static CFAttributedStringRef BFStyledStringNewAttributedString(const char * cString, BFFontRef font, BFStyledStringAttributes attributes);
 CF_RETURNS_RETAINED static CFAttributedStringRef BFStyledStringNewAttributedStringJoining(CFAttributedStringRef string1, CFAttributedStringRef string2);
 static void BFStyledStringEnsureLine(BFStyledStringRef styledString);
 static void BFStyledStringEnsurePath(BFStyledStringRef styledString);
@@ -58,8 +58,8 @@ static const BFBaseFunctions baseFunctions = {
     .dealloc = (BFBaseDeallocFunction)&BFStyledStringDealloc,
 };
 
-BFStyledStringRef BFStyledStringCreate(const char * string, BFFontRef font, int superscriptIndex) {
-    CFAttributedStringRef attributedString = BFStyledStringNewAttributedString(string, font, superscriptIndex);
+BFStyledStringRef BFStyledStringCreate(const char * string, BFFontRef font, BFStyledStringAttributes attributesStruct) {
+    CFAttributedStringRef attributedString = BFStyledStringNewAttributedString(string, font, attributesStruct);
     BFStyledStringRef styledString = BFStyledStringCreateUsingAttributedString(attributedString);
     CFRelease(attributedString);
     return styledString;
@@ -169,7 +169,7 @@ static void BFStyledStringDealloc(BFStyledStringRef styledString) {
 }
 
 CF_RETURNS_RETAINED
-static CFAttributedStringRef BFStyledStringNewAttributedString(const char * cString, BFFontRef font, int superscriptIndex) {
+static CFAttributedStringRef BFStyledStringNewAttributedString(const char * cString, BFFontRef font, BFStyledStringAttributes attributesStruct) {
     if (!cString) {
         cString = "";
     }
@@ -181,9 +181,9 @@ static CFAttributedStringRef BFStyledStringNewAttributedString(const char * cStr
         keys[attributeCount] = kCTFontAttributeName;
         values[attributeCount++] = BFFontGetCTFont(font);
     }
-    if (superscriptIndex) {
+    if (attributesStruct.superscriptIndex) {
         keys[attributeCount] = kCTSuperscriptAttributeName;
-        values[attributeCount++] = CFNumberCreate(NULL, kCFNumberIntType, &superscriptIndex);
+        values[attributeCount++] = CFNumberCreate(NULL, kCFNumberIntType, &attributesStruct.superscriptIndex);
     }
     
     CFDictionaryRef attributes = CFDictionaryCreate(kCFAllocatorDefault, (const void **)&keys,

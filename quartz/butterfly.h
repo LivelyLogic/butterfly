@@ -212,7 +212,11 @@ void BFPathAddOvalInRect(BFPathRef path, BFRect rect);
 
 // BFStyledString
 
-BFStyledStringRef BFStyledStringCreate(const char * string, BFFontRef font, int superscriptIndex);
+typedef struct {
+    int superscriptIndex;
+} BFStyledStringAttributes;
+
+BFStyledStringRef BFStyledStringCreate(const char * string, BFFontRef font, BFStyledStringAttributes attributes);
 // BFStyledStringRef BFStyledStringCreateUsingAttributedString(CFAttributedStringRef attributedString);
 BFStyledStringRef BFStyledStringCreateJoining(BFStyledStringRef styledString1, BFStyledStringRef styledString2);
 BFStyledStringRef BFStyledStringCreateTruncating(BFStyledStringRef styledString, double width);

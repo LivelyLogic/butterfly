@@ -125,7 +125,8 @@ static int drawText(lua_State * L) {
         BFRetain(styledString); /* not necessary, but allows us to avoid an if-check on the release below. */
     } else {
         const char * cstring = lua_tostring(L, 2);
-        styledString = BFStyledStringCreate(cstring, BFCanvasGetFont(canvas), 0);
+        BFStyledStringAttributes attribtues = {};
+        styledString = BFStyledStringCreate(cstring, BFCanvasGetFont(canvas), attribtues);
     }
 
     BFRect stringRect = BFStyledStringMeasure(styledString);
@@ -151,7 +152,8 @@ static int strokeText(lua_State * L) {
         BFRetain(styledString); /* not necessary, but allows us to avoid an if-check on the release below. */
     } else {
         const char * cstring = lua_tostring(L, 2);
-        styledString = BFStyledStringCreate(cstring, BFCanvasGetFont(canvas), 0);
+        BFStyledStringAttributes attribtues = {};
+        styledString = BFStyledStringCreate(cstring, BFCanvasGetFont(canvas), attribtues);
     }
 
     BFRect stringRect = BFStyledStringMeasure(styledString);

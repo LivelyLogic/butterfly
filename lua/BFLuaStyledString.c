@@ -73,11 +73,12 @@ static int new(lua_State * L) {
         BFFontRef font = bf_lua_getoptionaluserdata(L, -1, BFFontClassName);
         lua_pop(L, 1);
         
+        BFStyledStringAttributes attributes = {};
         lua_getfield(L, 2, "superscript");
-        int superscript = lua_tonumber(L, -1);
+        attributes.superscriptIndex = lua_tonumber(L, -1);
         lua_pop(L, 1);
         
-        BFStyledStringRef styledString = BFStyledStringCreate(string, font, superscript);
+        BFStyledStringRef styledString = BFStyledStringCreate(string, font, attributes);
         bf_lua_push(L, styledString, BFStyledStringClassName);
         BFRelease(styledString);
     } else {
