@@ -174,22 +174,25 @@ static CFAttributedStringRef BFStyledStringNewAttributedString(const char * cStr
         cString = "";
     }
     CFStringRef string = CFStringCreateWithCString(NULL, cString, kCFStringEncodingUTF8);
-    CFIndex attributeCount = 0;
+    CFIndex attributeIndex = 0;
     CFStringRef keys[2];
     CFTypeRef values[2];
     if (font) {
-        keys[attributeCount] = kCTFontAttributeName;
-        values[attributeCount++] = BFFontGetCTFont(font);
+        keys[attributeIndex] = kCTFontAttributeName;
+        values[attributeIndex++] = CFRetain(BFFontGetCTFont(font));
     }
     if (attributesStruct.superscriptIndex) {
-        keys[attributeCount] = kCTSuperscriptAttributeName;
-        values[attributeCount++] = CFNumberCreate(NULL, kCFNumberIntType, &attributesStruct.superscriptIndex);
+        keys[attributeIndex] = kCTSuperscriptAttributeName;
+        values[attributeIndex++] = CFNumberCreate(NULL, kCFNumberIntType, &attributesStruct.superscriptIndex);
     }
     
     CFDictionaryRef attributes = CFDictionaryCreate(kCFAllocatorDefault, (const void **)&keys,
-                                                    (const void **)&values, attributeCount,
+                                                    (const void **)&values, attributeIndex,
                                                     &kCFTypeDictionaryKeyCallBacks,
                                                     &kCFTypeDictionaryValueCallBacks);
+    while (--attributeIndex >= 0) {
+        CFRelease(values[attributeIndex]);
+    }
     
     CFAttributedStringRef attributedString = CFAttributedStringCreate(kCFAllocatorDefault, string, attributes);
     CFRelease(string);
