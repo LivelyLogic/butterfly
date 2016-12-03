@@ -35,20 +35,35 @@ struct BFFont {
 static void BFFontInit(BFFontRef font, CTFontRef fontRef);
 static void BFFontDealloc(BFFontRef font);
 
+static CFDictionaryRef BFFontCreateFontFeatureCFDictionary(int featureType, int featureSelector);
+static CFArrayRef BFFontCreateFontFeaturesCFArray(BFFontFeatures features);
+
 static const BFBaseFunctions baseFunctions = {
     .name = BFFontClassName,
     .dealloc = (BFBaseDeallocFunction)&BFFontDealloc,
 };
 
 BFFontRef BFFontCreate(const char * name, double size) {
+    BFFontFeatures noFeatures = {};
+    return BFFontCreateWithFeatures(name, size, noFeatures);
+}
+
+BFFontRef BFFontCreateWithFeatures(const char * name, double size, BFFontFeatures featuresStruct) {
     BFFontRef font = BFAlloc(sizeof(struct BFFont), &baseFunctions);
     if (font) {
         if (!name) {
             name = "";
         }
         CFStringRef fontName = CFStringCreateWithCString(NULL, name, kCFStringEncodingUTF8);
-        CTFontDescriptorRef fontDescriptor = CTFontDescriptorCreateWithNameAndSize((CFStringRef)fontName, 0);
+        CFArrayRef features = BFFontCreateFontFeaturesCFArray(featuresStruct);
+        const void * keys[2] = { kCTFontNameAttribute, kCTFontFeatureSettingsAttribute };
+        const void * values[2] = { fontName, features };
+        CFDictionaryRef attributes = CFDictionaryCreate(NULL, (const void **)&keys, (const void **)&values, 2,
+                                                        &kCFTypeDictionaryKeyCallBacks, &kCFTypeDictionaryValueCallBacks);
         CFRelease(fontName);
+        CFRelease(features);
+        CTFontDescriptorRef fontDescriptor = CTFontDescriptorCreateWithAttributes(attributes);
+        CFRelease(attributes);
         CTFontRef fontRef = CTFontCreateWithFontDescriptor(fontDescriptor, size, NULL);
         CFRelease(fontDescriptor);
         BFFontInit(font, fontRef);
@@ -112,4 +127,39 @@ double BFFontGetLeading(BFFontRef font) {
 
 CTFontRef BFFontGetCTFont(BFFontRef font) {
     return font->fontRef;
+}
+
+CFDictionaryRef BFFontCreateFontFeatureCFDictionary(int featureType, int featureSelector) {
+    CFNumberRef featureTypeNumber = CFNumberCreate(NULL, kCFNumberIntType, &featureType);
+    CFNumberRef featureSelectorNumber = CFNumberCreate(NULL, kCFNumberIntType, &featureSelector);
+    const void * keys[2] = { kCTFontFeatureTypeIdentifierKey, kCTFontFeatureSelectorIdentifierKey };
+    const void * values[2] = { featureTypeNumber, featureSelectorNumber };
+    CFDictionaryRef feature = CFDictionaryCreate(NULL, (const void **)&keys, (const void **)&values, 2,
+                                                 &kCFTypeDictionaryKeyCallBacks, &kCFTypeDictionaryValueCallBacks);
+    CFRelease(featureTypeNumber);
+    CFRelease(featureSelectorNumber);
+    return feature;
+}
+
+CFArrayRef BFFontCreateFontFeaturesCFArray(BFFontFeatures featuresStruct) {
+    CFIndex index = 0;
+    CFDictionaryRef array[3];
+    if (featuresStruct.smallCaps) {
+        array[index++] = BFFontCreateFontFeatureCFDictionary(kLowerCaseType, kLowerCaseSmallCapsSelector);
+    }
+    if (featuresStruct.lowercaseNumbers) {
+        array[index++] = BFFontCreateFontFeatureCFDictionary(kNumberCaseType, kLowerCaseNumbersSelector);
+    } else if (featuresStruct.uppercaseNumbers) {
+        array[index++] = BFFontCreateFontFeatureCFDictionary(kNumberCaseType, kUpperCaseNumbersSelector);
+    }
+    if (featuresStruct.monospacedNumbers) {
+        array[index++] = BFFontCreateFontFeatureCFDictionary(kNumberSpacingType, kMonospacedNumbersSelector);
+    } else if (featuresStruct.proportionalNumbers) {
+        array[index++] = BFFontCreateFontFeatureCFDictionary(kNumberSpacingType, kProportionalNumbersSelector);
+    }
+    CFArrayRef cfArray = CFArrayCreate(NULL, (const void **)&array, index, &kCFTypeArrayCallBacks);
+    while (--index >= 0) {
+        CFRelease(array[index]);
+    }
+    return cfArray;
 }

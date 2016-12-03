@@ -137,7 +137,16 @@ bool BFColorPaintEquals(BFColorPaintRef colorPaint1, BFColorPaintRef colorPaint2
 
 // BFFont
 
+typedef struct {
+    bool smallCaps;
+    bool lowercaseNumbers;
+    bool uppercaseNumbers;
+    bool monospacedNumbers;
+    bool proportionalNumbers;
+} BFFontFeatures;
+
 BFFontRef BFFontCreate(const char * name, double size);
+BFFontRef BFFontCreateWithFeatures(const char * name, double size, BFFontFeatures features);
 BFFontRef BFFontCreateSystem(double size);
 BFFontRef BFFontCreateBoldSystem(double size);
 
