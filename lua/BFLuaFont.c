@@ -78,8 +78,10 @@ int bf_lua_loadFont(lua_State * L) {
 static int get(lua_State * L) {
     BF_LUA_DEBUG_STACK_BEGIN(L);
     const char * name;
+    const char * feature;
     double size;
     BFFontRef font;
+    BFFontFeatures features = {};
     
     lua_getfield(L, 1, "name");
     name = lua_tostring(L, -1);
@@ -88,7 +90,38 @@ static int get(lua_State * L) {
     size = lua_tonumber(L, -1);
     lua_pop(L, 1);
     
-    font = BFFontCreate(name, size);
+    lua_getfield(L, 1, "lowercase");
+    feature = lua_tostring(L, -1);
+    if (feature) {
+        if (strcmp(feature, "smallCaps") == 0) {
+            features.smallCaps = true;
+        }
+    }
+    lua_pop(L, 1);
+
+    lua_getfield(L, 1, "numberCase");
+    feature = lua_tostring(L, -1);
+    if (feature) {
+        if (strcmp(feature, "uppercase") == 0) {
+            features.uppercaseNumbers = true;
+        } else if (strcmp(feature, "lowercase") == 0) {
+            features.lowercaseNumbers = true;
+        }
+    }
+    lua_pop(L, 1);
+    
+    lua_getfield(L, 1, "numberSpacing");
+    feature = lua_tostring(L, -1);
+    if (feature) {
+        if (strcmp(feature, "proportional") == 0) {
+            features.proportionalNumbers = true;
+        } else if (strcmp(feature, "monospaced") == 0) {
+            features.monospacedNumbers = true;
+        }
+    }
+    lua_pop(L, 1);
+        
+    font = BFFontCreateWithFeatures(name, size, features);
     bf_lua_push(L, font, BFFontClassName);
     BFRelease(font);
     
