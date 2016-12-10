@@ -37,6 +37,7 @@ static int getAscent(lua_State * L);
 static int getDescent(lua_State * L);
 static int getHeight(lua_State * L);
 static int getLeading(lua_State * L);
+static int getFeatures(lua_State * L);
 static int archive(lua_State * L);
 static int tostring(lua_State * L);
 
@@ -59,6 +60,7 @@ static const BFLuaClass luaFontClass = {
         {"descent", getDescent},
         {"height", getHeight},
         {"leading", getLeading},
+        {"getFeatures", getFeatures},
         {"archive", archive},
         {"__tostring", tostring},
         {NULL, NULL}
@@ -233,6 +235,40 @@ static int getLeading(lua_State * L) {
     
     double leading = BFFontGetLeading(font);
     lua_pushnumber(L, leading);
+    
+    BF_LUA_DEBUG_STACK_ENDR(L, 1);
+    return 1;
+}
+
+static int getFeatures(lua_State * L) {
+    BF_LUA_DEBUG_STACK_BEGIN(L);
+    BFFontRef font = *(BFFontRef *)luaL_checkudata(L, 1, BFFontClassName);
+    
+    luaL_argcheck(L, font, 1, "Font expected");
+    
+    BFFontFeatures features = BFFontGetFeatures(font);
+    lua_newtable(L);
+    
+    if (features.smallCaps) {
+        lua_pushstring(L, "smallCaps");
+        lua_setfield(L, -2, "lowercase");
+    }
+    if (features.uppercaseNumbers || features.lowercaseNumbers) {
+        if (features.uppercaseNumbers) {
+            lua_pushstring(L, "uppercase");
+        } else if (features.lowercaseNumbers) {
+            lua_pushstring(L, "lowercase");
+        }
+        lua_setfield(L, -2, "numberCase");
+    }
+    if (features.proportionalNumbers || features.monospacedNumbers) {
+        if (features.proportionalNumbers) {
+            lua_pushstring(L, "proportional");
+        } else if (features.monospacedNumbers) {
+            lua_pushstring(L, "monospaced");
+        }
+        lua_setfield(L, -2, "numberSpacing");
+    }
     
     BF_LUA_DEBUG_STACK_ENDR(L, 1);
     return 1;
