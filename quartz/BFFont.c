@@ -30,9 +30,10 @@
 struct BFFont {
     struct BFBase __base;
     CTFontRef fontRef;
+    BFFontFeatures features;
 };
 
-static void BFFontInit(BFFontRef font, CTFontRef fontRef);
+static void BFFontInit(BFFontRef font, CTFontRef fontRef, BFFontFeatures features);
 static void BFFontDealloc(BFFontRef font);
 
 static CFDictionaryRef BFFontCreateFontFeatureCFDictionary(int featureType, int featureSelector);
@@ -66,7 +67,7 @@ BFFontRef BFFontCreateWithFeatures(const char * name, double size, BFFontFeature
         CFRelease(attributes);
         CTFontRef fontRef = CTFontCreateWithFontDescriptor(fontDescriptor, size, NULL);
         CFRelease(fontDescriptor);
-        BFFontInit(font, fontRef);
+        BFFontInit(font, fontRef, featuresStruct);
     }
     return BFRetain(font);
 }
@@ -75,7 +76,8 @@ BFFontRef BFFontCreateSystem(double size) {
     BFFontRef font = BFAlloc(sizeof(struct BFFont), &baseFunctions);
     if (font) {
         CTFontRef fontRef = CTFontCreateUIFontForLanguage(kCTFontUIFontSystem, size, NULL);
-        BFFontInit(font, fontRef);
+        BFFontFeatures features = {};
+        BFFontInit(font, fontRef, features);
     }
     return BFRetain(font);
 }
@@ -84,13 +86,15 @@ BFFontRef BFFontCreateBoldSystem(double size) {
     BFFontRef font = BFAlloc(sizeof(struct BFFont), &baseFunctions);
     if (font) {
         CTFontRef fontRef = CTFontCreateUIFontForLanguage(kCTFontUIFontEmphasizedSystem, size, NULL);
-        BFFontInit(font, fontRef);
+        BFFontFeatures features = {};
+        BFFontInit(font, fontRef, features);
     }
     return BFRetain(font);
 }
 
-static void BFFontInit(BFFontRef font, CTFontRef fontRef) {
+static void BFFontInit(BFFontRef font, CTFontRef fontRef, BFFontFeatures features) {
     font->fontRef = fontRef;
+    font->features = features;
 }
 
 static void BFFontDealloc(BFFontRef font) {
@@ -123,6 +127,10 @@ double BFFontGetDescent(BFFontRef font) {
 
 double BFFontGetLeading(BFFontRef font) {
     return CTFontGetLeading(font->fontRef);
+}
+
+BFFontFeatures BFFontGetFeatures(BFFontRef font) {
+    return font->features;
 }
 
 CTFontRef BFFontGetCTFont(BFFontRef font) {

@@ -155,6 +155,7 @@ double BFFontGetSize(BFFontRef font);
 double BFFontGetAscent(BFFontRef font);
 double BFFontGetDescent(BFFontRef font);
 double BFFontGetLeading(BFFontRef font);
+BFFontFeatures BFFontGetFeatures(BFFontRef font);
 
 // BFGradientPaint
 
