@@ -38,8 +38,6 @@ static int getDescent(lua_State * L);
 static int getHeight(lua_State * L);
 static int getLeading(lua_State * L);
 static int getFeatures(lua_State * L);
-static int archive(lua_State * L);
-static int tostring(lua_State * L);
 
 static const BFLuaClass luaFontLibrary = {
     .libraryName = "Font",
@@ -61,8 +59,6 @@ static const BFLuaClass luaFontClass = {
         {"height", getHeight},
         {"leading", getLeading},
         {"getFeatures", getFeatures},
-        {"archive", archive},
-        {"__tostring", tostring},
         {NULL, NULL}
     }
 };
@@ -271,35 +267,5 @@ static int getFeatures(lua_State * L) {
     }
     
     BF_LUA_DEBUG_STACK_ENDR(L, 1);
-    return 1;
-}
-
-static int archive(lua_State * L) {
-    BF_LUA_DEBUG_STACK_BEGIN(L);
-    BFFontRef font = *(BFFontRef *)luaL_checkudata(L, 1, BFFontClassName);
-    char * name = nil;
-    double size = 0;
-    
-    luaL_argcheck(L, font, 1, "Font expected");
-    
-    name = BFFontCopyName(font);
-    size = BFFontGetSize(font);
-    
-    lua_pushstring(L, "Font");
-    
-    lua_newtable(L);
-    lua_pushstring(L, name);
-    lua_setfield(L, -2, "name");
-    lua_pushnumber(L, size);
-    lua_setfield(L, -2, "size");
-    
-    free(name);
-    
-    BF_LUA_DEBUG_STACK_ENDR(L, 2);
-    return 2;
-}
-
-static int tostring(lua_State * L) {
-    lua_pushstring(L, "");
     return 1;
 }

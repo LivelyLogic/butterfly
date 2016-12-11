@@ -30,10 +30,9 @@
 
 static int rgba(lua_State * L);
 
-static int archive(lua_State * L);
+static int getComponents(lua_State * L);
 
 static int equals(lua_State * L);
-static int tostring(lua_State * L);
 
 static const BFLuaClass luaColorLibrary = {
     .libraryName = "Color",
@@ -47,9 +46,8 @@ const BFLuaClass luaColorClass = {
     .metatableName = BFColorPaintClassName,
     .superClass = &luaPaintClass,
     .methods = {
-        {"archive", archive},
+        {"getComponents", getComponents},
         {"__eq", equals},
-        {"__tostring", tostring},
         {NULL, NULL}
     }
 };
@@ -84,7 +82,7 @@ static int rgba(lua_State * L) {
     return 1;
 }
 
-static int archive(lua_State * L) {
+static int getComponents(lua_State * L) {
     BF_LUA_DEBUG_STACK_BEGIN(L);
     BFColorPaintRef colorPaint = *(BFColorPaintRef *)luaL_checkudata(L, 1, BFColorPaintClassName);
     double red = 0;
@@ -96,8 +94,6 @@ static int archive(lua_State * L) {
     
     BFColorPaintGetRGBA(colorPaint, &red, &green, &blue, &alpha);
     
-    lua_pushstring(L, "RGBA");
-    
     lua_newtable(L);
     lua_pushnumber(L, red);
     lua_setfield(L, -2, "red");
@@ -108,8 +104,8 @@ static int archive(lua_State * L) {
     lua_pushnumber(L, alpha);
     lua_setfield(L, -2, "alpha");
     
-    BF_LUA_DEBUG_STACK_ENDR(L, 2);
-    return 2;
+    BF_LUA_DEBUG_STACK_ENDR(L, 1);
+    return 1;
 }
 
 static int equals(lua_State * L) {
@@ -125,10 +121,5 @@ static int equals(lua_State * L) {
     lua_pushboolean(L, result);
     
     BF_LUA_DEBUG_STACK_ENDR(L, 1);
-    return 1;
-}
-
-static int tostring(lua_State * L) {
-    lua_pushstring(L, "");
     return 1;
 }
