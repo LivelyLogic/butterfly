@@ -28,11 +28,6 @@
 #include "butterfly.h"
 
 static int new(lua_State * L);
-static int rect(lua_State * L);
-static int oval(lua_State * L);
-static int point(lua_State * L);
-static int line(lua_State * L);
-static int arc(lua_State * L);
 
 static int addRect(lua_State * L);
 static int addOval(lua_State * L);
@@ -46,11 +41,6 @@ static const BFLuaClass luaPathLibrary = {
     .libraryName = "Path",
     .methods = {
         {"new", new},
-        {"rect", rect},
-        {"oval", oval},
-        {"point", point},
-        {"line", line},
-        {"arc", arc},
         {NULL, NULL}
     }
 };
@@ -83,40 +73,6 @@ static int new(lua_State * L) {
     BFPathRef path;
     
     path = BFPathCreate();
-    bf_lua_push(L, path, BFPathClassName);
-    BFRelease(path);
-    
-    BF_LUA_DEBUG_STACK_ENDR(L, 1);
-    return 1;
-}
-  
-static int rect(lua_State * L) {
-    BF_LUA_DEBUG_STACK_BEGIN(L);
-    BFRect rect;
-    double radius;
-    BFPathRef path;
-    
-    lua_getfield(L, 1, "left");
-    rect.left = lua_tonumber(L, -1);
-    lua_pop(L, 1);
-    lua_getfield(L, 1, "bottom");
-    rect.bottom = lua_tonumber(L, -1);
-    lua_pop(L, 1);
-    lua_getfield(L, 1, "right");
-    rect.right = lua_tonumber(L, -1);
-    lua_pop(L, 1);
-    lua_getfield(L, 1, "top");
-    rect.top = lua_tonumber(L, -1);
-    lua_pop(L, 1);
-    radius = lua_tonumber(L, 2);
-    
-    path = BFPathCreate();
-    if (radius > 0) {
-        BFPathAddRoundedRect(path, rect, radius);
-    } else {
-        BFPathAddRect(path, rect);
-    }
-    
     bf_lua_push(L, path, BFPathClassName);
     BFRelease(path);
     
@@ -157,34 +113,6 @@ static int addRect(lua_State * L) {
     return 1;
 }
 
-static int oval(lua_State * L) {
-    BF_LUA_DEBUG_STACK_BEGIN(L);
-    BFRect rect;
-    BFPathRef path;
-    
-    lua_getfield(L, 1, "left");
-    rect.left = lua_tonumber(L, -1);
-    lua_pop(L, 1);
-    lua_getfield(L, 1, "bottom");
-    rect.bottom = lua_tonumber(L, -1);
-    lua_pop(L, 1);
-    lua_getfield(L, 1, "right");
-    rect.right = lua_tonumber(L, -1);
-    lua_pop(L, 1);
-    lua_getfield(L, 1, "top");
-    rect.top = lua_tonumber(L, -1);
-    lua_pop(L, 1);
-    
-    path = BFPathCreate();
-    BFPathAddOvalInRect(path, rect);
-    
-    bf_lua_push(L, path, BFPathClassName);
-    BFRelease(path);
-    
-    BF_LUA_DEBUG_STACK_ENDR(L, 1);
-    return 1;
-}
-
 static int addOval(lua_State * L) {
     BF_LUA_DEBUG_STACK_BEGIN(L);
     BFPathRef path = *(BFPathRef *)luaL_checkudata(L, 1, BFPathClassName);
@@ -209,57 +137,6 @@ static int addOval(lua_State * L) {
     
     BF_LUA_DEBUG_STACK_END(L);
     lua_pushvalue(L, 1);
-    return 1;
-}
-
-static int point(lua_State * L) {
-    BF_LUA_DEBUG_STACK_BEGIN(L);
-    BFPoint point;
-    BFPathRef path;
-    
-    lua_getfield(L, 1, "x");
-    point.x = lua_tonumber(L, -1);
-    lua_pop(L, 1);
-    lua_getfield(L, 1, "y");
-    point.y = lua_tonumber(L, -1);
-    lua_pop(L, 1);
-    
-    path = BFPathCreate();
-    BFPathMoveToPoint(path, point);
-    
-    bf_lua_push(L, path, BFPathClassName);
-    BFRelease(path);
-    
-    BF_LUA_DEBUG_STACK_ENDR(L, 1);
-    return 1;
-}
-
-static int line(lua_State * L) {
-    BF_LUA_DEBUG_STACK_BEGIN(L);
-    BFPoint point1, point2;
-    BFPathRef path;
-    
-    lua_getfield(L, 1, "x1");
-    point1.x = lua_tonumber(L, -1);
-    lua_pop(L, 1);
-    lua_getfield(L, 1, "y1");
-    point1.y = lua_tonumber(L, -1);
-    lua_pop(L, 1);
-    lua_getfield(L, 1, "x2");
-    point2.x = lua_tonumber(L, -1);
-    lua_pop(L, 1);
-    lua_getfield(L, 1, "y2");
-    point2.y = lua_tonumber(L, -1);
-    lua_pop(L, 1);
-    
-    path = BFPathCreate();
-    BFPathMoveToPoint(path, point1);
-    BFPathAddLineToPoint(path, point2);
-    
-    bf_lua_push(L, path, BFPathClassName);
-    BFRelease(path);
-    
-    BF_LUA_DEBUG_STACK_ENDR(L, 1);
     return 1;
 }
 
@@ -298,39 +175,6 @@ static int addLineXY(lua_State * L) {
     
     BF_LUA_DEBUG_STACK_END(L);
     lua_pushvalue(L, 1);
-    return 1;
-}
-
-static int arc(lua_State * L) {
-    BF_LUA_DEBUG_STACK_BEGIN(L);
-    BFPoint point, centerPoint;
-    double angle;
-    BFPathRef path;
-    
-    lua_getfield(L, 1, "x");
-    point.x = lua_tonumber(L, -1);
-    lua_pop(L, 1);
-    lua_getfield(L, 1, "y");
-    point.y = lua_tonumber(L, -1);
-    lua_pop(L, 1);
-    lua_getfield(L, 1, "cx");
-    centerPoint.x = lua_tonumber(L, -1);
-    lua_pop(L, 1);
-    lua_getfield(L, 1, "cy");
-    centerPoint.y = lua_tonumber(L, -1);
-    lua_pop(L, 1);
-    lua_getfield(L, 1, "angle");
-    angle = lua_tonumber(L, -1);
-    lua_pop(L, 1);
-    
-    path = BFPathCreate();
-    BFPathMoveToPoint(path, point);
-    BFPathAddArc(path, centerPoint, angle);
-    
-    bf_lua_push(L, path, BFPathClassName);
-    BFRelease(path);
-    
-    BF_LUA_DEBUG_STACK_ENDR(L, 1);
     return 1;
 }
 

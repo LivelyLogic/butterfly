@@ -26,7 +26,8 @@ The Lua script returns a function taking a canvas object as its only argument. F
 ```lua
 return function(canvas)
     local rect = canvas:metrics():rect()
-    local path = Path.point{ x = 0.5, y = 0.7 }
+    local path = Path.new()
+        :addSubpath{ x = 0.5, y = 0.7 }
         :addLine{ x = 0.8, y = 1.0 }
         :addLine{ x = 1.0, y = 0.7 }
         :addLine{ x = 0.7, y = 0.4 }

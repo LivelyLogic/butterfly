@@ -50,7 +50,7 @@
     self.scriptTextView.string =
     @"draw = function(canvas)\n"
     @"    local purple = Color.rgba(0.5, 0, 1.0, 0.5)\n"
-    @"    local oval = Path.oval(canvas:metrics():rect())\n"
+    @"    local oval = Path.new():addOval(canvas:metrics():rect())\n"
     @"    canvas:setPaint(purple):fill(oval)\n"
     @"end\n";
     
