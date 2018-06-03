@@ -71,6 +71,10 @@ void BFPathAddCurveToPoint(BFPathRef path, BFPoint point, BFPoint controlPoint1,
     CGPathAddCurveToPoint(path->pathRef, NULL, controlPoint1.x, controlPoint1.y, controlPoint2.x, controlPoint2.y, point.x, point.y);
 }
 
+void BFPathAddQuadCurveToPoint(BFPathRef path, BFPoint point, BFPoint controlPoint) {
+    CGPathAddQuadCurveToPoint(path->pathRef, NULL, controlPoint.x, controlPoint.y, point.x, point.y);
+}
+
 void BFPathAddArc(BFPathRef path, BFPoint centerPoint, double arcAngle) {
     CGPoint currentPoint = CGPathGetCurrentPoint(path->pathRef);
     double radius = hypot(currentPoint.y - centerPoint.y, currentPoint.x - centerPoint.x);

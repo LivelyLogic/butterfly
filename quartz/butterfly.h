@@ -214,6 +214,7 @@ BFPathRef BFPathCreate(void);
 void BFPathMoveToPoint(BFPathRef path, BFPoint point);
 void BFPathAddLineToPoint(BFPathRef path, BFPoint point);
 void BFPathAddCurveToPoint(BFPathRef path, BFPoint point, BFPoint controlPoint1, BFPoint controlPoint2);
+void BFPathAddQuadCurveToPoint(BFPathRef path, BFPoint point, BFPoint controlPoint);
 void BFPathAddArc(BFPathRef path, BFPoint centerPoint, double arcAngle);
 void BFPathCloseSubpath(BFPathRef path);
 void BFPathAddRect(BFPathRef path, BFRect rect);
