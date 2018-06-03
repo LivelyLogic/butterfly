@@ -90,6 +90,18 @@ BFRect BFTransformationTransformRect(BFTransformationRef transformation, BFRect 
     return BFRectFromCGRect(cgRect);
 }
 
+BFTransformationComponents BFTransformationGetComponents(BFTransformationRef transformation) {
+    BFTransformationComponents components = {
+        .a = transformation->affine.a,
+        .b = transformation->affine.b,
+        .c = transformation->affine.c,
+        .d = transformation->affine.d,
+        .tx = transformation->affine.tx,
+        .ty = transformation->affine.ty,
+    };
+    return components;
+}
+
 CGAffineTransform BFTransformationGetCGAffineTransform(BFTransformationRef transformation) {
     return transformation->affine;
 }

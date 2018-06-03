@@ -35,6 +35,7 @@ static int invert(lua_State * L);
 static int concat(lua_State * L);
 static int transformPoint(lua_State * L);
 static int transformRect(lua_State * L);
+static int getComponents(lua_State * L);
 
 static const BFLuaClass luaTransformationLibrary = {
     .libraryName = "Transformation",
@@ -54,6 +55,7 @@ static const BFLuaClass luaTransformationClass = {
         {"concat", concat},
         {"transformPoint", transformPoint},
         {"transformRect", transformRect},
+        {"getComponents", getComponents},
         {NULL, NULL}
     }
 };
@@ -191,6 +193,32 @@ static int transformRect(lua_State * L) {
     lua_setfield(L, -2, "right");
     lua_pushnumber(L, rect.top);
     lua_setfield(L, -2, "top");
+    
+    BF_LUA_DEBUG_STACK_ENDR(L, 1);
+    return 1;
+}
+
+static int getComponents(lua_State * L) {
+    BF_LUA_DEBUG_STACK_BEGIN(L);
+    BFTransformationRef transformation = *(BFTransformationRef *)luaL_checkudata(L, 1, BFTransformationClassName);
+    
+    luaL_argcheck(L, transformation, 1, "Transformation expected");
+    
+    BFTransformationComponents components = BFTransformationGetComponents(transformation);
+    
+    lua_newtable(L);
+    lua_pushnumber(L, components.a);
+    lua_rawseti(L, -2, 1);
+    lua_pushnumber(L, components.b);
+    lua_rawseti(L, -2, 2);
+    lua_pushnumber(L, components.c);
+    lua_rawseti(L, -2, 3);
+    lua_pushnumber(L, components.d);
+    lua_rawseti(L, -2, 4);
+    lua_pushnumber(L, components.tx);
+    lua_rawseti(L, -2, 5);
+    lua_pushnumber(L, components.ty);
+    lua_rawseti(L, -2, 6);
     
     BF_LUA_DEBUG_STACK_ENDR(L, 1);
     return 1;

@@ -251,6 +251,15 @@ char * BFStyledStringCopyString(BFStyledStringRef styledString);
 
 // BFTransformation
 
+typedef struct {
+    double a;
+    double b;
+    double c;
+    double d;
+    double tx;
+    double ty;
+} BFTransformationComponents;
+
 BFTransformationRef BFTransformationCreate(void);
 
 void BFTransformationRotate(BFTransformationRef transformation, double angle);
@@ -261,5 +270,6 @@ void BFTransformationConcat(BFTransformationRef transformation1, BFTransformatio
 
 BFPoint BFTransformationTransformPoint(BFTransformationRef transformation, BFPoint point);
 BFRect BFTransformationTransformRect(BFTransformationRef transformation, BFRect rect);
+BFTransformationComponents BFTransformationGetComponents(BFTransformationRef transformation);
 
 #endif /* __BUTTERFLY_H__ */
