@@ -209,6 +209,16 @@ BFPaintModeRef BFPaintModeCreate(BFPaintModeType type);
 
 // BFPath
 
+typedef enum BFPathComponentType {
+    kBFPathComponentMove,
+    kBFPathComponentAddLine,
+    kBFPathComponentAddCurve,
+    kBFPathComponentAddQuadCurve,
+    kBFPathComponentCloseSubpath,
+} BFPathComponentType;
+
+typedef void (* BFPathComponentIterationFunction)(void * userData, BFPathComponentType type, BFPoint point, BFPoint controlPoint1, BFPoint controlPoint2);
+
 BFPathRef BFPathCreate(void);
 
 void BFPathMoveToPoint(BFPathRef path, BFPoint point);
@@ -220,6 +230,8 @@ void BFPathCloseSubpath(BFPathRef path);
 void BFPathAddRect(BFPathRef path, BFRect rect);
 void BFPathAddRoundedRect(BFPathRef path, BFRect rect, double radius);
 void BFPathAddOvalInRect(BFPathRef path, BFRect rect);
+
+void BFPathIterateComponents(BFPathRef path, BFPathComponentIterationFunction iterationFunction, void * userData);
 
 // BFStyledString
 
