@@ -27,6 +27,7 @@
 
 #include "butterfly.h"
 
+static int new(lua_State * L);
 static int rect(lua_State * L);
 static int oval(lua_State * L);
 static int point(lua_State * L);
@@ -44,6 +45,7 @@ static int closeSubpath(lua_State * L);
 static const BFLuaClass luaPathLibrary = {
     .libraryName = "Path",
     .methods = {
+        {"new", new},
         {"rect", rect},
         {"oval", oval},
         {"point", point},
@@ -76,6 +78,18 @@ int bf_lua_loadPath(lua_State * L) {
 
 // Local functions
 
+static int new(lua_State * L) {
+    BF_LUA_DEBUG_STACK_BEGIN(L);
+    BFPathRef path;
+    
+    path = BFPathCreate();
+    bf_lua_push(L, path, BFPathClassName);
+    BFRelease(path);
+    
+    BF_LUA_DEBUG_STACK_ENDR(L, 1);
+    return 1;
+}
+  
 static int rect(lua_State * L) {
     BF_LUA_DEBUG_STACK_BEGIN(L);
     BFRect rect;
