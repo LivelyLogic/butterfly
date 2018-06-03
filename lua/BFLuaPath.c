@@ -34,6 +34,8 @@ static int addOval(lua_State * L);
 static int addSubpath(lua_State * L);
 static int addLine(lua_State * L);
 static int addLineXY(lua_State * L);
+static int addCurve(lua_State * L);
+static int addQuadCurve(lua_State * L);
 static int addArc(lua_State * L);
 static int closeSubpath(lua_State * L);
 
@@ -53,6 +55,8 @@ static const BFLuaClass luaPathClass = {
         {"addSubpath", addSubpath},
         {"addLine", addLine},
         {"addLineXY", addLineXY},
+        {"addCurve", addCurve},
+        {"addQuadCurve", addQuadCurve},
         {"addArc", addArc},
         {"closeSubpath", closeSubpath},
         {NULL, NULL}
@@ -172,6 +176,69 @@ static int addLineXY(lua_State * L) {
     point.y = lua_tonumber(L, 3);
     
     BFPathAddLineToPoint(path, point);
+    
+    BF_LUA_DEBUG_STACK_END(L);
+    lua_pushvalue(L, 1);
+    return 1;
+}
+
+static int addCurve(lua_State * L) {
+    BF_LUA_DEBUG_STACK_BEGIN(L);
+    BFPathRef path = *(BFPathRef *)luaL_checkudata(L, 1, BFPathClassName);
+    BFPoint point, controlPoint1, controlPoint2;
+    
+    luaL_argcheck(L, path, 1, "Path expected");
+    
+    lua_getfield(L, 2, "x");
+    point.x = lua_tonumber(L, -1);
+    lua_pop(L, 1);
+    lua_getfield(L, 2, "y");
+    point.y = lua_tonumber(L, -1);
+    lua_pop(L, 1);
+    
+    lua_getfield(L, 2, "cx1");
+    controlPoint1.x = lua_tonumber(L, -1);
+    lua_pop(L, 1);
+    lua_getfield(L, 2, "cy1");
+    controlPoint1.y = lua_tonumber(L, -1);
+    lua_pop(L, 1);
+    
+    lua_getfield(L, 2, "cx2");
+    controlPoint2.x = lua_tonumber(L, -1);
+    lua_pop(L, 1);
+    lua_getfield(L, 2, "cy2");
+    controlPoint2.y = lua_tonumber(L, -1);
+    lua_pop(L, 1);
+    
+    BFPathAddCurveToPoint(path, point, controlPoint1, controlPoint2);
+    
+    BF_LUA_DEBUG_STACK_END(L);
+    lua_pushvalue(L, 1);
+    return 1;
+}
+
+static int addQuadCurve(lua_State * L) {
+    BF_LUA_DEBUG_STACK_BEGIN(L);
+    BFPathRef path = *(BFPathRef *)luaL_checkudata(L, 1, BFPathClassName);
+    BFPoint point, controlPoint;
+    
+    luaL_argcheck(L, path, 1, "Path expected");
+    
+    lua_getfield(L, 2, "x");
+    point.x = lua_tonumber(L, -1);
+    lua_pop(L, 1);
+    lua_getfield(L, 2, "y");
+    point.y = lua_tonumber(L, -1);
+    lua_pop(L, 1);
+    
+    lua_getfield(L, 2, "cx");
+    controlPoint.x = lua_tonumber(L, -1);
+    lua_pop(L, 1);
+    lua_getfield(L, 2, "cy");
+    controlPoint.y = lua_tonumber(L, -1);
+    lua_pop(L, 1);
+    
+    BFPathAddQuadCurveToPoint(path, point, controlPoint);
     
     BF_LUA_DEBUG_STACK_END(L);
     lua_pushvalue(L, 1);
