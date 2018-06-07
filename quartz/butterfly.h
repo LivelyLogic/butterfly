@@ -217,7 +217,14 @@ typedef enum BFPathComponentType {
     kBFPathComponentCloseSubpath,
 } BFPathComponentType;
 
-typedef void (* BFPathComponentIterationFunction)(void * userData, BFPathComponentType type, BFPoint point, BFPoint controlPoint1, BFPoint controlPoint2);
+typedef struct {
+    BFPathComponentType type;
+    BFPoint point;
+    BFPoint controlPoint1;
+    BFPoint controlPoint2;
+} BFPathComponent;
+
+typedef void (* BFPathComponentIterationFunction)(void * userData, BFPathComponent pathComponent);
 
 BFPathRef BFPathCreate(void);
 

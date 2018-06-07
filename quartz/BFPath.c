@@ -118,44 +118,41 @@ void BFPathIterateComponents(BFPathRef path, BFPathComponentIterationFunction it
 
 void BFPathCGPathApplierFunction(void * cgUserData, const CGPathElement * element) {
     BFPathCGPathApplierFunctionUserData * userData = (BFPathCGPathApplierFunctionUserData *)cgUserData;
-    BFPathComponentType type;
-    BFPoint point = {};
-    BFPoint controlPoint1 = {};
-    BFPoint controlPoint2 = {};
+    BFPathComponent component = {};
     switch (element->type) {
         case kCGPathElementMoveToPoint:
-            type = kBFPathComponentMove;
-            point.x = element->points[0].x;
-            point.y = element->points[0].y;
+            component.type = kBFPathComponentMove;
+            component.point.x = element->points[0].x;
+            component.point.y = element->points[0].y;
             break;
         case kCGPathElementAddLineToPoint:
-            type = kBFPathComponentAddLine;
-            point.x = element->points[0].x;
-            point.y = element->points[0].y;
+            component.type = kBFPathComponentAddLine;
+            component.point.x = element->points[0].x;
+            component.point.y = element->points[0].y;
             break;
         case kCGPathElementAddQuadCurveToPoint:
-            type = kBFPathComponentAddQuadCurve;
-            controlPoint1.x = element->points[0].x;
-            controlPoint1.y = element->points[0].y;
-            point.x = element->points[1].x;
-            point.y = element->points[1].y;
+            component.type = kBFPathComponentAddQuadCurve;
+            component.controlPoint1.x = element->points[0].x;
+            component.controlPoint1.y = element->points[0].y;
+            component.point.x = element->points[1].x;
+            component.point.y = element->points[1].y;
             break;
         case kCGPathElementAddCurveToPoint:
-            type = kBFPathComponentAddCurve;
-            controlPoint1.x = element->points[0].x;
-            controlPoint1.y = element->points[0].y;
-            controlPoint2.x = element->points[1].x;
-            controlPoint2.y = element->points[1].y;
-            point.x = element->points[2].x;
-            point.y = element->points[2].y;
+            component.type = kBFPathComponentAddCurve;
+            component.controlPoint1.x = element->points[0].x;
+            component.controlPoint1.y = element->points[0].y;
+            component.controlPoint2.x = element->points[1].x;
+            component.controlPoint2.y = element->points[1].y;
+            component.point.x = element->points[2].x;
+            component.point.y = element->points[2].y;
             break;
         case kCGPathElementCloseSubpath:
-            type = kBFPathComponentCloseSubpath;
+            component.type = kBFPathComponentCloseSubpath;
             break;
         default:
             return;
     }
-    userData->iterationFunction(userData->userData, type, point, controlPoint1, controlPoint2);
+    userData->iterationFunction(userData->userData, component);
 }
 
 CGPathRef BFPathGetCGPath(const BFPathRef path) {

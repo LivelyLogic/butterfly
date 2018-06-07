@@ -306,53 +306,51 @@ static int closeSubpath(lua_State * L) {
     return 1;
 }
 
-static void getComponents_iteration(void * userData, BFPathComponentType type, BFPoint point, BFPoint controlPoint1, BFPoint controlPoint2) {
-    lua_State * L = (lua_State *)userData;
-    
+static void getComponents_iteration(lua_State * L, BFPathComponent component) {
     lua_newtable(L);
-    switch (type) {
+    switch (component.type) {
         case kBFPathComponentMove:
             lua_pushstring(L, "addSubpath");
             lua_setfield(L, -2, "type");
-            lua_pushnumber(L, point.x);
+            lua_pushnumber(L, component.point.x);
             lua_setfield(L, -2, "x");
-            lua_pushnumber(L, point.y);
+            lua_pushnumber(L, component.point.y);
             lua_setfield(L, -2, "y");
             break;
         case kBFPathComponentAddLine:
             lua_pushstring(L, "addLine");
             lua_setfield(L, -2, "type");
-            lua_pushnumber(L, point.x);
+            lua_pushnumber(L, component.point.x);
             lua_setfield(L, -2, "x");
-            lua_pushnumber(L, point.y);
+            lua_pushnumber(L, component.point.y);
             lua_setfield(L, -2, "y");
             break;
         case kBFPathComponentAddCurve:
             lua_pushstring(L, "addCurve");
             lua_setfield(L, -2, "type");
-            lua_pushnumber(L, point.x);
+            lua_pushnumber(L, component.point.x);
             lua_setfield(L, -2, "x");
-            lua_pushnumber(L, point.y);
+            lua_pushnumber(L, component.point.y);
             lua_setfield(L, -2, "y");
-            lua_pushnumber(L, controlPoint1.x);
+            lua_pushnumber(L, component.controlPoint1.x);
             lua_setfield(L, -2, "cx1");
-            lua_pushnumber(L, controlPoint1.y);
+            lua_pushnumber(L, component.controlPoint1.y);
             lua_setfield(L, -2, "cy1");
-            lua_pushnumber(L, controlPoint2.x);
+            lua_pushnumber(L, component.controlPoint2.x);
             lua_setfield(L, -2, "cx2");
-            lua_pushnumber(L, controlPoint2.y);
+            lua_pushnumber(L, component.controlPoint2.y);
             lua_setfield(L, -2, "cy2");
             break;
         case kBFPathComponentAddQuadCurve:
             lua_pushstring(L, "addQuadCurve");
             lua_setfield(L, -2, "type");
-            lua_pushnumber(L, point.x);
+            lua_pushnumber(L, component.point.x);
             lua_setfield(L, -2, "x");
-            lua_pushnumber(L, point.y);
+            lua_pushnumber(L, component.point.y);
             lua_setfield(L, -2, "y");
-            lua_pushnumber(L, controlPoint1.x);
+            lua_pushnumber(L, component.controlPoint1.x);
             lua_setfield(L, -2, "cx");
-            lua_pushnumber(L, controlPoint1.y);
+            lua_pushnumber(L, component.controlPoint1.y);
             lua_setfield(L, -2, "cy");
             break;
         case kBFPathComponentCloseSubpath:
@@ -371,7 +369,7 @@ static int getComponents(lua_State * L) {
     luaL_argcheck(L, path, 1, "Path expected");
     
     lua_newtable(L);
-    BFPathIterateComponents(path, getComponents_iteration, L);
+    BFPathIterateComponents(path, (BFPathComponentIterationFunction)getComponents_iteration, L);
     
     BF_LUA_DEBUG_STACK_ENDR(L, 1);
     return 1;
