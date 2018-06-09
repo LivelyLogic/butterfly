@@ -53,6 +53,8 @@ CGColorRef BFColorPaintGetCGColor(BFColorPaintRef colorPaint);
 
 // BFFont
 
+BFFontRef BFFontCreateWithCTFont(CTFontRef font);
+
 CTFontRef BFFontGetCTFont(BFFontRef font);
 
 // BFIcon

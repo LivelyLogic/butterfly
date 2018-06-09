@@ -92,6 +92,15 @@ BFFontRef BFFontCreateBoldSystem(double size) {
     return BFRetain(font);
 }
 
+BFFontRef BFFontCreateWithCTFont(CTFontRef fontRef) {
+    BFFontRef font = BFAlloc(sizeof(struct BFFont), &baseFunctions);
+    if (font) {
+        BFFontFeatures features = {};
+        BFFontInit(font, CFRetain(fontRef), features);
+    }
+    return BFRetain(font);
+}
+
 static void BFFontInit(BFFontRef font, CTFontRef fontRef, BFFontFeatures features) {
     font->fontRef = fontRef;
     font->features = features;
