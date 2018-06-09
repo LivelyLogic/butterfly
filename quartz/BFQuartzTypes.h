@@ -29,4 +29,9 @@
 
 char * BFConvertQuartzString(CFStringRef string);
 
+typedef struct BFFunctionUserData {
+    void * function;
+    void * userData;
+} BFFunctionUserData;
+
 #endif /* __BF_QUARTZ_TYPES_H__ */

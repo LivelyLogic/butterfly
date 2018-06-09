@@ -27,6 +27,8 @@
 #include "butterfly.h"
 #include "quartz.h"
 
+#include "BFQuartzTypes.h"
+
 struct BFPath {
     struct BFBase __base;
     CGMutablePathRef pathRef;
@@ -35,11 +37,7 @@ struct BFPath {
 static void BFPathInit(BFPathRef path);
 static void BFPathDealloc(BFPathRef path);
 
-typedef struct BFPathCGPathApplierFunctionUserData {
-    BFPathComponentIterationFunction iterationFunction;
-    void * userData;
-} BFPathCGPathApplierFunctionUserData;
-static void BFPathCGPathApplierFunction(void * userData, const CGPathElement * element);
+static void BFPathCGPathElementToComponent(BFFunctionUserData * userData, const CGPathElement * element);
 
 static const BFBaseFunctions baseFunctions = {
     .name = BFPathClassName,
@@ -112,12 +110,11 @@ void BFPathAddOvalInRect(BFPathRef path, BFRect rect) {
 }
 
 void BFPathIterateComponents(BFPathRef path, BFPathComponentIterationFunction iterationFunction, void * userData) {
-    BFPathCGPathApplierFunctionUserData cgUserData = { .iterationFunction = iterationFunction, .userData = userData };
-    CGPathApply(path->pathRef, &cgUserData, BFPathCGPathApplierFunction);
+    BFFunctionUserData cgUserData = { .function = iterationFunction, .userData = userData };
+    CGPathApply(path->pathRef, &cgUserData, (CGPathApplierFunction)BFPathCGPathElementToComponent);
 }
 
-void BFPathCGPathApplierFunction(void * cgUserData, const CGPathElement * element) {
-    BFPathCGPathApplierFunctionUserData * userData = (BFPathCGPathApplierFunctionUserData *)cgUserData;
+static void BFPathCGPathElementToComponent(BFFunctionUserData * userData, const CGPathElement * element) {
     BFPathComponent component = {};
     switch (element->type) {
         case kCGPathElementMoveToPoint:
@@ -152,7 +149,7 @@ void BFPathCGPathApplierFunction(void * cgUserData, const CGPathElement * elemen
         default:
             return;
     }
-    userData->iterationFunction(userData->userData, component);
+    ((BFPathComponentIterationFunction)userData->function)(userData->userData, component);
 }
 
 CGPathRef BFPathGetCGPath(const BFPathRef path) {
