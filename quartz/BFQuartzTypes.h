@@ -28,6 +28,7 @@
 #include <CoreFoundation/CoreFoundation.h>
 
 char * BFConvertQuartzString(CFStringRef string);
+char * BFConvertQuartzStringRange(CFStringRef string, CFRange range);
 
 typedef struct BFFunctionUserData {
     void * function;

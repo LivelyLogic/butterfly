@@ -32,6 +32,7 @@ static int new(lua_State * L);
 static int measure(lua_State * L);
 static int wrapToWidth(lua_State * L);
 static int truncateToWidth(lua_State * L);
+static int getComponents(lua_State * L);
 static int concat(lua_State * L);
 static int tostring(lua_State * L);
 
@@ -49,6 +50,7 @@ static const BFLuaClass luaStyledStringClass = {
         {"measure", measure},
         {"wrap", wrapToWidth},
         {"truncate", truncateToWidth},
+        {"getComponents", getComponents},
         {"__concat", concat},
         {"__tostring", tostring},
         {NULL, NULL}
@@ -154,6 +156,36 @@ static int truncateToWidth(lua_State * L) {
     bf_lua_push(L, truncatedStyledString, BFStyledStringClassName);
     BFRelease(truncatedStyledString);
     
+    BF_LUA_DEBUG_STACK_ENDR(L, 1);
+    return 1;
+}
+
+static void getComponents_iteration(lua_State * L, BFStyledStringComponent component) {
+    lua_newtable(L);
+    
+    lua_pushstring(L, component.string);
+    lua_setfield(L, -2, "string");
+    
+    bf_lua_push(L, component.font, BFFontClassName);
+    lua_setfield(L, -2, "font");
+
+    if (component.attributes.superscriptIndex != 0) {
+        lua_pushnumber(L, component.attributes.superscriptIndex);
+        lua_setfield(L, -2, "superscript");
+    }
+    
+    lua_rawseti(L, -2, lua_objlen(L, -2) + 1);
+}
+
+static int getComponents(lua_State * L) {
+    BF_LUA_DEBUG_STACK_BEGIN(L);
+    BFStyledStringRef styledString = *(BFStyledStringRef *)luaL_checkudata(L, 1, BFStyledStringClassName);
+    
+    luaL_argcheck(L, styledString, 1, "StyledString expected");
+    
+    lua_newtable(L);
+    BFStyledStringIterateComponents(styledString, (BFStyledStringComponentIterationFunction)getComponents_iteration, L);
+
     BF_LUA_DEBUG_STACK_ENDR(L, 1);
     return 1;
 }

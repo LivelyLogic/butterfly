@@ -27,6 +27,11 @@
 char * BFConvertQuartzString(CFStringRef string) {
     CFIndex length = CFStringGetLength(string);
     CFRange range = CFRangeMake(0, length);
+    return BFConvertQuartzStringRange(string, range);
+}
+
+char * BFConvertQuartzStringRange(CFStringRef string, CFRange range) {
+    CFIndex length;
     CFIndex converted = CFStringGetBytes(string, range, kCFStringEncodingUTF8, 0, false, NULL, 0, &length);
     char * buffer = NULL;
     if (converted > 0) {

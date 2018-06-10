@@ -246,11 +246,21 @@ typedef struct {
     int superscriptIndex;
 } BFStyledStringAttributes;
 
+typedef struct {
+    char * string;
+    BFFontRef font;
+    BFStyledStringAttributes attributes;
+} BFStyledStringComponent;
+
+typedef void (* BFStyledStringComponentIterationFunction)(void * userData, BFStyledStringComponent pathComponent);
+
 BFStyledStringRef BFStyledStringCreate(const char * string, BFFontRef font, BFStyledStringAttributes attributes);
 // BFStyledStringRef BFStyledStringCreateUsingAttributedString(CFAttributedStringRef attributedString);
 BFStyledStringRef BFStyledStringCreateJoining(BFStyledStringRef styledString1, BFStyledStringRef styledString2);
 BFStyledStringRef BFStyledStringCreateTruncating(BFStyledStringRef styledString, double width);
 CFIndex BFStyledStringCreateBreaking(BFStyledStringRef styledString, CFIndex startPosition, double width, CFIndex lineCount, BFStyledStringRef resultStyledStrings[]);
+
+void BFStyledStringIterateComponents(BFStyledStringRef styledString, BFStyledStringComponentIterationFunction iterationFunction, void * userData);
 
 CFIndex BFStyledStringGetLength(BFStyledStringRef styledString);
 BFRect BFStyledStringMeasure(BFStyledStringRef styledString);

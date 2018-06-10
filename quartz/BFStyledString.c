@@ -42,16 +42,19 @@ CF_RETURNS_RETAINED static CFAttributedStringRef BFStyledStringNewAttributedStri
 static void BFStyledStringEnsureLine(BFStyledStringRef styledString);
 static void BFStyledStringEnsurePath(BFStyledStringRef styledString);
 
-typedef void (* BFStyledStringRunIterationFunction)(CTFontRef font, double baselineOffset, const CGGlyph * glyphs, const CGPoint * positions, CFIndex glyphCount, void * userData);
-static void BFStyledStringIterateRuns(BFStyledStringRef, BFStyledStringRunIterationFunction, void *);
+typedef void (* BFStyledStringRunIterationFunction)(BFStyledStringRef styledString, BFFunctionUserData * userData, CTRunRef run);
+typedef void (* BFStyledStringRunGlyphIterationFunction)(CTFontRef font, double baselineOffset, const CGGlyph * glyphs, const CGPoint * positions, CFIndex glyphCount, BFFunctionUserData * userData);
+static void BFStyledStringIterateRuns(BFStyledStringRef, BFFunctionUserData * userData);
 
-static void BFStyledStringBuildPathRunIterationFunction(CTFontRef font, double baselineOffset, const CGGlyph * glyphs, const CGPoint * positions, CFIndex glyphCount, CGMutablePathRef path);
+static void BFStyledStringCTRunToGlyphs(BFStyledStringRef styledString, BFFunctionUserData * userData, CTRunRef run);
 
-typedef struct BFStyledStringShowGlyphsRunIterationFunctionUserData {
+static void BFStyledStringAddGlyphsToPath(CTFontRef font, double baselineOffset, const CGGlyph * glyphs, const CGPoint * positions, CFIndex glyphCount, CGMutablePathRef path);
+
+typedef struct BFStyledStringDrawGlyphsInContextUserData {
     CGContextRef context;
     CGPoint textPosition;
-} BFStyledStringShowGlyphsRunIterationFunctionUserData;
-static void BFStyledStringShowGlyphsRunIterationFunction(CTFontRef font, double baselineOffset, const CGGlyph * glyphs, const CGPoint * positions, CFIndex glyphCount, BFStyledStringShowGlyphsRunIterationFunctionUserData * userData);
+} BFStyledStringDrawGlyphsInContextUserData;
+static void BFStyledStringDrawGlyphsInContext(CTFontRef font, double baselineOffset, const CGGlyph * glyphs, const CGPoint * positions, CFIndex glyphCount, BFStyledStringDrawGlyphsInContextUserData * userData);
 
 static const BFBaseFunctions baseFunctions = {
     .name = BFStyledStringClassName,
@@ -223,51 +226,79 @@ static void BFStyledStringEnsurePath(BFStyledStringRef styledString) {
     }
     
     CGMutablePathRef path = CGPathCreateMutable();
-    BFStyledStringIterateRuns(styledString, (BFStyledStringRunIterationFunction)BFStyledStringBuildPathRunIterationFunction, path);
+    BFFunctionUserData glyphsUserData = { .function = BFStyledStringAddGlyphsToPath, .userData = path };
+    BFFunctionUserData iterationUserData = { .function = BFStyledStringCTRunToGlyphs, .userData = &glyphsUserData };
+    BFStyledStringIterateRuns(styledString, &iterationUserData);
     styledString->pathRef = path;
 }
 
-static void BFStyledStringIterateRuns(BFStyledStringRef styledString, BFStyledStringRunIterationFunction iterationFunction, void * userData) {
+static void BFStyledStringCTRunToComponent(BFStyledStringRef styledString, BFFunctionUserData * userData, CTRunRef run) {
+    BFStyledStringComponent component = {};
+
+    CFRange range = CTRunGetStringRange(run);
+    CFStringRef stringRef = CFAttributedStringGetString(styledString->stringRef);
+    component.string = BFConvertQuartzStringRange(stringRef, range);
+    
+    CFDictionaryRef attributes = CTRunGetAttributes(run);
+    CTFontRef font = CFDictionaryGetValue(attributes, kCTFontAttributeName);
+    component.font = BFFontCreateWithCTFont(font);
+
+    if (CFDictionaryContainsKey(attributes, kCTSuperscriptAttributeName)) {
+        CFNumberRef number = CFDictionaryGetValue(attributes, kCTSuperscriptAttributeName);
+        CFNumberGetValue(number, kCFNumberIntType, &component.attributes.superscriptIndex);
+    }
+    
+    ((BFStyledStringComponentIterationFunction)userData->function)(userData->userData, component);
+    
+    free(component.string);
+    BFRelease(component.font);
+}
+
+static void BFStyledStringCTRunToGlyphs(BFStyledStringRef styledString, BFFunctionUserData * userData, CTRunRef run) {
+    CFDictionaryRef attributes = CTRunGetAttributes(run);
+    CTFontRef font = CFDictionaryGetValue(attributes, kCTFontAttributeName);
+    double baselineOffset = 0;
+    if (CFDictionaryContainsKey(attributes, kCTSuperscriptAttributeName)) {
+        CFNumberRef number = CFDictionaryGetValue(attributes, kCTSuperscriptAttributeName);
+        int superscriptIndex = 0;
+        CFNumberGetValue(number, kCFNumberIntType, &superscriptIndex);
+        baselineOffset = superscriptIndex * CTFontGetSize(font) / 2;
+    }
+    
+    CFIndex glyphCount = CTRunGetGlyphCount(run);
+    const CGGlyph * glyphs = CTRunGetGlyphsPtr(run);
+    CGGlyph * allocatedGlyphs = NULL;
+    if (!glyphs) {
+        allocatedGlyphs = malloc(glyphCount * sizeof(CGGlyph));
+        CTRunGetGlyphs(run, CFRangeMake(0, glyphCount), allocatedGlyphs);
+        glyphs = allocatedGlyphs;
+    }
+    const CGPoint * positions = CTRunGetPositionsPtr(run);
+    CGPoint * allocatedPositions = NULL;
+    if (!positions) {
+        allocatedPositions = malloc(glyphCount * sizeof(CGPoint));
+        CTRunGetPositions(run, CFRangeMake(0, glyphCount), allocatedPositions);
+        positions = allocatedPositions;
+    }
+    
+    ((BFStyledStringRunGlyphIterationFunction)userData->function)(font, baselineOffset, glyphs, positions, glyphCount, userData->userData);
+    
+    free(allocatedGlyphs);
+    free(allocatedPositions);
+}
+
+static void BFStyledStringIterateRuns(BFStyledStringRef styledString, BFFunctionUserData * userData) {
     BFStyledStringEnsureLine(styledString);
     
     CFArrayRef runs = CTLineGetGlyphRuns(styledString->lineRef);
     CFIndex runCount = CFArrayGetCount(runs);
     for (CFIndex runIndex = 0; runIndex < runCount; runIndex++) {
         CTRunRef run = CFArrayGetValueAtIndex(runs, runIndex);
-        CFDictionaryRef attributes = CTRunGetAttributes(run);
-        CTFontRef font = CFDictionaryGetValue(attributes, kCTFontAttributeName);
-        double baselineOffset = 0;
-        if (CFDictionaryContainsKey(attributes, kCTSuperscriptAttributeName)) {
-            CFNumberRef number = CFDictionaryGetValue(attributes, kCTSuperscriptAttributeName);
-            int superscriptIndex = 0;
-            CFNumberGetValue(number, kCFNumberIntType, &superscriptIndex);
-            baselineOffset = superscriptIndex * CTFontGetSize(font) / 2;
-        }
-        
-        CFIndex glyphCount = CTRunGetGlyphCount(run);
-        const CGGlyph * glyphs = CTRunGetGlyphsPtr(run);
-        CGGlyph * allocatedGlyphs = NULL;
-        if (!glyphs) {
-            allocatedGlyphs = malloc(glyphCount * sizeof(CGGlyph));
-            CTRunGetGlyphs(run, CFRangeMake(0, glyphCount), allocatedGlyphs);
-            glyphs = allocatedGlyphs;
-        }
-        const CGPoint * positions = CTRunGetPositionsPtr(run);
-        CGPoint * allocatedPositions = NULL;
-        if (!positions) {
-            allocatedPositions = malloc(glyphCount * sizeof(CGPoint));
-            CTRunGetPositions(run, CFRangeMake(0, glyphCount), allocatedPositions);
-            positions = allocatedPositions;
-        }
-        
-        iterationFunction(font, baselineOffset, glyphs, positions, glyphCount, userData);
-        
-        free(allocatedGlyphs);
-        free(allocatedPositions);
+        ((BFStyledStringRunIterationFunction)userData->function)(styledString, userData->userData, run);
     }
 }
 
-static void BFStyledStringBuildPathRunIterationFunction(CTFontRef font, double baselineOffset, const CGGlyph * glyphs, const CGPoint * positions, CFIndex glyphCount, CGMutablePathRef path) {
+static void BFStyledStringAddGlyphsToPath(CTFontRef font, double baselineOffset, const CGGlyph * glyphs, const CGPoint * positions, CFIndex glyphCount, CGMutablePathRef path) {
     CGAffineTransform glyphTransform = CGAffineTransformIdentity;
     for (CFIndex glyphIndex = 0; glyphIndex < glyphCount; glyphIndex++) {
         glyphTransform.tx = positions[glyphIndex].x;
@@ -278,7 +309,7 @@ static void BFStyledStringBuildPathRunIterationFunction(CTFontRef font, double b
     }
 }
 
-static void BFStyledStringShowGlyphsRunIterationFunction(CTFontRef font, double baselineOffset, const CGGlyph * glyphs, const CGPoint * positions, CFIndex glyphCount, BFStyledStringShowGlyphsRunIterationFunctionUserData * userData) {
+static void BFStyledStringDrawGlyphsInContext(CTFontRef font, double baselineOffset, const CGGlyph * glyphs, const CGPoint * positions, CFIndex glyphCount, BFStyledStringDrawGlyphsInContextUserData * userData) {
     CGContextRef context = userData->context;
     CGPoint textPosition = userData->textPosition;
     
@@ -293,6 +324,12 @@ static void BFStyledStringShowGlyphsRunIterationFunction(CTFontRef font, double 
     textPosition.y = ty;
     
     CGContextShowGlyphsAtPositions(context, glyphs, positions, glyphCount);
+}
+
+void BFStyledStringIterateComponents(BFStyledStringRef styledString, BFStyledStringComponentIterationFunction iterationFunction, void * userData) {
+    BFFunctionUserData componentUserData = { .function = iterationFunction, .userData = userData };
+    BFFunctionUserData iterationUserData = { .function = BFStyledStringCTRunToComponent, .userData = &componentUserData };
+    BFStyledStringIterateRuns(styledString, &iterationUserData);
 }
 
 CFIndex BFStyledStringGetLength(BFStyledStringRef styledString) {
@@ -315,8 +352,10 @@ BFRect BFStyledStringMeasure(BFStyledStringRef styledString) {
 
 void BFStyledStringDrawInCGContext(const BFStyledStringRef styledString, CGContextRef context) {
     CGPoint textPosition = CGContextGetTextPosition(context);
-    BFStyledStringShowGlyphsRunIterationFunctionUserData userData = { .context = context, .textPosition = textPosition };
-    BFStyledStringIterateRuns(styledString, (BFStyledStringRunIterationFunction)BFStyledStringShowGlyphsRunIterationFunction, &userData);
+    BFStyledStringDrawGlyphsInContextUserData drawGlyphsUserData = { .context = context, .textPosition = textPosition };
+    BFFunctionUserData glyphsUserData = { .function = BFStyledStringDrawGlyphsInContext, .userData = &drawGlyphsUserData };
+    BFFunctionUserData iterationUserData = { .function = BFStyledStringCTRunToGlyphs, .userData = &glyphsUserData };
+    BFStyledStringIterateRuns(styledString, &iterationUserData);
 }
 
 CGPathRef BFStyledStringGetCGPath(BFStyledStringRef styledString) {
