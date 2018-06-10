@@ -61,6 +61,8 @@ static const BFBaseFunctions baseFunctions = {
     .dealloc = (BFBaseDeallocFunction)&BFStyledStringDealloc,
 };
 
+static const CFStringRef BF_BASELINE_OFFSET_ATTRIBUTE = CFSTR("BF_BASELINE_OFFSET_ATTRIBUTE");
+
 BFStyledStringRef BFStyledStringCreate(const char * string, BFFontRef font, BFStyledStringAttributes attributesStruct) {
     CFAttributedStringRef attributedString = BFStyledStringNewAttributedString(string, font, attributesStruct);
     BFStyledStringRef styledString = BFStyledStringCreateUsingAttributedString(attributedString);
@@ -184,9 +186,9 @@ static CFAttributedStringRef BFStyledStringNewAttributedString(const char * cStr
         keys[attributeIndex] = kCTFontAttributeName;
         values[attributeIndex++] = CFRetain(BFFontGetCTFont(font));
     }
-    if (attributesStruct.superscriptIndex) {
-        keys[attributeIndex] = kCTSuperscriptAttributeName;
-        values[attributeIndex++] = CFNumberCreate(NULL, kCFNumberIntType, &attributesStruct.superscriptIndex);
+    if (attributesStruct.baselineOffset) {
+        keys[attributeIndex] = BF_BASELINE_OFFSET_ATTRIBUTE;
+        values[attributeIndex++] = CFNumberCreate(NULL, kCFNumberDoubleType, &attributesStruct.baselineOffset);
     }
     
     CFDictionaryRef attributes = CFDictionaryCreate(kCFAllocatorDefault, (const void **)&keys,
@@ -243,9 +245,9 @@ static void BFStyledStringCTRunToComponent(BFStyledStringRef styledString, BFFun
     CTFontRef font = CFDictionaryGetValue(attributes, kCTFontAttributeName);
     component.font = BFFontCreateWithCTFont(font);
 
-    if (CFDictionaryContainsKey(attributes, kCTSuperscriptAttributeName)) {
-        CFNumberRef number = CFDictionaryGetValue(attributes, kCTSuperscriptAttributeName);
-        CFNumberGetValue(number, kCFNumberIntType, &component.attributes.superscriptIndex);
+    if (CFDictionaryContainsKey(attributes, BF_BASELINE_OFFSET_ATTRIBUTE)) {
+        CFNumberRef number = CFDictionaryGetValue(attributes, BF_BASELINE_OFFSET_ATTRIBUTE);
+        CFNumberGetValue(number, kCFNumberDoubleType, &component.attributes.baselineOffset);
     }
     
     ((BFStyledStringComponentIterationFunction)userData->function)(userData->userData, component);
@@ -258,11 +260,9 @@ static void BFStyledStringCTRunToGlyphs(BFStyledStringRef styledString, BFFuncti
     CFDictionaryRef attributes = CTRunGetAttributes(run);
     CTFontRef font = CFDictionaryGetValue(attributes, kCTFontAttributeName);
     double baselineOffset = 0;
-    if (CFDictionaryContainsKey(attributes, kCTSuperscriptAttributeName)) {
-        CFNumberRef number = CFDictionaryGetValue(attributes, kCTSuperscriptAttributeName);
-        int superscriptIndex = 0;
-        CFNumberGetValue(number, kCFNumberIntType, &superscriptIndex);
-        baselineOffset = superscriptIndex * CTFontGetSize(font) / 2;
+    if (CFDictionaryContainsKey(attributes, BF_BASELINE_OFFSET_ATTRIBUTE)) {
+        CFNumberRef number = CFDictionaryGetValue(attributes, BF_BASELINE_OFFSET_ATTRIBUTE);
+        CFNumberGetValue(number, kCFNumberDoubleType, &baselineOffset);
     }
     
     CFIndex glyphCount = CTRunGetGlyphCount(run);

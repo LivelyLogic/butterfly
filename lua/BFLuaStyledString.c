@@ -76,8 +76,8 @@ static int new(lua_State * L) {
         lua_pop(L, 1);
         
         BFStyledStringAttributes attributes = {};
-        lua_getfield(L, 2, "superscript");
-        attributes.superscriptIndex = lua_tonumber(L, -1);
+        lua_getfield(L, 2, "baseline");
+        attributes.baselineOffset = lua_tonumber(L, -1);
         lua_pop(L, 1);
         
         BFStyledStringRef styledString = BFStyledStringCreate(string, font, attributes);
@@ -169,9 +169,9 @@ static void getComponents_iteration(lua_State * L, BFStyledStringComponent compo
     bf_lua_push(L, component.font, BFFontClassName);
     lua_setfield(L, -2, "font");
 
-    if (component.attributes.superscriptIndex != 0) {
-        lua_pushnumber(L, component.attributes.superscriptIndex);
-        lua_setfield(L, -2, "superscript");
+    if (component.attributes.baselineOffset != 0) {
+        lua_pushnumber(L, component.attributes.baselineOffset);
+        lua_setfield(L, -2, "baseline");
     }
     
     lua_rawseti(L, -2, lua_objlen(L, -2) + 1);

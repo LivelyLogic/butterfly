@@ -243,7 +243,7 @@ void BFPathIterateComponents(BFPathRef path, BFPathComponentIterationFunction it
 // BFStyledString
 
 typedef struct {
-    int superscriptIndex;
+    double baselineOffset;
 } BFStyledStringAttributes;
 
 typedef struct {
