@@ -249,6 +249,7 @@ typedef struct {
 typedef struct {
     char * string;
     BFFontRef font;
+    BFPoint position;
     BFStyledStringAttributes attributes;
 } BFStyledStringComponent;
 

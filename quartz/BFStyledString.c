@@ -245,6 +245,11 @@ static void BFStyledStringCTRunToComponent(BFStyledStringRef styledString, BFFun
     CTFontRef font = CFDictionaryGetValue(attributes, kCTFontAttributeName);
     component.font = BFFontCreateWithCTFont(font);
 
+    CGPoint position = {};
+    CTRunGetPositions(run, CFRangeMake(0, 1), &position);
+    component.position.x = position.x;
+    component.position.y = position.y;
+    
     if (CFDictionaryContainsKey(attributes, BF_BASELINE_OFFSET_ATTRIBUTE)) {
         CFNumberRef number = CFDictionaryGetValue(attributes, BF_BASELINE_OFFSET_ATTRIBUTE);
         CFNumberGetValue(number, kCFNumberDoubleType, &component.attributes.baselineOffset);

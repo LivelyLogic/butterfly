@@ -168,6 +168,13 @@ static void getComponents_iteration(lua_State * L, BFStyledStringComponent compo
     
     bf_lua_push(L, component.font, BFFontClassName);
     lua_setfield(L, -2, "font");
+    
+    lua_newtable(L);
+    lua_pushnumber(L, component.position.x);
+    lua_setfield(L, -2, "x");
+    lua_pushnumber(L, component.position.y);
+    lua_setfield(L, -2, "y");
+    lua_setfield(L, -2, "position");
 
     if (component.attributes.baselineOffset != 0) {
         lua_pushnumber(L, component.attributes.baselineOffset);
