@@ -23,6 +23,8 @@ LUA2PNG_FRAMEWORKS = -framework CoreFoundation -framework CoreGraphics -framewor
 LIB = libbutterfly.a
 HEADER = lua/lua.h quartz/butterfly.h quartz/quartz.h
 
+all: $(LIB)
+
 quartz/%.o: quartz/%.c $(QUARTZ_HEADERS)
 	$(CC) -c $(CFLAGS) $< -o $@
 
@@ -35,8 +37,6 @@ $(LUA2PNG_OBJECT): $(LUA2PNG_SOURCE) $(LUA_HEADERS) $(QUARTZ_HEADERS)
 $(LIB): $(QUARTZ_OBJECTS) $(LUA_OBJECTS)
 	ar -cru $@ $(QUARTZ_OBJECTS) $(LUA_OBJECTS)
 	ranlib $@
-
-all: $(LIB)
 
 clean:
 	rm -f $(QUARTZ_OBJECTS) $(LUA_OBJECTS) $(LIB)
