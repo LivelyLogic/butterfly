@@ -4,16 +4,28 @@
 
 ## Adding the library to an Xcode project
 
-```sh
-make && make install
-```
+1.  **Build and install the library and header files:**
+    ```sh
+    make && make install
+    ```
+    You can specify the deployment target using the `MACOSX_DEPLOYMENT_TARGET` environment variable, for example `export MACOSX_DEPLOYMENT_TARGET=10.13`.
 
-In the Xcode build settings for your target
+2.  **Set the Xcode build settings for your target:**
+    - Add `/usr/local/include` to **Header Search Paths** (`HEADER_SEARCH_PATHS`).
+    - Add `/usr/local/lib/libbutterfly.a` to **Other Linker Flags** (`OTHER_LDFLAGS`).
 
-1. Add `/usr/local/include` to **Header Search Paths** (`HEADER_SEARCH_PATHS`).
-2. Add `/usr/local/lib/libbutterfly.a` to **Other Linker Flags** (`OTHER_LDFLAGS`).
+3.  **Load butterfly graphics classes in your Lua state:**
+    - Add `#include <butterfly/lua.h>` to the file where you initialize your Lua state.
+    - Call `bf_lua_load` to set up the globals and metatables for the butterfly graphics classes.
 
-## lua2png
+4.  **Create a canvas object for your Lua code to draw into:**
+    - Add `#include <butterfly/quartz.h>`.
+    - Call `BFCanvasMetricsCreate` and `BFCanvasCreateForDisplay` to create a butterfly canvas from a Quartz graphics context.
+    - Call `bf_lua_push` to push the canvas onto the Lua stack. You can use Lua APIs like `lua_setglobal` or `lua_pcall` to assign the canvas to a global variable or call a function passing it as a parameter.
+
+5.  **Draw into the canvas from your Lua scripts.**
+
+## lua2png example
 
 ```sh
 make lua2png
