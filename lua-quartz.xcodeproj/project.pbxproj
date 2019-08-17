@@ -103,7 +103,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastUpgradeCheck = 1020;
-				ORGANIZATIONNAME = "Ripeware, LLC";
+				ORGANIZATIONNAME = "James Rodovich";
 				TargetAttributes = {
 					38E3DB321AF1142100F84CBB = {
 						CreatedOnToolsVersion = 6.3.1;
@@ -279,7 +279,7 @@
 					/usr/local/lib/liblua.a,
 					/usr/local/lib/libbutterfly.a,
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.ripeware.$(PRODUCT_NAME:rfc1034identifier)";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.livelylogic.butterfly.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "lua-quartz";
 			};
 			name = Debug;
@@ -296,7 +296,7 @@
 					/usr/local/lib/liblua.a,
 					/usr/local/lib/libbutterfly.a,
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.ripeware.$(PRODUCT_NAME:rfc1034identifier)";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.livelylogic.butterfly.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "lua-quartz";
 			};
 			name = Release;
