@@ -10,9 +10,8 @@ make && make install
 
 In the Xcode build settings for your target
 
-1. Set **Always Search User Paths** to **Yes**.
-2. Add `/usr/local/include` to **User Header Search Paths**.
-3. Add `/usr/local/lib/libbutterfly.a` to **Other Linker Flags**.
+1. Add `/usr/local/include` to **Header Search Paths** (`HEADER_SEARCH_PATHS`).
+2. Add `/usr/local/lib/libbutterfly.a` to **Other Linker Flags** (`OTHER_LDFLAGS`).
 
 ## lua2png
 
